@@ -74,10 +74,11 @@ export function Hero() {
       </div>
 
       {/* Small glass cards around the photo: rating and expertise at a glance. Desktop: three, beside the photo; phones: two, inside the screen. */}
-      <div aria-hidden className="pointer-events-none absolute top-[max(4.5rem,4svh)] right-0 left-0 z-10 mx-auto hidden aspect-square w-[min(72vw,76svh)] md:block">
-        <HeroCard className="top-[20%] -left-[14%]" delay="0s" icon={<span className="grid h-8 w-8 place-items-center rounded-full bg-white text-sm font-bold text-[#4285F4] shadow-sm">G</span>} title={<><span className="font-semibold">{site.rating.value}</span> <Stars className="ml-1 text-[0.62rem] text-ember" /></>} sub={`${site.rating.count}+ Google reviews`} />
-        <HeroCard className="top-[38%] -right-[16%]" delay="-2s" icon={<span className="grid h-8 w-8 place-items-center rounded-full grad-ember text-shell"><Scope /></span>} title="Doctor-led care" sub="Trichologist & dermatologist" />
-        <HeroCard className="top-[58%] -left-[10%]" delay="-4s" icon={<span className="grid h-8 w-8 place-items-center rounded-full bg-night text-shell"><Scalpel /></span>} title="FUE hair transplant" sub="Surgeons from Mumbai" />
+      {/* Desktop: cards sit outside the photo's edges (photo half-width = min(36vw,38svh)) and in the upper half, clear of the headline. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-10 hidden md:block">
+        <HeroCard className="top-[24%] left-[max(1.5rem,calc(50%-min(36vw,38svh)-16rem))]" delay="0s" icon={<span className="grid h-8 w-8 place-items-center rounded-full bg-white text-sm font-bold text-[#4285F4] shadow-sm">G</span>} title={<><span className="font-semibold">{site.rating.value}</span> <Stars className="ml-1 text-[0.62rem] text-ember" /></>} sub={`${site.rating.count}+ Google reviews`} />
+        <HeroCard className="top-[34%] right-[max(1.5rem,calc(50%-min(36vw,38svh)-17rem))]" delay="-2s" icon={<span className="grid h-8 w-8 place-items-center rounded-full grad-ember text-shell"><Scope /></span>} title="Doctor-led care" sub="Trichologist & dermatologist" />
+        <HeroCard className="top-[44%] left-[max(1.5rem,calc(50%-min(36vw,38svh)-15rem))]" delay="-4s" icon={<span className="grid h-8 w-8 place-items-center rounded-full bg-night text-shell"><Scalpel /></span>} title="FUE hair transplant" sub="Surgeons from Mumbai" />
       </div>
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[max(5.5rem,10svh)] z-10 px-4 md:hidden">
         <HeroCard className="left-4 top-0" small delay="0s" icon={<span className="grid h-6 w-6 place-items-center rounded-full bg-white text-[0.7rem] font-bold text-[#4285F4] shadow-sm">G</span>} title={<><span className="font-semibold">{site.rating.value}</span> <Stars className="ml-0.5 text-[0.5rem] text-ember" /></>} sub={`${site.rating.count}+ reviews`} />
