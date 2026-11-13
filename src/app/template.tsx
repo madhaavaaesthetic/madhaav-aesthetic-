@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { useEffect, useState, type ReactNode } from "react";
 
 let hydrated = false;
@@ -15,7 +15,7 @@ export default function Template({ children }: { children: ReactNode }) {
   return (
     <>
       {curtain && (
-        <motion.div
+        <m.div
           aria-hidden
           className="pointer-events-none fixed inset-0 z-[150] grad-ember"
           initial={{ clipPath: "inset(0% 0% 0% 0%)" }}

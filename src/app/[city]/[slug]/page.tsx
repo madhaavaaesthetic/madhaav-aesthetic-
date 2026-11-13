@@ -92,7 +92,7 @@ function CityTreatment({ city, t }: { city: City; t: Treatment }) {
         relatedHref={(s) => `/${city.slug}/${s}`}
         localSlot={<LocalProse city={city} localWhy={c.localWhy} />}
       />
-      <section className="pb-24 md:pb-32">
+      <section className="pb-16 md:pb-20">
         <div className="wrap grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <ClinicCard city={city} />
@@ -139,7 +139,7 @@ function AreaPage({ city, area }: { city: City; area: Area }) {
         waMessage={`Hi Madhaav Aesthetic, I live near ${area.name} and would like to book a consultation.`}
         bookHref={`/contact?clinic=${city.slug}`}
       />
-      <section className="pb-24 md:pb-32">
+      <section className="pb-16 md:pb-20">
         <div className="wrap grid gap-12 lg:grid-cols-12">
           <div className="prose-clinic lg:col-span-7">
             <h2 className="!mt-0">Hair and skin care for {area.name}</h2>
@@ -166,7 +166,7 @@ function AreaPage({ city, area }: { city: City; area: Area }) {
           </div>
         </div>
       </section>
-      <section className="bg-shell py-24 md:py-32">
+      <section className="bg-shell py-16 md:py-20">
         <div className="wrap">
           <h2 className="font-display text-title text-cocoa">Treatments for patients from {area.name}</h2>
           <Reveal group stagger={0.05} className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -179,7 +179,7 @@ function AreaPage({ city, area }: { city: City; area: Area }) {
           </Link>
         </div>
       </section>
-      <section className="py-24 md:py-32">
+      <section className="py-16 md:py-20">
         <div className="wrap grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <AreaLinks city={city} title={`Other areas near ${city.name}`} />

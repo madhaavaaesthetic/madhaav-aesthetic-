@@ -21,6 +21,10 @@ export const Clock = (p: P) => (
 export const Star = (p: P) => (
   <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" {...p}><path d="m12 2.8 2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" /></svg>
 );
+/** A row of rating stars drawn as one masked element (keeps the DOM small where many cards repeat). */
+export const Stars = ({ n = 5, className = "" }: { n?: number; className?: string }) => (
+  <span role="img" aria-label={`${n} out of 5 stars`} className={`stars ${className}`} style={{ ["--n" as string]: n }} />
+);
 export const Plus = (p: P) => (
   <svg viewBox="0 0 24 24" width="1em" height="1em" {...base} {...p}><path d="M12 5v14M5 12h14" /></svg>
 );

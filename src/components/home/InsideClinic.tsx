@@ -13,17 +13,17 @@ const photos = [
 
 export function InsideClinic() {
   return (
-    <section className="relative overflow-hidden bg-night py-28 text-shell md:py-40" aria-labelledby="inside-title">
+    <section className="relative overflow-hidden bg-night py-16 text-shell md:py-24" aria-labelledby="inside-title">
       <div className="wrap">
         <SectionHead tone="dark" eyebrow="Inside Madhaav" title={<span id="inside-title">Inside our clinics</span>} lead="Real photos and videos from our clinics in Berhampur, Thane West and Bhiwadi." />
 
-        <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-12 md:gap-5">
+        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-12 md:gap-5">
           <Reveal className="col-span-2 md:col-span-7">
             <ParallaxImage src="/images/thane-clinic-storefront-naupada.jpg" alt="Madhaav Aesthetic & Cure Vibe Clinic storefront in Naupada, Thane West" className="aspect-[4/3] rounded-[1.75rem]" sizes="(max-width:768px) 95vw, 58vw" />
             <p className="mt-3 text-sm text-shell/60">Thane West · Nakhwa Enclave, opposite Naupada Police Station</p>
           </Reveal>
           <Reveal className="col-span-1 md:col-span-2 md:self-end" delay={0.1}>
-            <VideoCard src="/videos/fue-extraction-berhampur.mp4" poster="/videos/fue-extraction-berhampur.jpg" title="Berhampur OT" caption="FUE extraction" />
+            <VideoCard src="/videos/fue-extraction-berhampur.mp4" poster="/videos/fue-extraction-berhampur.webp" title="Berhampur OT" caption="FUE extraction" />
           </Reveal>
           <Reveal className="col-span-1 md:col-span-3 md:self-end" delay={0.2}>
             <div className="relative aspect-[3/4] overflow-hidden rounded-[999px_999px_1.5rem_1.5rem]">
@@ -35,7 +35,7 @@ export function InsideClinic() {
           <Reveal className="col-span-2 md:col-span-5" delay={0.05}>
             <VideoCard
               src="/videos/free-wednesday-consultation.mp4"
-              poster="/videos/free-wednesday-consultation.jpg"
+              poster="/videos/free-wednesday-consultation.webp"
               title="Pocket-free Wednesday"
               caption="Free consultations on Wednesdays (Bhiwadi)"
               aspect="aspect-video"

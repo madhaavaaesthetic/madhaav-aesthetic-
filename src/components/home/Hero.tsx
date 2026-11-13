@@ -7,11 +7,10 @@ import { gsap, SplitText, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { Strands, Follicle, Sprig } from "@/components/brand/Strands";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { Marquee } from "@/components/motion/Marquee";
-import { ArrowUpRight, Star, WhatsApp } from "@/components/ui/Icons";
+import { ArrowUpRight, Stars, WhatsApp } from "@/components/ui/Icons";
 import { site, whatsappLink } from "@/lib/site";
-import { treatments } from "@/data/treatments";
 
-export function Hero() {
+export function Hero({ marquee }: { marquee: { slug: string; shortName: string }[] }) {
   const root = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -19,7 +18,7 @@ export function Hero() {
       const el = root.current;
       if (!el || prefersReducedMotion()) return;
       const q = gsap.utils.selector(el);
-      const lines = SplitText.create(q("[data-hero-line]"), { type: "words,chars", wordsClass: "inline-block whitespace-nowrap", charsClass: "inline-block will-change-transform" });
+      const lines = SplitText.create(q("[data-hero-line]"), { type: "words,chars", aria: "none", wordsClass: "inline-block whitespace-nowrap", charsClass: "inline-block will-change-transform" });
       lines.chars.forEach((c) => c.parentElement?.closest(".text-grad") && c.classList.add("text-grad"));
       // On phones the picture sits on top, so it reveals first and the headline follows.
       const mobile = window.matchMedia("(max-width: 1023px)").matches;
@@ -83,16 +82,18 @@ export function Hero() {
             <span data-hero-fade className="eyebrow mb-[min(0.9rem,1.6svh)] block text-[0.68rem] leading-relaxed text-vermilion md:text-xs">
               Hair transplant & skin clinic in Berhampur, Thane & Bhiwadi
             </span>
-            <span data-hero-line className="block font-hero text-[min(14.5vw,8.6svh)] leading-[0.95] lg:text-[min(8vw,12.5svh)]">
+            {/* The animated lines below are split into letters; screen readers get this single clean copy instead. */}
+            <span className="sr-only">Thicker hair. Clearer skin. Treated by real doctors.</span>
+            <span data-hero-line aria-hidden className="block font-hero text-[min(14.5vw,8.6svh)] leading-[0.95] lg:text-[min(8vw,12.5svh)]">
               Thicker hair.
             </span>
             <span className="flex flex-wrap items-center gap-x-5">
-              <span data-hero-line className="block pr-2 font-accent text-[min(14.5vw,8.6svh)] leading-[1.02] italic text-grad lg:text-[min(8vw,12.5svh)]">
+              <span data-hero-line aria-hidden className="block pr-2 font-accent text-[min(14.5vw,8.6svh)] leading-[1.02] italic text-grad lg:text-[min(8vw,12.5svh)]">
                 Clearer skin.
               </span>
               <Sprig className="hidden h-7 w-20 text-ember lg:block" />
             </span>
-            <span data-hero-line className="mt-1 block font-display text-[min(8.4vw,4.9svh)] leading-[1.05] lg:text-[min(3.9vw,6.4svh)]">
+            <span data-hero-line aria-hidden className="mt-1 block font-display text-[min(8.4vw,4.9svh)] leading-[1.05] lg:text-[min(3.9vw,6.4svh)]">
               Treated by real doctors.
             </span>
           </h1>
@@ -124,7 +125,8 @@ export function Hero() {
                 src="/images/brand-scalp-massage-therapy.jpg"
                 alt="Patient receiving scalp treatment for hair fall at Madhaav Aesthetic clinic"
                 fill
-                priority
+                loading="eager"
+                fetchPriority="high"
                 sizes="(max-width: 1024px) 92vw, 40vw"
                 className="object-cover object-[50%_35%]"
               />
@@ -152,9 +154,7 @@ export function Hero() {
 
           <div data-hero-float className="glass absolute bottom-3 left-3 z-10 rounded-2xl px-4 py-3 lg:bottom-10 lg:-left-10">
             <div className="flex items-center gap-1 text-ember">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="text-xs" />
-              ))}
+              <Stars className="text-xs" />
               <span className="ml-1.5 font-semibold text-cocoa">{site.rating.value}</span>
             </div>
             <p className="mt-0.5 text-xs text-cocoa/70">{site.rating.count}+ Google reviews</p>
@@ -173,10 +173,10 @@ export function Hero() {
 
       <div className="relative z-20 border-y border-white/60 bg-shell/65 py-5 shadow-[0_-12px_40px_-24px_rgba(58,29,24,0.35)] backdrop-blur-xl backdrop-saturate-150">
         <Marquee duration={55}>
-          {treatments.map((t) => (
+          {marquee.map((t) => (
             <Link key={t.slug} href={`/treatments/${t.slug}`} className="group flex items-center gap-6 px-6">
               <span className="font-display text-3xl whitespace-nowrap text-cocoa transition-colors group-hover:text-vermilion md:text-4xl">{t.shortName}</span>
-              <Sprig className="h-4 w-12 text-ember/70" />
+              <span aria-hidden className="sprig-mark h-4 w-12 text-ember/70" />
             </Link>
           ))}
         </Marquee>

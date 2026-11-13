@@ -57,7 +57,7 @@ export function TreatmentBody({
         </dl>
       </section>
 
-      <section className="py-24 md:py-32">
+      <section className="py-16 md:py-20">
         <div className="wrap grid gap-14 lg:grid-cols-12">
           <div className="prose-clinic lg:col-span-7">
             <h2 className="!mt-0">
@@ -89,7 +89,7 @@ export function TreatmentBody({
               </Reveal>
               {showVideo && (
                 <Reveal className="mt-5 grid grid-cols-2 gap-4" delay={0.1}>
-                  <VideoCard src="/videos/fue-extraction-berhampur.mp4" poster="/videos/fue-extraction-berhampur.jpg" title="Inside our OT" caption="FUE extraction" />
+                  <VideoCard src="/videos/fue-extraction-berhampur.mp4" poster="/videos/fue-extraction-berhampur.webp" title="Inside our OT" caption="FUE extraction" />
                   <div className="relative overflow-hidden rounded-[1.75rem]">
                     <Image src="/images/operation-theatre.jpg" alt="Hair transplant operation theatre" fill sizes="22vw" className="object-cover" />
                   </div>
@@ -100,7 +100,7 @@ export function TreatmentBody({
         </div>
       </section>
 
-      <section className="bg-shell py-24 md:py-32">
+      <section className="bg-shell py-16 md:py-20">
         <div className="wrap">
           <p className="eyebrow flex items-center gap-3 text-vermilion">
             <span className="h-px w-8 bg-current" /> How it works
@@ -120,7 +120,7 @@ export function TreatmentBody({
         </div>
       </section>
 
-      <section className="py-24 md:py-32">
+      <section className="py-16 md:py-20">
         <div className="wrap grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="eyebrow flex items-center gap-3 text-vermilion">
@@ -137,8 +137,7 @@ export function TreatmentBody({
               ))}
             </ul>
           </div>
-          <ol className="relative lg:col-span-7">
-            <span className="absolute top-3 bottom-3 left-[7px] w-px bg-gradient-to-b from-ember via-vermilion to-crimson" />
+          <ol className="relative lg:col-span-7 before:absolute before:top-3 before:bottom-3 before:left-[7px] before:w-px before:bg-gradient-to-b before:from-ember before:via-vermilion before:to-crimson">
             {t.timeline.map((x) => (
               <Reveal as="li" key={x.when} className="relative pb-10 pl-10 last:pb-0">
                 <span className="absolute top-2 left-0 h-[15px] w-[15px] rounded-full border-[3px] border-cream bg-vermilion" />
@@ -152,7 +151,7 @@ export function TreatmentBody({
 
       <CostSection t={t} place={placeLabel} />
 
-      <section className="bg-night py-24 text-shell md:py-32">
+      <section className="bg-night py-16 text-shell md:py-20">
         <div className="wrap grid gap-12 lg:grid-cols-2">
           <Reveal>
             <p className="eyebrow text-ember">Aftercare</p>
@@ -188,7 +187,7 @@ export function TreatmentBody({
         </div>
       </section>
 
-      <section className="py-24 md:py-32">
+      <section className="py-16 md:py-20">
         <div className="wrap grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <p className="eyebrow flex items-center gap-3 text-vermilion">
@@ -208,7 +207,7 @@ export function TreatmentBody({
       <ReviewsSection list={reviewList} title={`What patients say about ${lower(t.shortName)} at Madhaav`} />
 
       {related.length > 0 && (
-        <section className="bg-shell py-24 md:py-32">
+        <section className="bg-shell py-16 md:py-20">
           <div className="wrap">
             <div className="flex flex-wrap items-end justify-between gap-6">
               <h2 className="font-display text-title text-cocoa">Related treatments</h2>
@@ -224,7 +223,7 @@ export function TreatmentBody({
           </div>
         </section>
       )}
-      <div className="pt-16">
+      <div className="pt-10">
         <SearchTerms title={`People also search for${where}`} terms={terms} />
       </div>
     </>

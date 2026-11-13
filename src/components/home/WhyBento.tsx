@@ -6,10 +6,10 @@ import { site } from "@/lib/site";
 
 export function WhyBento() {
   return (
-    <section className="bg-shell py-28 md:py-40" aria-labelledby="why-title">
+    <section className="bg-shell py-16 md:py-24" aria-labelledby="why-title">
       <div className="wrap">
         <SectionHead eyebrow="Why Madhaav" title={<span id="why-title">Why patients choose Madhaav Aesthetic</span>} lead="Doctor-led care, clear pricing and three clinics open every day." />
-        <Reveal group stagger={0.08} className="mt-16 grid auto-rows-[minmax(220px,auto)] grid-cols-1 gap-4 md:grid-cols-6 md:gap-5">
+        <Reveal group stagger={0.08} className="mt-12 grid auto-rows-[minmax(220px,auto)] grid-cols-1 gap-4 md:grid-cols-6 md:gap-5">
           <Tile className="md:col-span-3 md:row-span-2 bg-night text-shell" icon={<Scope />} title="Diagnosis before treatment" dark>
             Every hair plan starts with trichoscopy and, where needed, blood work. Thyroid, iron, vitamin D, PCOS and scalp infections are all checked, so you pay for what will help.
             <div className="relative mt-8 aspect-[16/10] overflow-hidden rounded-2xl">

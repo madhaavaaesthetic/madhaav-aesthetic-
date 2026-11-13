@@ -77,7 +77,7 @@ export function GrowthTimeline({ className }: { className?: string }) {
 
   return (
     <section ref={root} className={cn("relative bg-cream", className)} aria-labelledby="growth-title">
-      <div data-pin className="relative flex min-h-screen flex-col justify-center overflow-hidden py-24">
+      <div data-pin className="relative flex min-h-screen flex-col justify-center overflow-hidden py-16">
         <div className="wrap grid items-center gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="eyebrow flex items-center gap-3 text-vermilion">

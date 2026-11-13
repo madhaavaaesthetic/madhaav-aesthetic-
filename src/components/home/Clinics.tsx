@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { AnimatePresence, motion, useMotionValue, useSpring } from "motion/react";
+import { AnimatePresence, m, useMotionValue, useSpring } from "motion/react";
 import { branches } from "@/lib/site";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { ArrowUpRight, Star } from "@/components/ui/Icons";
@@ -29,7 +29,7 @@ export function Clinics() {
 
   return (
     <section
-      className="relative bg-cream py-28 md:py-40"
+      className="relative bg-cream py-16 md:py-24"
       aria-labelledby="clinics-title"
       onPointerMove={(e) => {
         x.set(e.clientX);
@@ -38,7 +38,7 @@ export function Clinics() {
     >
       <div className="wrap">
         <SectionHead eyebrow="Clinic locations" title={<span id="clinics-title">Our clinics in Berhampur, Thane West and Bhiwadi</span>} lead="Open every day, 10 am – 1 pm and 4 pm – 8 pm. Patients from Delhi NCR visit our Bhiwadi clinic." />
-        <ul className="mt-16 border-t border-cocoa/15" onPointerLeave={() => setActive(null)}>
+        <ul className="mt-12 border-t border-cocoa/15" onPointerLeave={() => setActive(null)}>
           {rows.map((r, i) => (
             <li key={r.href} className="border-b border-cocoa/15">
               <Link
@@ -70,10 +70,10 @@ export function Clinics() {
         </ul>
       </div>
 
-      <motion.div className="pointer-events-none fixed top-0 left-0 z-30 hidden lg:block" style={{ x: sx, y: sy }} aria-hidden>
+      <m.div className="pointer-events-none fixed top-0 left-0 z-30 hidden lg:block" style={{ x: sx, y: sy }} aria-hidden>
         <AnimatePresence>
           {active !== null && (
-            <motion.div
+            <m.div
               key={active}
               className="relative -mt-40 ml-8 h-64 w-52 overflow-hidden rounded-[999px_999px_18px_18px] shadow-2xl"
               initial={{ opacity: 0, scale: 0.7, rotate: -6 }}
@@ -82,10 +82,10 @@ export function Clinics() {
               transition={{ type: "spring", stiffness: 240, damping: 24 }}
             >
               <Image src={rows[active].image} alt="" fill sizes="210px" className="object-cover" />
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

@@ -53,7 +53,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           </div>
           <div className="wrap mt-12">
             <div className="relative aspect-[21/9] overflow-hidden rounded-[2rem]">
-              <Image src={p.image} alt={p.imageAlt} fill priority sizes="100vw" className="object-cover" />
+              <Image src={p.image} alt={p.imageAlt} fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover" />
             </div>
           </div>
         </header>
@@ -93,7 +93,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         </div>
       </article>
       {related.length > 0 && (
-        <section className="bg-shell py-24">
+        <section className="bg-shell py-16">
           <div className="wrap">
             <h2 className="font-display text-title text-cocoa">Related treatments</h2>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -104,7 +104,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           </div>
         </section>
       )}
-      <section className="py-24">
+      <section className="py-16">
         <div className="wrap">
           <h2 className="font-display text-title text-cocoa">Keep reading</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">

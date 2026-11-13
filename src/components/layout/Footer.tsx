@@ -10,7 +10,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-night text-shell">
       <Strands className="absolute -top-40 -right-40 h-[780px] w-[780px] opacity-25" id="foot-grad" />
-      <div className="wrap relative pt-24 pb-28 md:pt-32 md:pb-10">
+      <div className="wrap relative pt-16 pb-28 md:pt-20 md:pb-10">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="eyebrow text-ember">Book a consultation</p>
@@ -42,7 +42,7 @@ export function Footer() {
                 <a href={telLink(b.phone)} className="mt-3 block text-shell link-underline w-fit">
                   {b.phoneDisplay}
                 </a>
-                <a href={b.directionsUrl} target="_blank" rel="noopener" className="mt-2 inline-flex items-center gap-1.5 text-shell/70 hover:text-ember">
+                <a href={b.directionsUrl} target="_blank" rel="noopener" className="mt-2 inline-flex items-center gap-1.5 text-shell/70 underline decoration-shell/30 underline-offset-4 hover:text-ember">
                   <Pin /> Directions
                 </a>
                 <p className="mt-3 text-shell/65">Mon–Sun · 10–1 & 4–8</p>
@@ -109,6 +109,11 @@ export function Footer() {
               <Instagram />
             </a>
           </div>
+        </div>
+        <div className="mt-6 flex items-center justify-center gap-3 border-t border-shell/10 pt-6 text-xs tracking-wide text-shell/65">
+          <span>Designed and developed by</span>
+          {/* eslint-disable-next-line @next/next/no-img-element -- tiny static credit mark */}
+          <img src="/images/crayora-logo-white.webp" alt="Crayora" width={149} height={48} loading="lazy" decoding="async" className="crayora-glow h-7 w-auto md:h-8" />
         </div>
       </div>
     </footer>

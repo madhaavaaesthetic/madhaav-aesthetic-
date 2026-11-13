@@ -74,7 +74,7 @@ export default async function AreaTreatmentPage({ params }: { params: Params }) 
         relatedHref={(s) => (getTreatment(s)?.core ? `/${city.slug}/${area.slug}/${s}` : `/${city.slug}/${s}`)}
         localSlot={<LocalProse city={city} area={area} localWhy={t.local[city.climate]} />}
       />
-      <section className="pb-24 md:pb-32">
+      <section className="pb-16 md:pb-20">
         <div className="wrap grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <ClinicCard city={city} />

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, m } from "motion/react";
 import { treatments, categories } from "@/data/treatments";
 import { BOOKING_CLINICS, SLOT_TIMES, formatDate, formatSlot, upcomingDates } from "@/lib/booking";
 import { branchBySlug, whatsappLink } from "@/lib/site";
@@ -124,7 +124,7 @@ export default function BookingForm({ defaultClinic, defaultTreatment }: { defau
         <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden className="absolute -left-[9999px]" value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} />
         <AnimatePresence mode="wait">
           {step === 0 && (
-            <motion.div key="s0" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.35 }}>
+            <m.div key="s0" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.35 }}>
               <p className="eyebrow text-vermilion">Step 1 · Choose your clinic</p>
               <div role="radiogroup" aria-label="Clinic" className="mt-4 grid gap-3 sm:grid-cols-2">
                 {BOOKING_CLINICS.map((c) => {
@@ -172,13 +172,13 @@ export default function BookingForm({ defaultClinic, defaultTreatment }: { defau
                   Choose date & time <ArrowRight />
                 </button>
               </div>
-            </motion.div>
+            </m.div>
           )}
 
           {step === 1 && (
-            <motion.div key="s1" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.35 }}>
+            <m.div key="s1" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.35 }}>
               <p className="eyebrow text-vermilion">Step 2 · Pick a date</p>
-              <div className="no-scrollbar -mx-5 mt-4 flex gap-2 overflow-x-auto px-5 pb-2 md:-mx-9 md:px-9" data-lenis-prevent>
+              <div className="no-scrollbar -mx-5 mt-2 flex gap-2 overflow-x-auto px-5 pt-3 pb-2 md:-mx-9 md:px-9" data-lenis-prevent>
                 {dates.map((d) => {
                   const active = d.iso === date;
                   return (
@@ -241,11 +241,11 @@ export default function BookingForm({ defaultClinic, defaultTreatment }: { defau
                   Continue <ArrowRight />
                 </button>
               </div>
-            </motion.div>
+            </m.div>
           )}
 
           {step === 2 && (
-            <motion.div key="s2" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.35 }}>
+            <m.div key="s2" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.35 }}>
               <div className="glass mb-6 flex flex-wrap items-center gap-x-6 gap-y-2 rounded-2xl px-5 py-4 text-sm text-cocoa">
                 <span className="flex items-center gap-2">
                   <Calendar className="text-vermilion" /> {summary}
@@ -280,14 +280,14 @@ export default function BookingForm({ defaultClinic, defaultTreatment }: { defau
               </div>
               <AnimatePresence>
                 {error && (
-                  <motion.div role="alert" initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="mt-5 rounded-2xl bg-crimson/8 p-4 text-sm text-crimson">
+                  <m.div role="alert" initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="mt-5 rounded-2xl bg-crimson/8 p-4 text-sm text-crimson">
                     {error.message}
                     {error.fallback && (
                       <a href={whatsappLink(waMessage, branch.whatsapp)} target="_blank" rel="noopener" className="mt-3 flex w-fit items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 font-semibold text-white">
                         <WhatsApp /> Book on WhatsApp
                       </a>
                     )}
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
               <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
@@ -299,14 +299,14 @@ export default function BookingForm({ defaultClinic, defaultTreatment }: { defau
                 </button>
               </div>
               <p className="mt-4 text-xs text-cocoa/70">Your details go only to our clinic team and are used to confirm your appointment.</p>
-            </motion.div>
+            </m.div>
           )}
 
           {step === 3 && done && (
-            <motion.div key="s3" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} className="py-6 text-center">
-              <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 260, damping: 16, delay: 0.1 }} className="mx-auto grid h-20 w-20 place-items-center rounded-full grad-ember text-4xl text-shell">
+            <m.div key="s3" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} className="py-6 text-center">
+              <m.span initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 260, damping: 16, delay: 0.1 }} className="mx-auto grid h-20 w-20 place-items-center rounded-full grad-ember text-4xl text-shell">
                 <Check />
-              </motion.span>
+              </m.span>
               <h3 className="mt-6 font-display text-title text-cocoa">You&apos;re booked in.</h3>
               <p className="mx-auto mt-3 max-w-md text-cocoa/70">
                 {summary} at {clinicInfo.label}. Our team will call or WhatsApp you to confirm.
@@ -321,7 +321,7 @@ export default function BookingForm({ defaultClinic, defaultTreatment }: { defau
                   <WhatsApp className="text-[#25D366]" /> Message the clinic
                 </a>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </form>

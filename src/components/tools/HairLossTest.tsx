@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, m } from "motion/react";
 import { getTreatment } from "@/data/treatments";
 import { whatsappLink } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -93,12 +93,12 @@ export function HairLossTest() {
   return (
     <div className="mx-auto max-w-3xl">
       <div className="h-1.5 overflow-hidden rounded-full bg-sand">
-        <motion.div className="h-full rounded-full grad-ember" animate={{ width: `${(Math.min(step, QUESTIONS.length) / QUESTIONS.length) * 100}%` }} transition={{ type: "spring", stiffness: 120, damping: 20 }} />
+        <m.div className="h-full rounded-full grad-ember" animate={{ width: `${(Math.min(step, QUESTIONS.length) / QUESTIONS.length) * 100}%` }} transition={{ type: "spring", stiffness: 120, damping: 20 }} />
       </div>
       <div className="relative mt-10 min-h-[26rem]">
         <AnimatePresence mode="wait">
           {!done ? (
-            <motion.div key={step} initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}>
+            <m.div key={step} initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}>
               <p className="eyebrow text-vermilion">
                 Question {step + 1} of {QUESTIONS.length}
               </p>
@@ -116,9 +116,9 @@ export function HairLossTest() {
                   ← Back
                 </button>
               )}
-            </motion.div>
+            </m.div>
           ) : (
-            <motion.div key="result" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="rounded-[2rem] bg-night p-8 text-shell md:p-12">
+            <m.div key="result" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="rounded-[2rem] bg-night p-8 text-shell md:p-12">
               <p className="eyebrow text-ember">Your result</p>
               <h2 className="mt-4 font-display text-title">{res.title}</h2>
               <p className="mt-5 text-shell/75">{res.text}</p>
@@ -142,7 +142,7 @@ export function HairLossTest() {
                 </button>
               </div>
               <p className="mt-6 text-xs text-shell/65">This self-test is educational and is not a diagnosis. Only an examination by a doctor can confirm the cause of hair loss.</p>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>

@@ -61,7 +61,7 @@ export default function SiteMapPage() {
         title="Sitemap"
         lead={<p>Every page on our website, organised by section. Location pages branch from state to city to the treatments and neighbourhoods we serve.</p>}
       />
-      <div className="wrap grid gap-6 pb-24 lg:grid-cols-3">
+      <div className="wrap grid gap-6 pb-16 lg:grid-cols-3">
         <Panel title="Main pages">
           <Branch title="Home" href="/" />
           <Branch title="About Madhaav Aesthetic" href="/about" />
@@ -168,7 +168,7 @@ export default function SiteMapPage() {
         </section>
       ))}
 
-      <p className="wrap pb-24 text-sm text-cocoa/70">
+      <p className="wrap pb-16 text-sm text-cocoa/70">
         Looking for the machine-readable version? See <a href="/sitemap.xml" className="text-vermilion link-underline">sitemap.xml</a>.
       </p>
     </>

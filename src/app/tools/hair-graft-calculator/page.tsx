@@ -23,12 +23,12 @@ export default function Page() {
   return (
     <>
       <PageHero crumbs={[{ name: "Hair graft calculator", path: "/tools/hair-graft-calculator" }]} eyebrow="Free tool" title="Hair graft calculator" lead={<p>Three quick choices for an instant estimate of grafts, hairs and sessions.</p>} />
-      <section className="pb-24">
+      <section className="pb-16">
         <div className="wrap">
           <GraftCalculator />
         </div>
       </section>
-      <section className="bg-shell py-24">
+      <section className="bg-shell py-16">
         <div className="wrap max-w-4xl">
           <h2 className="font-display text-title text-cocoa">About graft estimates</h2>
           <div className="mt-8">

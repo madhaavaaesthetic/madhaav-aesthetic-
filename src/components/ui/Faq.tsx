@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, m } from "motion/react";
 import type { FAQ } from "@/data/types";
 import { cn } from "@/lib/utils";
 import { Plus } from "./Icons";
@@ -39,7 +39,7 @@ export function Faq({ items, tone = "light" }: { items: FAQ[]; tone?: "light" | 
             </h3>
             {/* Answers stay in the DOM so crawlers and AI assistants can read them. */}
             <AnimatePresence initial={false}>
-              <motion.div
+              <m.div
                 id={`faq-a-${i}`}
                 role="region"
                 aria-labelledby={`faq-q-${i}`}
@@ -49,7 +49,7 @@ export function Faq({ items, tone = "light" }: { items: FAQ[]; tone?: "light" | 
                 className="overflow-hidden"
               >
                 <p className={cn("max-w-3xl pb-7 text-[1.02rem] leading-relaxed", dark ? "text-shell/75" : "text-cocoa/75")}>{f.a}</p>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
         );

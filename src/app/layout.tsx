@@ -8,6 +8,7 @@ import { ActionBar } from "@/components/layout/ActionBar";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { Cursor } from "@/components/motion/Cursor";
 import { Preloader } from "@/components/motion/Preloader";
+import { MotionProvider } from "@/components/motion/MotionProvider";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { BASE_OTHER_META, organizationLd, websiteLd } from "@/lib/seo";
 
@@ -53,11 +54,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <Preloader />
         <SmoothScroll />
-        <Cursor />
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
-        <ActionBar />
+        <MotionProvider>
+          <Cursor />
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
+          <ActionBar />
+        </MotionProvider>
         <JsonLd data={[organizationLd(), websiteLd()]} />
       </body>
     </html>

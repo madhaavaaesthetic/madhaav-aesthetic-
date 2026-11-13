@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { site, telLink, whatsappLink } from "@/lib/site";
 import { Calendar, Phone, WhatsApp } from "@/components/ui/Icons";
 
@@ -20,7 +20,7 @@ export function ActionBar() {
 
   return (
     <>
-      <motion.div
+      <m.div
         className="fixed inset-x-3 bottom-3 z-[100] md:hidden"
         initial={false}
         animate={{ y: show ? 0 : 110, opacity: show ? 1 : 0 }}
@@ -37,9 +37,9 @@ export function ActionBar() {
             <Calendar /> Book
           </Link>
         </div>
-      </motion.div>
+      </m.div>
 
-      <motion.a
+      <m.a
         href={whatsappLink(WA_MSG)}
         target="_blank"
         rel="noopener"
@@ -53,7 +53,7 @@ export function ActionBar() {
       >
         <span className="absolute inset-0 animate-ping rounded-full bg-[#25D366] opacity-20" />
         <WhatsApp />
-      </motion.a>
+      </m.a>
     </>
   );
 }

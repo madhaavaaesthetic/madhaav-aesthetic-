@@ -16,6 +16,32 @@ import { SectionHead } from "@/components/ui/SectionHead";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { homeFaqs } from "@/data/faqs";
 import { reviews } from "@/data/reviews";
+import { getTreatment, treatments } from "@/data/treatments";
+
+/** The home rail's featured treatments, reduced to the fields the cards show (keeps full treatment data out of the browser bundle). */
+const railTreatments = [
+  "hair-transplant",
+  "hair-loss-treatment",
+  "gfc-hair-treatment",
+  "prp-hair-treatment",
+  "exosome-hair-treatment",
+  "qr678-hair-treatment",
+  "laser-hair-reduction",
+  "hydrafacial",
+  "pigmentation-treatment",
+  "acne-treatment",
+].map((slug) => {
+  const t = getTreatment(slug)!;
+  return { slug: t.slug, name: t.name, image: t.image, imageAlt: t.imageAlt, tagline: t.tagline, category: t.category };
+});
+
+/** 14 reviews, alternating clinics, for the home marquee (every review still appears on its clinic's pages). */
+const homeReviews = (() => {
+  const byCity = ["berhampur", "thane", "bhiwadi"].map((c) => reviews.filter((r) => r.city === c));
+  const out: typeof reviews = [];
+  for (let i = 0; out.length < 14 && byCity.some((l) => l[i]); i++) byCity.forEach((l) => l[i] && out.length < 14 && out.push(l[i]));
+  return out;
+})();
 import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { clinicLd, faqLd, pageMeta } from "@/lib/seo";
 import { branches } from "@/lib/site";
@@ -38,18 +64,18 @@ export const metadata: Metadata = pageMeta({
 export default function HomePage() {
   return (
     <>
-      <Hero />
+      <Hero marquee={treatments.map((t) => ({ slug: t.slug, shortName: t.shortName }))} />
       <Statement />
-      <TreatmentsRail />
+      <TreatmentsRail featured={railTreatments} total={treatments.length} />
       <WhyBento />
-      <Journey />
+      <Journey steps={getTreatment("hair-transplant")!.steps} />
       <GrowthTimeline />
-      <ReviewsSection list={reviews} title="What our patients say on Google" tone="dark" />
+      <ReviewsSection list={homeReviews} title="What our patients say on Google" tone="dark" />
       <Doctors />
       <Clinics />
       <InsideClinic />
       <ToolsTeaser />
-      <section className="bg-cream py-28 md:py-40" aria-labelledby="faq-title">
+      <section className="bg-cream py-16 md:py-24" aria-labelledby="faq-title">
         <div className="wrap grid gap-14 lg:grid-cols-12">
           <SectionHead className="lg:col-span-4" eyebrow="FAQ" title={<span id="faq-title">Frequently asked questions</span>} lead="Quick answers about cost, pain, results and clinic timings." />
           <div className="lg:col-span-8">

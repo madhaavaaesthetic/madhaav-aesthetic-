@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/* The ₹ sign is drawn from a system font so it doesn't pull in the Playfair and DM Sans latin-ext files (~40 KB).
+   If none of these exist locally, the browser simply falls through to the web fonts as before. */
+@font-face {
+  font-family: "Rupee";
+  src: local("Segoe UI"), local("Nirmala UI"), local("Roboto"), local("Helvetica Neue"), local("Arial");
+  unicode-range: U+20B9;
+}
+
 @theme {
   --color-ember: #f26a21;
   --color-vermilion: #c8321f;
@@ -12,8 +20,8 @@
   --color-blush: #f4d9ca;
   --color-clay: #8a5a4a;
 
-  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Rupee", var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-sans: "Rupee", var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
 
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-silk: cubic-bezier(0.65, 0, 0.35, 1);
@@ -338,3 +346,40 @@ html.lenis, html.lenis body { height: auto; }
 @media (hover: hover) and (pointer: fine) {
   html.has-cursor, html.has-cursor * { cursor: none !important; }
 }
+
+/* Single-element icon rows (see Stars / SprigMark). Masks take the current text colour. */
+.stars {
+  display: inline-block;
+  height: 1em;
+  width: calc(var(--n, 5) * 1.25em - 0.25em);
+  background-color: currentColor;
+  -webkit-mask-image: url(/images/star.svg);
+  mask-image: url(/images/star.svg);
+  -webkit-mask-size: 1em 1em;
+  mask-size: 1em 1em;
+  -webkit-mask-repeat: space no-repeat;
+  mask-repeat: space no-repeat;
+}
+.sprig-mark {
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask: url(/images/sprig.svg) center / contain no-repeat;
+  mask: url(/images/sprig.svg) center / contain no-repeat;
+}
+
+/* Footer credit: soft blue glow taken from the Crayora spark, breathing slowly. */
+.crayora-glow {
+  filter: drop-shadow(0 0 4px rgba(93, 95, 239, 0.85)) drop-shadow(0 0 14px rgba(93, 95, 239, 0.5));
+  animation: crayora-glow 3.2s ease-in-out infinite;
+}
+@keyframes crayora-glow {
+  50% { filter: drop-shadow(0 0 7px rgba(110, 112, 255, 1)) drop-shadow(0 0 24px rgba(93, 95, 239, 0.7)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .crayora-glow { animation: none; }
+}
+
+/* Above-the-fold photos: visible from the first paint (good LCP), with a gentle transform-only rise. */
+.hero-rise { animation: hero-rise 1.1s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes hero-rise { from { transform: translateY(28px) scale(0.97); } }
+@media (prefers-reduced-motion: reduce) { .hero-rise { animation: none; } }

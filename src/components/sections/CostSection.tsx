@@ -11,7 +11,7 @@ export function CostSection({ t, place }: { t: Treatment; place?: string }) {
   if (!s) return null;
   const where = place ? ` in ${place}` : "";
   return (
-    <section className="py-24 md:py-32" aria-labelledby="cost-title">
+    <section className="py-16 md:py-20" aria-labelledby="cost-title">
       <div className="wrap grid gap-10 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <p className="eyebrow flex items-center gap-3 text-vermilion">

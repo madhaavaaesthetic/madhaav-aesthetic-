@@ -16,7 +16,7 @@ export default function Page() {
   return (
     <>
       <PageHero crumbs={[{ name: "Hair loss self-test", path: "/tools/hair-loss-test" }]} eyebrow="60-second self-test" title="What's behind your hair fall?" lead={<p>Six questions designed by our trichologist. Not a diagnosis, but a good place to start.</p>} />
-      <section className="pb-28">
+      <section className="pb-16 md:pb-20">
         <div className="wrap">
           <HairLossTest />
         </div>

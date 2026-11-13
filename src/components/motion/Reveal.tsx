@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, type ElementType, type ReactNode } from "react";
-import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
+import { gsap, prefersReducedMotion } from "@/lib/gsap";
+import { useLazyGSAP } from "@/lib/lazy-gsap";
 
 interface Props {
   as?: ElementType;
@@ -18,8 +19,7 @@ interface Props {
 export function Reveal({ as: Tag = "div", children, className, y = 48, delay = 0, stagger = 0.08, group, start = "top 88%" }: Props) {
   const ref = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
+  useLazyGSAP(ref, () => {
       const el = ref.current;
       if (!el || prefersReducedMotion()) return;
       const targets = group ? Array.from(el.children) : el;
@@ -32,9 +32,7 @@ export function Reveal({ as: Tag = "div", children, className, y = 48, delay = 0
         ease: "expo.out",
         scrollTrigger: { trigger: el, start, once: true },
       });
-    },
-    { scope: ref }
-  );
+  });
 
   return (
     <Tag ref={ref} className={className}>

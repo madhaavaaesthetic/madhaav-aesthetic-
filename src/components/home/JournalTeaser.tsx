@@ -8,7 +8,7 @@ import { ArrowUpRight } from "@/components/ui/Icons";
 export function JournalTeaser() {
   const list = posts.slice(0, 3);
   return (
-    <section className="bg-shell py-28 md:py-40" aria-labelledby="journal-title">
+    <section className="bg-shell py-16 md:py-24" aria-labelledby="journal-title">
       <div className="wrap">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHead eyebrow="Guides" title={<span id="journal-title">Hair and skin care guides from our doctors</span>} />

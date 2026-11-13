@@ -34,9 +34,13 @@ export const BASE_OTHER_META: Record<string, string> = {
 const REGION_CODES: Record<string, string> = { Odisha: "IN-OR", Maharashtra: "IN-MH", Rajasthan: "IN-RJ", Delhi: "IN-DL", Haryana: "IN-HR" };
 export const regionCode = (state: string) => REGION_CODES[state] ?? "IN";
 
+/** Square brand logo used as the share image for the home page and pages without their own photo. */
+const DEFAULT_OG = { url: "/images/og-logo.jpg", width: 1080, height: 1080, type: "image/jpeg" };
+
 export function pageMeta({ title, description, path, image, keywords, type = "website", noindex, geo, publishedTime }: MetaInput): Metadata {
   const url = absoluteUrl(path);
-  const ogImage = image ?? "/opengraph-image";
+  // Pages with their own photo (treatments, clinics, posts) share it; everything else shows the clinic logo.
+  const ogImage = image ?? DEFAULT_OG.url;
   return {
     title,
     description,
@@ -61,9 +65,9 @@ export function pageMeta({ title, description, path, image, keywords, type = "we
       siteName: site.name,
       locale: "en_IN",
       type,
-      images: [image ? { url: ogImage, alt: title } : { url: ogImage, width: 1200, height: 630, alt: title }],
+      images: [image ? { url: ogImage, alt: title } : { ...DEFAULT_OG, alt: title }],
     },
-    twitter: { card: "summary_large_image", title, description, images: [ogImage] },
+    twitter: { card: image ? "summary_large_image" : "summary", title, description, images: [ogImage] },
     robots: noindex ? { index: false, follow: true } : { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   };
 }

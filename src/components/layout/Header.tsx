@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, m } from "motion/react";
 import { Logo } from "@/components/brand/Logo";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { headerNav, mainNav } from "@/lib/nav";
@@ -81,7 +81,7 @@ export function Header() {
                   )}
                 >
                   {n.label}
-                  {active && <motion.span layoutId="nav-dot" className="absolute -bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-vermilion" />}
+                  {active && <m.span layoutId="nav-dot" className="absolute -bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-vermilion" />}
                 </Link>
               );
             })}
@@ -126,7 +126,7 @@ export function Header() {
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             id="site-menu"
             role="dialog"
             aria-modal="true"
@@ -143,7 +143,7 @@ export function Header() {
                 <ul className="flex flex-col">
                   {mainNav.map((n, i) => (
                     <li key={n.href} className="overflow-hidden border-b border-shell/10">
-                      <motion.div initial={{ y: "110%" }} animate={{ y: 0 }} exit={{ y: "110%" }} transition={{ duration: 0.9, ease, delay: 0.15 + i * 0.05 }}>
+                      <m.div initial={{ y: "110%" }} animate={{ y: 0 }} exit={{ y: "110%" }} transition={{ duration: 0.9, ease, delay: 0.15 + i * 0.05 }}>
                         <Link
                           href={n.href}
                           onMouseEnter={() => setPreview(n.image)}
@@ -156,13 +156,13 @@ export function Header() {
                           </span>
                           <ArrowUpRight className="ml-auto text-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                         </Link>
-                      </motion.div>
+                      </m.div>
                     </li>
                   ))}
                 </ul>
               </nav>
 
-              <motion.aside
+              <m.aside
                 className="flex flex-col gap-8 lg:col-span-5"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -171,9 +171,9 @@ export function Header() {
               >
                 <div className="relative hidden aspect-[4/3] overflow-hidden rounded-[2rem] lg:block">
                   <AnimatePresence mode="popLayout">
-                    <motion.div key={preview} className="absolute inset-0" initial={{ opacity: 0, scale: 1.08 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.7 }}>
+                    <m.div key={preview} className="absolute inset-0" initial={{ opacity: 0, scale: 1.08 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.7 }}>
                       <Image src={preview} alt="" fill sizes="40vw" className="object-cover" />
-                    </motion.div>
+                    </m.div>
                   </AnimatePresence>
                   <div className="absolute inset-0 bg-gradient-to-t from-night/60 to-transparent" />
                 </div>
@@ -196,9 +196,9 @@ export function Header() {
                     <Instagram /> Instagram
                   </a>
                 </div>
-              </motion.aside>
+              </m.aside>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

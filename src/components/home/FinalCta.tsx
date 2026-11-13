@@ -8,7 +8,7 @@ import { ArrowUpRight, Phone, WhatsApp } from "@/components/ui/Icons";
 
 export function FinalCta({ title = "Book your consultation today", message = "Hi Madhaav Aesthetic, I'd like to book a consultation." }: { title?: string; message?: string }) {
   return (
-    <section className="relative overflow-hidden bg-cream pt-24 pb-28 md:pt-32 md:pb-40">
+    <section className="relative overflow-hidden bg-cream pt-16 pb-20 md:pt-20 md:pb-28">
       <div aria-hidden>
       <Marquee duration={30} className="pointer-events-none opacity-[0.07]" pauseOnHover={false}>
         {Array.from({ length: 4 }).map((_, i) => (

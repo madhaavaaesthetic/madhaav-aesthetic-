@@ -2,7 +2,7 @@ import type { Review } from "@/data/reviews";
 import { branchBySlug, site } from "@/lib/site";
 import { Marquee } from "@/components/motion/Marquee";
 import { SplitReveal } from "@/components/motion/SplitReveal";
-import { ArrowUpRight, Star } from "@/components/ui/Icons";
+import { ArrowUpRight, Stars } from "@/components/ui/Icons";
 
 const CITY_LABEL: Record<Review["city"], string> = { berhampur: "Berhampur", thane: "Thane West", bhiwadi: "Bhiwadi" };
 
@@ -11,7 +11,7 @@ export function ReviewsSection({ list, title = "Patients, in their own words.", 
   const half = Math.ceil(list.length / 2);
   const dark = tone === "dark";
   return (
-    <section className={`relative overflow-hidden py-24 md:py-32 ${dark ? "bg-night text-shell" : "bg-shell"}`} aria-labelledby="reviews-title">
+    <section className={`relative overflow-hidden py-16 md:py-20 ${dark ? "bg-night text-shell" : "bg-shell"}`} aria-labelledby="reviews-title">
       {dark && (
         <>
           <div aria-hidden className="glow top-1/3 left-[8%] h-[360px] w-[420px] opacity-35" />
@@ -31,9 +31,7 @@ export function ReviewsSection({ list, title = "Patients, in their own words.", 
           <span className="grid h-12 w-12 place-items-center rounded-full bg-white font-bold text-[#4285F4] shadow-sm">G</span>
           <span>
             <span className="flex items-center gap-1 text-ember">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} />
-              ))}
+              <Stars />
               <span className={`ml-1 font-semibold ${dark ? "text-shell" : "text-cocoa"}`}>{site.rating.value}</span>
             </span>
             <span className={`text-sm ${dark ? "text-shell/60" : "text-cocoa/70"}`}>{site.rating.count}+ reviews on Google</span>
@@ -64,9 +62,7 @@ function ReviewCard({ r, dark }: { r: Review; dark: boolean }) {
   return (
     <figure className={`mx-2.5 flex w-[min(82vw,400px)] shrink-0 flex-col rounded-[1.75rem] p-7 ${dark ? "glass-dark" : "bg-cream ring-1 ring-cocoa/8"}`}>
       <div className="flex items-center gap-1 text-ember">
-        {Array.from({ length: r.stars }).map((_, i) => (
-          <Star key={i} className="text-sm" />
-        ))}
+        <Stars n={r.stars} className="text-sm" />
       </div>
       <blockquote className={`mt-4 line-clamp-6 text-[0.98rem] leading-relaxed ${dark ? "text-shell/85" : "text-cocoa/85"}`}>“{r.text}”</blockquote>
       <figcaption className="mt-auto flex items-center gap-3 pt-6">

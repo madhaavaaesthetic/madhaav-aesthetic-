@@ -74,7 +74,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
         bookHref={`/contact?clinic=${city.slug}`}
       />
 
-      <section className="pb-24 md:pb-32">
+      <section className="pb-16 md:pb-20">
         <div className="wrap grid gap-12 lg:grid-cols-12">
           <div className="prose-clinic lg:col-span-7">
             <h2 className="!mt-0">Hair transplant, hair fall and skin care in {city.name}</h2>
@@ -105,13 +105,13 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
           <aside className="space-y-5 lg:col-span-5">
             <ClinicCard city={city} />
             {city.slug === "bhiwadi" || city.slug === "new-delhi" ? (
-              <VideoCard src="/videos/free-wednesday-consultation.mp4" poster="/videos/free-wednesday-consultation.jpg" title="Pocket-free Wednesday" caption="Free consultations on Wednesdays at our Bhiwadi clinic" aspect="aspect-video" sound />
+              <VideoCard src="/videos/free-wednesday-consultation.mp4" poster="/videos/free-wednesday-consultation.webp" title="Pocket-free Wednesday" caption="Free consultations on Wednesdays at our Bhiwadi clinic" aspect="aspect-video" sound />
             ) : null}
           </aside>
         </div>
       </section>
 
-      <section className="bg-shell py-24 md:py-32">
+      <section className="bg-shell py-16 md:py-20">
         <div className="wrap">
           <SplitReveal as="h2" className="max-w-4xl font-display text-title text-cocoa">
             {`All treatments in ${city.name}`}
@@ -124,7 +124,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
         </div>
       </section>
 
-      <section className="py-24 md:py-32">
+      <section className="py-16 md:py-20">
         <div className="wrap grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <AreaLinks city={city} title={`Neighbourhoods & towns around ${city.name}`} />
@@ -138,7 +138,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
         </div>
       </section>
 
-      <section id="book" className="bg-cream py-24 md:py-32">
+      <section id="book" className="bg-cream py-16 md:py-20">
         <div className="wrap grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <p className="eyebrow flex items-center gap-3 text-vermilion">
@@ -155,7 +155,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
         </div>
       </section>
       <ReviewsSection list={reviewsFor({ city: city.slug === "new-delhi" ? "bhiwadi" : city.slug, limit: 12 })} title={`What ${city.name} patients say about us`} />
-      <div className="pt-16">
+      <div className="pt-10">
         <SearchTerms title={`Popular searches in ${city.name}`} terms={keywordsFor(`/${city.slug}`).map((q) => ({ label: q, href: queryHref(q) }))} />
       </div>
       <FinalCta title={`Book your consultation in ${city.name}.`} message={`Hi Madhaav Aesthetic, I'm in ${city.name} and would like to book a consultation.`} />

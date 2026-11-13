@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { animate, motion, AnimatePresence, useMotionValue, useTransform } from "motion/react";
+import { animate, m, AnimatePresence, useMotionValue, useTransform } from "motion/react";
 import { GRAFT_TABLE, NorwoodHead } from "@/components/brand/NorwoodHead";
 import { whatsappLink } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -122,9 +122,9 @@ function Calculator({ initialStage }: { initialStage: number }) {
             </div>
             <div className="w-24 shrink-0">
               <AnimatePresence mode="wait">
-                <motion.div key={stage} initial={{ opacity: 0, rotate: -10, scale: 0.8 }} animate={{ opacity: 1, rotate: 0, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}>
+                <m.div key={stage} initial={{ opacity: 0, rotate: -10, scale: 0.8 }} animate={{ opacity: 1, rotate: 0, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}>
                   <NorwoodHead stage={stage} active />
-                </motion.div>
+                </m.div>
               </AnimatePresence>
             </div>
           </div>

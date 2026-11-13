@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
-import { motion, useMotionValue, useSpring, AnimatePresence } from "motion/react";
+import { m, useMotionValue, useSpring, AnimatePresence } from "motion/react";
 
 const QUERY = "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)";
 const subscribe = (cb: () => void) => {
@@ -50,7 +50,7 @@ export function Cursor() {
 
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 z-[200]">
-      <motion.div
+      <m.div
         className="absolute top-0 left-0 rounded-full"
         style={{ x: rx, y: ry, translateX: "-50%", translateY: "-50%" }}
         animate={{
@@ -65,7 +65,7 @@ export function Cursor() {
         <div className="absolute inset-0 rounded-full border" style={{ borderColor: "inherit" }} />
         <AnimatePresence>
           {label && (
-            <motion.span
+            <m.span
               key={label}
               initial={{ opacity: 0, scale: 0.6 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -73,11 +73,11 @@ export function Cursor() {
               className="absolute inset-0 grid place-items-center text-center text-[11px] font-semibold tracking-[0.14em] uppercase text-shell"
             >
               {label}
-            </motion.span>
+            </m.span>
           )}
         </AnimatePresence>
-      </motion.div>
-      <motion.div
+      </m.div>
+      <m.div
         className="absolute top-0 left-0 h-1.5 w-1.5 rounded-full bg-vermilion"
         style={{ x, y, translateX: "-50%", translateY: "-50%" }}
         animate={{ opacity: label ? 0 : 1 }}

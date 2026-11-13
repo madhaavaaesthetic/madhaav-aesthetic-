@@ -37,7 +37,7 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
   return (
     <>
       <PageHero crumbs={[{ name: "Locations", path: "/locations" }, { name: s.name, path: `/locations/${s.slug}` }]} eyebrow="State" title={`Hair & skin care in ${s.name}`} lead={<p>{s.intro}</p>} />
-      <section className="pb-28">
+      <section className="pb-16 md:pb-20">
         <div className="wrap space-y-16">
           {list.map((c) => (
             <div key={c.slug} className="grid gap-10 lg:grid-cols-12">

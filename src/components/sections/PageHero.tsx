@@ -6,7 +6,7 @@ import { SplitReveal } from "@/components/motion/SplitReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { Strands } from "@/components/brand/Strands";
 import { Magnetic } from "@/components/motion/Magnetic";
-import { ArrowRight, Star, WhatsApp } from "@/components/ui/Icons";
+import { ArrowRight, Stars, WhatsApp } from "@/components/ui/Icons";
 import { site, whatsappLink } from "@/lib/site";
 
 export function PageHero({
@@ -33,7 +33,7 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden pt-[calc(var(--header-h)+1.5rem)] pb-16 md:pb-24">
+    <section className="relative overflow-hidden pt-[calc(var(--header-h)+1.5rem)] pb-10 md:pb-14">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(55%_45%_at_80%_20%,#f9dccb_0%,transparent_70%)]" />
       <Strands className="pointer-events-none absolute -top-24 -right-56 h-[720px] w-[720px] opacity-40" id="ph-grad" />
       <div className="wrap relative">
@@ -67,21 +67,20 @@ export function PageHero({
             </Reveal>
             {children}
           </div>
+          {/* Not wrapped in Reveal: this photo is the page's LCP, so it must paint with the HTML (CSS-only, transform-only entrance). */}
           {image && (
-            <Reveal className="lg:col-span-5" delay={0.2}>
+            <div className="hero-rise lg:col-span-5">
               <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[999px_999px_1.75rem_1.75rem] bg-blush">
-                <Image src={image} alt={imageAlt ?? ""} fill priority sizes="(max-width:1024px) 90vw, 36vw" className="object-cover" />
+                <Image src={image} alt={imageAlt ?? ""} fill loading="eager" fetchPriority="high" sizes="(max-width:1024px) 90vw, 36vw" className="object-cover" />
                 <div className="glass absolute right-4 bottom-4 left-4 flex items-center justify-between gap-3 rounded-2xl px-4 py-3">
                   <span className="flex items-center gap-1 text-ember">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="text-xs" />
-                    ))}
+                    <Stars className="text-xs" />
                     <span className="ml-1.5 font-semibold text-cocoa">{site.rating.value}</span>
                   </span>
                   <span className="text-xs font-medium text-cocoa/75">{site.rating.count}+ Google reviews · 0% EMI</span>
                 </div>
               </div>
-            </Reveal>
+            </div>
           )}
           {!image && aside && <div className="lg:col-span-5">{aside}</div>}
         </div>

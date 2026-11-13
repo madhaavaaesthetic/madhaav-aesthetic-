@@ -17,7 +17,7 @@ export default function BlogIndex() {
   return (
     <>
       <PageHero crumbs={[{ name: "Journal", path: "/blog" }]} eyebrow="Journal" title="Hair and skin care guides" lead={<p>Simple, honest answers to common questions about hair fall, hair transplant, cost, acne, pigmentation and laser treatments, reviewed by our doctors.</p>} />
-      <section className="pb-28">
+      <section className="pb-16 md:pb-20">
         <Reveal group stagger={0.08} className="wrap grid gap-x-6 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((p) => (
             <PostCard key={p.slug} slug={p.slug} title={p.title} excerpt={p.excerpt} image={p.image} alt={p.imageAlt} category={p.category} readTime={p.readTime} />

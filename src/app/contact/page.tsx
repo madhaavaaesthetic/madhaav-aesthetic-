@@ -30,13 +30,13 @@ export default function ContactPage() {
           </p>
         }
       />
-      <section className="pb-24">
+      <section className="pb-16">
         <div className="wrap grid gap-10 lg:grid-cols-12">
           <Reveal className="lg:col-span-7">
             <BookingWidget />
           </Reveal>
           <Reveal className="lg:col-span-5" delay={0.1}>
-            <VideoCard src="/videos/free-wednesday-consultation.mp4" poster="/videos/free-wednesday-consultation.jpg" title="Pocket-free Wednesday" caption="Free consultations every Wednesday. Call ahead to confirm." aspect="aspect-video" sound />
+            <VideoCard src="/videos/free-wednesday-consultation.mp4" poster="/videos/free-wednesday-consultation.webp" title="Pocket-free Wednesday" caption="Free consultations every Wednesday. Call ahead to confirm." aspect="aspect-video" sound />
             <div className="mt-5 rounded-[1.75rem] bg-night p-8 text-shell">
               <p className="eyebrow text-ember">Call a clinic directly</p>
               <ul className="mt-5 space-y-4">
@@ -51,7 +51,7 @@ export default function ContactPage() {
           </Reveal>
         </div>
       </section>
-      <section className="bg-shell py-24">
+      <section className="bg-shell py-16">
         <div className="wrap">
           <h2 className="font-display text-title text-cocoa">Visit us</h2>
           <div className="mt-12 grid gap-6 md:grid-cols-3">

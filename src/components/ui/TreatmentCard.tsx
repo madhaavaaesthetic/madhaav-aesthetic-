@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Treatment } from "@/data/types";
-import { categoryName } from "@/data/treatments";
+import { categoryName } from "@/data/categories";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "./Icons";
 
-export function TreatmentCard({ t, href, index, className, priority }: { t: Treatment; href?: string; index?: number; className?: string; priority?: boolean }) {
+/** Only the fields the card renders, so client components can pass slim objects. */
+export type TreatmentCardData = Pick<Treatment, "slug" | "name" | "image" | "imageAlt" | "tagline" | "category">;
+
+export function TreatmentCard({ t, href, index, className, priority }: { t: TreatmentCardData; href?: string; index?: number; className?: string; priority?: boolean }) {
   return (
     <Link
       href={href ?? `/treatments/${t.slug}`}
@@ -17,7 +20,7 @@ export function TreatmentCard({ t, href, index, className, priority }: { t: Trea
           src={t.image}
           alt={t.imageAlt}
           fill
-          priority={priority}
+          loading={priority ? "eager" : undefined}
           sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 26vw"
           className="object-cover transition-transform duration-[1.4s] ease-[var(--ease-expo)] group-hover:scale-[1.07]"
         />

@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { InViewVideo } from "@/components/ui/InViewVideo";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from "@/lib/gsap";
-import { getTreatment } from "@/data/treatments";
+import type { Treatment } from "@/data/types";
 import { SplitReveal } from "@/components/motion/SplitReveal";
 import { ArrowUpRight } from "@/components/ui/Icons";
 
@@ -12,14 +13,13 @@ const SLIDES: { src: string; alt: string; video?: string }[] = [
   { src: "/images/brand-trichoscopy-scan.jpg", alt: "Doctor scanning the scalp with a trichoscope during a hair transplant consultation" },
   { src: "/images/hairline-measurement.jpg", alt: "Surgeon measuring and drawing a natural hairline before a hair transplant" },
   { src: "/images/operation-theatre.jpg", alt: "Hair transplant operation theatre prepared for a local-anaesthesia procedure" },
-  { src: "/videos/fue-extraction-berhampur.jpg", alt: "FUE graft extraction in the Berhampur operation theatre", video: "/videos/fue-extraction-berhampur.mp4" },
+  { src: "/videos/fue-extraction-berhampur.webp", alt: "FUE graft extraction in the Berhampur operation theatre", video: "/videos/fue-extraction-berhampur.mp4" },
   { src: "/images/hair-transplant-surgery-team.jpg", alt: "Hair transplant team implanting grafts at natural angles" },
   { src: "/images/brand-hair-transplant-planning.jpg", alt: "Doctor reviewing hair growth with a patient at a follow-up visit" },
 ];
 
-export function Journey() {
+export function Journey({ steps }: { steps: Treatment["steps"] }) {
   const root = useRef<HTMLElement>(null);
-  const t = getTreatment("hair-transplant")!;
   const [active, setActive] = useState(0);
 
   useGSAP(
@@ -43,7 +43,7 @@ export function Journey() {
 
       q("[data-step]").forEach((step, i) => {
         ScrollTrigger.create({ trigger: step, start: "top 55%", end: "bottom 55%", onToggle: (self) => self.isActive && show(i) });
-        if (!reduce) gsap.fromTo(step, { opacity: 0.3 }, { opacity: 1, ease: "none", scrollTrigger: { trigger: step, start: "top 80%", end: "top 50%", scrub: true } });
+        if (!reduce) gsap.fromTo(step, { x: 36, y: 18 }, { x: 0, y: 0, ease: "none", scrollTrigger: { trigger: step, start: "top 92%", end: "top 55%", scrub: true } }); // transform only: text stays full-contrast
       });
       if (!reduce) {
         gsap.fromTo(q("[data-line]"), { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: q("[data-steps]")[0], start: "top 60%", end: "bottom 60%", scrub: true } });
@@ -56,7 +56,7 @@ export function Journey() {
   );
 
   return (
-    <section ref={root} className="relative bg-shell py-24 md:py-36" aria-labelledby="journey-title">
+    <section ref={root} className="relative bg-shell py-16 md:py-24" aria-labelledby="journey-title">
       <div className="wrap grid gap-14 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-24">
@@ -74,7 +74,7 @@ export function Journey() {
               {SLIDES.map((s, i) => (
                 <div key={s.src} data-slide className="absolute inset-0" style={{ zIndex: i, clipPath: i === 0 ? undefined : "inset(100% 0% 0% 0%)" }}>
                   {s.video ? (
-                    <video className="h-full w-full object-cover" src={s.video} poster={s.src} muted loop playsInline autoPlay preload="none" aria-label={s.alt} />
+                    <InViewVideo className="h-full w-full object-cover" src={s.video} poster={s.src} label={s.alt} />
                   ) : (
                     <Image src={s.src} alt={s.alt} fill sizes="(max-width:1280px) 40vw, 34vw" className="object-cover" />
                   )}
@@ -82,7 +82,7 @@ export function Journey() {
               ))}
               <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-t from-night/70 via-transparent to-transparent" />
               <div className="glass absolute right-4 bottom-4 left-4 z-30 flex items-center justify-between gap-4 rounded-2xl px-5 py-3.5">
-                <span className="font-display text-lg text-cocoa">{t.steps[active]?.title}</span>
+                <span className="font-display text-lg text-cocoa">{steps[active]?.title}</span>
                 <span className="font-hero text-sm text-vermilion tabular-nums">
                   {String(active + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
                 </span>
@@ -104,7 +104,7 @@ export function Journey() {
           <div className="absolute top-2 bottom-2 left-[1.15rem] w-px bg-sand md:left-[1.4rem]" />
           <div data-line className="absolute top-2 bottom-2 left-[1.15rem] w-px origin-top bg-gradient-to-b from-ember via-vermilion to-crimson md:left-[1.4rem]" />
           <ol className="space-y-16 md:space-y-28 lg:py-[12vh]">
-            {t.steps.map((s, i) => (
+            {steps.map((s, i) => (
               <li key={s.title} data-step className="relative pl-14 md:pl-20">
                 <span className={`absolute top-2 left-[0.65rem] h-5 w-5 rounded-full ring-4 ring-shell transition-colors duration-500 md:left-[0.9rem] ${i <= active ? "bg-vermilion" : "bg-sand"}`} />
                 <span aria-hidden data-num={String(i + 1).padStart(2, "0")} className="block font-hero text-6xl leading-none text-sand before:content-[attr(data-num)] md:text-8xl" />
@@ -112,7 +112,7 @@ export function Journey() {
                 <p className="mt-3 max-w-lg text-cocoa/70">{s.text}</p>
                 <div data-inline-pic className="relative mt-5 aspect-[16/10] overflow-hidden rounded-[1.25rem] lg:hidden">
                   {SLIDES[i]?.video ? (
-                    <video className="h-full w-full object-cover" src={SLIDES[i].video} poster={SLIDES[i].src} muted loop playsInline autoPlay preload="none" aria-label={SLIDES[i].alt} />
+                    <InViewVideo className="h-full w-full object-cover" src={SLIDES[i].video} poster={SLIDES[i].src} label={SLIDES[i].alt} />
                   ) : (
                     <Image src={SLIDES[i]?.src ?? SLIDES[0].src} alt={SLIDES[i]?.alt ?? ""} fill sizes="92vw" className="object-cover" />
                   )}

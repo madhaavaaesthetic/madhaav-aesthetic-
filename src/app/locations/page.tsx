@@ -20,7 +20,7 @@ export default function LocationsPage() {
   return (
     <>
       <PageHero crumbs={[{ name: "Locations", path: "/locations" }]} eyebrow="Clinics & areas" title="Find a Madhaav clinic near you" lead={<p>Three clinics across three states, serving {cities.reduce((n, c) => n + c.areas.length, 0)}+ neighbourhoods and towns.</p>} />
-      <section className="pb-28">
+      <section className="pb-16 md:pb-20">
         <div className="wrap space-y-20">
           {states.map((s) => (
             <div key={s.slug}>

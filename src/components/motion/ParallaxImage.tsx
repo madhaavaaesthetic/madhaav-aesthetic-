@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
+import { gsap, prefersReducedMotion } from "@/lib/gsap";
+import { useLazyGSAP } from "@/lib/lazy-gsap";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -22,8 +23,7 @@ export function ParallaxImage({ src, alt, className, imgClassName, sizes = "(max
   const wrap = useRef<HTMLDivElement>(null);
   const inner = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
+  useLazyGSAP(wrap, () => {
       if (!wrap.current || !inner.current || prefersReducedMotion()) return;
       gsap.fromTo(
         inner.current,
@@ -38,14 +38,12 @@ export function ParallaxImage({ src, alt, className, imgClassName, sizes = "(max
         );
         gsap.fromTo(inner.current.querySelector("img"), { scale: 1.25 }, { scale: 1, duration: 1.8, ease: "expo.out", scrollTrigger: { trigger: wrap.current, start: "top 85%", once: true } });
       }
-    },
-    { scope: wrap }
-  );
+  }, priority);
 
   return (
     <div ref={wrap} className={cn("relative overflow-hidden", className)}>
       <div ref={inner} className="absolute inset-x-0" style={{ top: `-${amount / 2}%`, bottom: `-${amount / 2}%` }}>
-        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className={cn("object-cover", imgClassName)} />
+        <Image src={src} alt={alt} fill sizes={sizes} loading={priority ? "eager" : undefined} fetchPriority={priority ? "high" : undefined} className={cn("object-cover", imgClassName)} />
       </div>
     </div>
   );

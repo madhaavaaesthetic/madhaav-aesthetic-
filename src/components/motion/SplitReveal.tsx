@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, type ElementType, type ReactNode } from "react";
-import { gsap, SplitText, useGSAP, prefersReducedMotion } from "@/lib/gsap";
+import { gsap, SplitText, prefersReducedMotion } from "@/lib/gsap";
+import { useLazyGSAP } from "@/lib/lazy-gsap";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -19,8 +20,7 @@ interface Props {
 export function SplitReveal({ as: Tag = "div", children, className, by = "lines", delay = 0, stagger, immediate, id }: Props) {
   const ref = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
+  useLazyGSAP(ref, () => {
       const el = ref.current;
       if (!el || prefersReducedMotion()) return;
       const split = SplitText.create(el, {
@@ -28,6 +28,8 @@ export function SplitReveal({ as: Tag = "div", children, className, by = "lines"
         mask: "lines",
         linesClass: "split-line",
         autoSplit: true,
+        // Line/word splits read fine as-is; only char splits need the aria-label + hidden children.
+        aria: by === "chars" ? "auto" : "none",
         onSplit(self) {
           const targets = by === "chars" ? self.chars : by === "words" ? self.words : self.lines;
           return gsap.from(targets, {
@@ -43,9 +45,7 @@ export function SplitReveal({ as: Tag = "div", children, className, by = "lines"
       });
       gsap.set(el, { autoAlpha: 1 });
       return () => split.revert();
-    },
-    { scope: ref }
-  );
+  }, immediate);
 
   return (
     <Tag ref={ref} id={id} className={cn(className)}>

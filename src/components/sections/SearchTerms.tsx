@@ -4,7 +4,7 @@ import Link from "next/link";
 export function SearchTerms({ title, terms }: { title: string; terms: { label: string; href?: string }[] }) {
   if (terms.length === 0) return null;
   return (
-    <section className="pb-20" aria-label={title}>
+    <section className="pb-12" aria-label={title}>
       <div className="wrap">
         <p className="eyebrow text-cocoa/70">{title}</p>
         <ul className="mt-4 flex flex-wrap gap-2">

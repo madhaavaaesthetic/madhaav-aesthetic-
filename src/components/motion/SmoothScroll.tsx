@@ -15,7 +15,8 @@ export function SmoothScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (prefersReducedMotion()) return;
+    // Phones and tablets keep native momentum scrolling: it is smoother there and saves main-thread work.
+    if (prefersReducedMotion() || window.matchMedia("(pointer: coarse)").matches) return;
     const lenis = new Lenis({
       duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

@@ -8,7 +8,7 @@ import { treatments } from "@/data/treatments";
 
 export function Statement() {
   return (
-    <section className="relative overflow-hidden bg-night py-28 text-shell md:py-40">
+    <section className="relative overflow-hidden bg-night py-16 text-shell md:py-24">
       <div aria-hidden className="glow -right-40 bottom-0 h-[420px] w-[520px] opacity-40" />
       <div aria-hidden className="glow -left-32 top-10 h-[320px] w-[360px] opacity-25" />
       <div className="wrap relative grid gap-16 lg:grid-cols-12">
@@ -29,7 +29,7 @@ export function Statement() {
             text="Most hair fall and skin problems have a cause that can be found. Our doctors check your scalp and skin first, explain the problem in simple words, and only then suggest a treatment, with a clear price and no pressure."
             highlight={["cause", "explain", "price"]}
           />
-          <div className="mt-20 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+          <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
             <Stat value={site.rating.value} decimals={1} suffix="★" label="Average Google rating" />
             <Stat value={site.rating.count} suffix="+" label="Google reviews across clinics" />
             <Stat value={branches.length} label="Clinics in 3 states" />

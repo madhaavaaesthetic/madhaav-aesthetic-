@@ -32,7 +32,7 @@ export default function ResultsPage() {
         }
       />
       <GrowthTimeline />
-      <section className="bg-shell py-24 md:py-32">
+      <section className="bg-shell py-16 md:py-20">
         <div className="wrap">
           <h2 className="font-display text-title text-cocoa">Timelines by treatment</h2>
           <Reveal group stagger={0.06} className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

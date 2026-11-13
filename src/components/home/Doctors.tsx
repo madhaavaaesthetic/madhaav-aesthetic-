@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { m, useMotionValue, useSpring, useTransform } from "motion/react";
 import { doctors, type Doctor } from "@/data/doctors";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Reveal } from "@/components/motion/Reveal";
@@ -10,7 +10,7 @@ import { ArrowUpRight } from "@/components/ui/Icons";
 
 export function Doctors() {
   return (
-    <section className="relative overflow-hidden bg-cream py-28 md:py-40" aria-labelledby="doctors-title">
+    <section className="relative overflow-hidden bg-cream py-16 md:py-24" aria-labelledby="doctors-title">
       <div className="wrap">
         <div className="grid items-end gap-10 lg:grid-cols-12">
           <SectionHead
@@ -27,7 +27,7 @@ export function Doctors() {
           </Reveal>
         </div>
 
-        <Reveal group className="mt-16 grid gap-6 md:grid-cols-3" stagger={0.12}>
+        <Reveal group className="mt-12 grid gap-6 md:grid-cols-3" stagger={0.12}>
           {doctors.map((d) => (
             <DoctorPlate key={d.slug} d={d} />
           ))}
@@ -45,8 +45,8 @@ function DoctorPlate({ d }: { d: Doctor }) {
   const sheen = useTransform(mx, [0, 1], ["-40%", "140%"]);
 
   return (
-    <motion.div style={{ perspective: 1000 }}>
-      <motion.div
+    <m.div style={{ perspective: 1000 }}>
+      <m.div
         style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
         onPointerMove={(e) => {
           if (e.pointerType !== "mouse") return;
@@ -65,7 +65,7 @@ function DoctorPlate({ d }: { d: Doctor }) {
           style={{ background: "linear-gradient(135deg,#a97c32 0%,#e9cf8c 28%,#c39a4c 52%,#f3dea2 74%,#9c7230 100%)" }}
         >
           <div className="pointer-events-none absolute inset-0 opacity-30 [background:repeating-linear-gradient(90deg,rgba(255,255,255,0.15)_0_1px,transparent_1px_3px)]" />
-          <motion.div className="pointer-events-none absolute inset-y-0 w-1/3 -skew-x-12 bg-white/40 blur-md" style={{ left: sheen }} />
+          <m.div className="pointer-events-none absolute inset-y-0 w-1/3 -skew-x-12 bg-white/40 blur-md" style={{ left: sheen }} />
           <p className="relative text-[1.45rem] font-bold tracking-wide text-[#2a1a0a] uppercase" style={{ fontFamily: "var(--font-serif)" }}>
             {d.name}
           </p>
@@ -85,7 +85,7 @@ function DoctorPlate({ d }: { d: Doctor }) {
             View profile <ArrowUpRight />
           </Link>
         </div>
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }

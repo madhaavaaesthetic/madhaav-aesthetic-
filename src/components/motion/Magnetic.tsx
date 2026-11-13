@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
-import { motion, useMotionValue, useSpring } from "motion/react";
+import { m, useMotionValue, useSpring } from "motion/react";
 
 export function Magnetic({ children, strength = 0.35, className }: { children: ReactNode; strength?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -11,7 +11,7 @@ export function Magnetic({ children, strength = 0.35, className }: { children: R
   const sy = useSpring(y, { stiffness: 220, damping: 16, mass: 0.4 });
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       className={className}
       style={{ x: sx, y: sy, display: "inline-block" }}
@@ -27,6 +27,6 @@ export function Magnetic({ children, strength = 0.35, className }: { children: R
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

@@ -6,7 +6,7 @@ import { ArrowRight } from "@/components/ui/Icons";
 
 export function ToolsTeaser() {
   return (
-    <section className="relative overflow-hidden grad-ember py-24 text-shell md:py-32" aria-labelledby="tools-title">
+    <section className="relative overflow-hidden grad-ember py-16 text-shell md:py-20" aria-labelledby="tools-title">
       <div className="wrap grid items-center gap-14 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <p className="eyebrow text-shell/80">Free tools</p>

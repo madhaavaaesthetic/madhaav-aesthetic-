@@ -1,14 +1,14 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
+import { gsap, prefersReducedMotion } from "@/lib/gsap";
+import { useLazyGSAP } from "@/lib/lazy-gsap";
 
 export function CountUp({ value, decimals = 0, suffix = "", prefix = "", className }: { value: number; decimals?: number; suffix?: string; prefix?: string; className?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const format = (n: number) => `${prefix}${n.toLocaleString("en-IN", { minimumFractionDigits: decimals, maximumFractionDigits: decimals })}${suffix}`;
 
-  useGSAP(
-    () => {
+  useLazyGSAP(ref, () => {
       const el = ref.current;
       if (!el || prefersReducedMotion()) return;
       const obj = { n: 0 };
@@ -22,9 +22,7 @@ export function CountUp({ value, decimals = 0, suffix = "", prefix = "", classNa
           el.textContent = format(obj.n);
         },
       });
-    },
-    { scope: ref }
-  );
+  });
 
   return (
     <span ref={ref} className={className}>

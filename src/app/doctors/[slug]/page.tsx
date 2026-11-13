@@ -45,7 +45,7 @@ export default async function DoctorPage({ params }: { params: Promise<{ slug: s
           </div>
         }
       />
-      <section className="pb-24">
+      <section className="pb-16">
         <div className="wrap grid gap-12 lg:grid-cols-12">
           <div className="prose-clinic lg:col-span-7">
             <h2 className="!mt-0">About {d.name}</h2>
@@ -64,7 +64,7 @@ export default async function DoctorPage({ params }: { params: Promise<{ slug: s
           </div>
         </div>
       </section>
-      <section className="bg-shell py-24">
+      <section className="bg-shell py-16">
         <div className="wrap">
           <h2 className="font-display text-title text-cocoa">Treatments led by {d.name.split(" ").slice(0, 2).join(" ")}</h2>
           <Reveal group stagger={0.06} className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
