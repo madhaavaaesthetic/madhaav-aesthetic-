@@ -97,7 +97,7 @@ export function Journey({ steps }: { steps: Treatment["steps"] }) {
               Your hair transplant in 6 simple steps
             </SplitReveal>
             <p className="mt-5 max-w-md text-cocoa/70">
-              From the first scalp check to your final review, you know exactly what happens and when. The FUE procedure is done in one day by our hair transplant surgeon from Mumbai.
+              From the first scalp check to your final review, you know exactly what happens and when. The FUE procedure is done in one day by our hair transplant surgeons from Mumbai.
             </p>
             <ol className="mt-10 hidden space-y-1 lg:block" aria-label="Steps">
               {steps.map((s, i) => (

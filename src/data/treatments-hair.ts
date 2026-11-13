@@ -27,7 +27,7 @@ export const hairTreatments: Treatment[] = [
     intro: [
       "A hair transplant moves healthy follicles from the back and sides of the scalp, where hair is genetically resistant to balding, to the areas that have thinned. The follicles keep their resistance after the move, so transplanted hair keeps growing for life and can be cut, coloured and styled like the rest of your hair.",
       "At Madhaav Aesthetic we use the FUE (Follicular Unit Extraction) technique. Each graft of one to four hairs is removed individually with a fine micro-punch. There is no linear scar and no stitches. The hairline is drawn by hand before the procedure, matched to your forehead height, facial proportions and age, so it still looks right in twenty years.",
-      "The procedure is carried out by Dr. Kapil Patil (MBBS, PGDMT, hair transplant surgeon from Mumbai), and the medical plan is supervised by trichologist and dermatologist Dr. Mannu Singgh. Most patients are good candidates, but not everyone is. If your donor area is weak or your hair loss is still very active, we will tell you and treat the scalp first.",
+      "The procedure is carried out by our hair transplant surgeons from Mumbai, Dr. Kapil Patil (MBBS, PGDMT) and Dr. Vinay Chouksey (MS), and the medical plan is supervised by trichologist and dermatologist Dr. Mannu Singgh. Most patients are good candidates, but not everyone is. If your donor area is weak or your hair loss is still very active, we will tell you and treat the scalp first.",
     ],
     idealFor: [
       "Men with a receding hairline or crown thinning (Norwood grade 2 to 6)",

@@ -46,16 +46,16 @@ export const doctors: Doctor[] = [
   {
     slug: "dr-vinay-chouksey",
     name: "Dr. Vinay Chouksey",
-    role: "Laser & Cosmetic Surgeon",
+    role: "Hair Transplant Surgeon · Laser & Cosmetic Surgeon",
     credentials: "MS",
     base: "Mumbai · visiting surgeon",
     initials: "VC",
     bio: [
-      "Dr. Vinay Chouksey (MS) is a laser and cosmetic surgeon from Mumbai who leads the laser and aesthetic programme at Madhaav Aesthetic.",
-      "He sets the laser protocols for laser hair reduction, carbon peel, tattoo removal and pigmentation, choosing wavelengths and energies that are safe for Indian skin types.",
+      "Dr. Vinay Chouksey (MS) is a hair transplant surgeon from Mumbai who performs FUE hair transplants for Madhaav Aesthetic. He is also a laser and cosmetic surgeon and leads the clinic's laser and aesthetic programme.",
+      "In hair transplants he focuses on natural hairline design, careful graft extraction and dense, natural-looking placement. On the laser side he sets the protocols for laser hair reduction, carbon peel, tattoo removal and pigmentation, choosing settings that are safe for Indian skin types.",
     ],
-    focus: ["Laser hair reduction", "Carbon peel & laser toning", "Laser tattoo removal", "Scalp micro-pigmentation", "Hydrafacial & medi-facials"],
-    treatments: ["laser-hair-reduction", "carbon-peel", "tattoo-removal", "scalp-micropigmentation", "hydrafacial"],
+    focus: ["FUE hair transplant", "Hairline design", "Laser hair reduction", "Carbon peel & laser toning", "Laser tattoo removal", "Scalp micro-pigmentation"],
+    treatments: ["hair-transplant", "fue-hair-transplant", "laser-hair-reduction", "carbon-peel", "tattoo-removal", "scalp-micropigmentation", "hydrafacial"],
   },
 ];
 

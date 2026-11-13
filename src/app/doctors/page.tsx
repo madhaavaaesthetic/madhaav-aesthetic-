@@ -8,9 +8,9 @@ import { pageMeta, physicianLd } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
   title: "Our Doctors: Trichologist, Dermatologist & Hair Transplant Surgeons | Madhaav",
-  description: "Meet Dr. Mannu Singgh (trichologist & dermatologist), Dr. Kapil Patil (MBBS, PGDMT, hair transplant surgeon, Mumbai) and Dr. Vinay Chouksey (MS, laser & cosmetic surgeon, Mumbai).",
+  description: "Meet Dr. Mannu Singgh (trichologist & dermatologist), Dr. Kapil Patil (MBBS, PGDMT) and Dr. Vinay Chouksey (MS), hair transplant surgeons from Mumbai.",
   path: "/doctors",
-  keywords: ["trichologist", "dermatologist", "hair transplant surgeon", "Dr Mannu Singgh", "Dr Manu Singh", "Dr Kapil Patil", "Dr Vinay Chouksey"],
+  keywords: ["trichologist", "dermatologist", "hair transplant surgeon", "hair transplant surgeons in Berhampur", "Dr Mannu Singgh", "Dr Manu Singh", "Dr Kapil Patil", "Dr Vinay Chouksey"],
 });
 
 export default function DoctorsPage() {

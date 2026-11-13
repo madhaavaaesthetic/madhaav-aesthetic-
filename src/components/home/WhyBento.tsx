@@ -17,7 +17,7 @@ export function WhyBento() {
             </div>
           </Tile>
           <Tile className="md:col-span-3 grad-ember text-shell" icon={<Scalpel />} title="Surgeons from Mumbai" dark>
-            FUE hair transplants by Dr. Kapil Patil (MBBS, PGDMT), with laser protocols set by Dr. Vinay Chouksey (MS).
+            FUE hair transplants by hair transplant surgeons Dr. Kapil Patil (MBBS, PGDMT) and Dr. Vinay Chouksey (MS).
           </Tile>
           <Tile className="md:col-span-2 bg-cream" icon={<Wallet />} title="0% EMI options">
             Spread the cost of a transplant or treatment course through {site.emiPartners.join(" & ")} (subject to approval).
