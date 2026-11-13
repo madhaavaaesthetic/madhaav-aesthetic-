@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ScrubText } from "@/components/motion/ScrubText";
 import { CountUp } from "@/components/motion/CountUp";
 import { Reveal } from "@/components/motion/Reveal";
@@ -7,8 +8,18 @@ import { treatments } from "@/data/treatments";
 /** Our approach, set as a quiet centred statement whose words light up as you scroll, with a few honest numbers below. */
 export function Statement() {
   return (
-    <section className="relative bg-shell py-24 md:py-36">
-      <div className="wrap mx-auto max-w-5xl text-center">
+    <section className="relative overflow-hidden bg-shell py-28 md:py-44">
+      {/* Our Thane reception behind a soft cream veil: clearer at the edges, calm behind the words. */}
+      <div aria-hidden className="absolute inset-0">
+        <Image src="/images/approach-clinic-bg.webp" alt="" fill sizes="100vw" className="scale-105 object-cover object-[50%_42%] blur-[2px]" />
+        <div
+          className="absolute inset-0"
+          style={{ background: "radial-gradient(ellipse 72% 62% at 50% 50%, rgba(251,247,243,0.93) 0%, rgba(251,247,243,0.84) 55%, rgba(251,247,243,0.6) 100%)" }}
+        />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-shell to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-shell to-transparent" />
+      </div>
+      <div className="wrap relative mx-auto max-w-5xl text-center">
         <Reveal>
           <span className="inline-flex rounded-full bg-white px-4 py-1.5 text-xs font-medium text-cocoa/75 shadow-[0_8px_24px_-14px_rgba(58,29,24,0.4)]">Our approach</span>
         </Reveal>

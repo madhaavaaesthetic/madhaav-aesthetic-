@@ -26,7 +26,8 @@ function Num({ value }: { value: number }) {
   const rounded = useTransform(mv, (v) => Math.round(v / 10) * 10);
   const [txt, setTxt] = useState("0");
   useEffect(() => {
-    const c = animate(mv, value, { duration: 0.9, ease: [0.16, 1, 0.3, 1] });
+    // A calm count from the previous estimate to the new one (fast changes read as a flicker).
+    const c = animate(mv, value, { duration: 2.2, ease: [0.22, 1, 0.36, 1] });
     const un = rounded.on("change", (v) => setTxt(v.toLocaleString("en-IN")));
     return () => {
       c.stop();
@@ -110,9 +111,9 @@ function Calculator({ initialStage }: { initialStage: number }) {
       <div className="lg:col-span-5">
         <div className="sticky top-28 overflow-hidden rounded-[2rem] bg-night p-8 text-shell md:p-10" aria-live="polite">
           <div className="flex items-start justify-between gap-6">
-            <div>
+            <div className="min-w-0">
               <p className="eyebrow text-ember">Estimated grafts</p>
-              <p className="mt-3 font-hero text-[clamp(2.6rem,5vw,4rem)] leading-none">
+              <p className="mt-3 font-hero text-[clamp(1.8rem,7.8vw,2.4rem)] leading-none whitespace-nowrap tabular-nums sm:text-[clamp(2rem,3.3vw,3.1rem)]">
                 {max === 0 ? "—" : (
                   <>
                     <Num value={min} />–<Num value={max} />
@@ -120,7 +121,7 @@ function Calculator({ initialStage }: { initialStage: number }) {
                 )}
               </p>
             </div>
-            <div className="w-24 shrink-0">
+            <div className="w-16 shrink-0 md:w-24">
               <AnimatePresence mode="wait">
                 <m.div key={stage} initial={{ opacity: 0, rotate: -10, scale: 0.8 }} animate={{ opacity: 1, rotate: 0, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}>
                   <NorwoodHead stage={stage} active />

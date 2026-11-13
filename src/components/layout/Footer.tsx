@@ -131,8 +131,10 @@ export function Footer() {
         </div>
         <div className="mt-6 flex items-center justify-center gap-3 border-t border-shell/10 pt-6 text-xs tracking-wide text-shell/65">
           <span>Designed and developed by</span>
-          {/* eslint-disable-next-line @next/next/no-img-element -- tiny static credit mark */}
-          <img src="/images/crayora-logo-white.webp" alt="Crayora" width={149} height={48} loading="lazy" decoding="async" className="crayora-glow h-7 w-auto md:h-8" />
+          <a href="https://www.crayoratech.com" target="_blank" rel="noopener" aria-label="Crayora (opens crayoratech.com)" className="transition-transform duration-300 hover:-translate-y-0.5">
+            {/* eslint-disable-next-line @next/next/no-img-element -- tiny static credit mark */}
+            <img src="/images/crayora-logo-white.webp" alt="Crayora" width={149} height={48} loading="lazy" decoding="async" className="crayora-glow h-7 w-auto md:h-8" />
+          </a>
         </div>
       </div>
     </footer>

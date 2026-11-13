@@ -50,7 +50,7 @@ export function Hero() {
       </div>
 
       {/* The photograph floats behind the headline: radial edges melt into the wash and its whites take on the warm tone. */}
-      <div data-hero-photo className="pointer-events-none absolute top-[max(4.5rem,4svh)] left-0 right-0 mx-auto aspect-square w-[min(108vw,60svh)] md:w-[min(62vw,64svh)]">
+      <div data-hero-photo className="pointer-events-none absolute top-[max(4.5rem,4svh)] left-0 right-0 mx-auto aspect-square w-[min(122vw,68svh)] md:w-[min(72vw,76svh)]">
         <div
           data-hero-photo-inner
           className="relative h-full w-full mix-blend-multiply"

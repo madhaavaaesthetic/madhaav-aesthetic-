@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
-import { m, useMotionValue, useSpring, AnimatePresence } from "motion/react";
+import { m, useMotionValue, useSpring, useTransform, useVelocity, AnimatePresence } from "motion/react";
 
 const QUERY = "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)";
 const subscribe = (cb: () => void) => {
@@ -10,7 +10,7 @@ const subscribe = (cb: () => void) => {
   return () => mq.removeEventListener("change", cb);
 };
 
-/** Ember dot + trailing ring. Grows over links; shows a label over elements with data-cursor="Label". */
+/** A small ember leaf (from the logo's sprig) + trailing ring. Grows over links; shows a label over elements with data-cursor="Label". */
 export function Cursor() {
   const enabled = useSyncExternalStore(subscribe, () => window.matchMedia(QUERY).matches, () => false);
   const [label, setLabel] = useState<string | null>(null);
@@ -20,6 +20,9 @@ export function Cursor() {
   const y = useMotionValue(-100);
   const rx = useSpring(x, { stiffness: 260, damping: 28, mass: 0.5 });
   const ry = useSpring(y, { stiffness: 260, damping: 28, mass: 0.5 });
+  // The leaf sways with horizontal movement, like it is being carried by the pointer.
+  const vx = useVelocity(x);
+  const sway = useSpring(useTransform(vx, [-1600, 0, 1600], [-28, 0, 28], { clamp: true }), { stiffness: 180, damping: 18 });
 
   useEffect(() => {
     if (!enabled) return;
@@ -77,11 +80,21 @@ export function Cursor() {
           )}
         </AnimatePresence>
       </m.div>
-      <m.div
-        className="absolute top-0 left-0 h-1.5 w-1.5 rounded-full bg-vermilion"
-        style={{ x, y, translateX: "-50%", translateY: "-50%" }}
-        animate={{ opacity: label ? 0 : 1 }}
-      />
+      {/* Leaf pointer: its tip is the hotspot. */}
+      <m.div className="absolute top-0 left-0" style={{ x, y, rotate: sway, transformOrigin: "0 0" }} animate={{ opacity: label ? 0 : 1, scale: down ? 0.82 : hover ? 1.22 : 1 }} transition={{ type: "spring", stiffness: 380, damping: 24 }}>
+        <svg width="20" height="20" viewBox="0 0 24 24" className="-translate-x-[2px] -translate-y-[2px] drop-shadow-[0_2px_3px_rgba(58,29,24,0.35)]">
+          <defs>
+            <linearGradient id="cursor-leaf" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#f58a2a" />
+              <stop offset="0.55" stopColor="#e23b2a" />
+              <stop offset="1" stopColor="#a61e22" />
+            </linearGradient>
+          </defs>
+          <path d="M2 2 C 13 1.5, 21.5 7.5, 20.5 20.5 C 7.5 21.5, 1.5 13, 2 2 Z" fill="url(#cursor-leaf)" />
+          <path d="M3.6 3.6 Q 11 10.5, 19.2 19.2" stroke="rgba(255,255,255,0.7)" strokeWidth="1" fill="none" strokeLinecap="round" />
+          <path d="M20.3 20.3 L 22.6 22.6" stroke="#a61e22" strokeWidth="1.4" strokeLinecap="round" />
+        </svg>
+      </m.div>
     </div>
   );
 }

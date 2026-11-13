@@ -5,6 +5,10 @@ import { SectionFade } from "@/components/ui/SectionFade";
 import { ServicesWheel, type ServiceCard } from "@/components/home/ServicesWheel";
 import { Statement } from "@/components/home/Statement";
 import { Journey } from "@/components/home/Journey";
+import { GrowthTimeline } from "@/components/home/GrowthTimeline";
+import { InsideClinic } from "@/components/home/InsideClinic";
+import { ToolsTeaser } from "@/components/home/ToolsTeaser";
+import { JournalTeaser } from "@/components/home/JournalTeaser";
 import { Doctors } from "@/components/home/Doctors";
 import { Clinics } from "@/components/home/Clinics";
 import { FinalCta } from "@/components/home/FinalCta";
@@ -59,11 +63,18 @@ export default function HomePage() {
       <Statement />
       <ServicesWheel cards={serviceCards} />
       <Journey steps={getTreatment("hair-transplant")!.steps} />
-      <SectionFade from="shell" to="night" />
+      <SectionFade from="shell" to="cream" />
+      <GrowthTimeline />
+      <SectionFade from="cream" to="night" />
       <ReviewsSection list={homeReviews} title="What our patients say on Google" tone="dark" />
       <SectionFade from="night" to="cream" />
       <Doctors />
       <Clinics />
+      <SectionFade from="cream" to="night" />
+      <InsideClinic />
+      <SectionFade from="night" to="ember" />
+      <ToolsTeaser />
+      <SectionFade from="ember" to="cream" />
       <section className="bg-cream py-16 md:py-24" aria-labelledby="faq-title">
         <div className="wrap grid gap-14 lg:grid-cols-12">
           <SectionHead className="lg:col-span-4" eyebrow="FAQ" title={<span id="faq-title">Frequently asked questions</span>} lead="Quick answers about cost, pain, results and clinic timings." />
@@ -73,6 +84,7 @@ export default function HomePage() {
         </div>
       </section>
       <SectionFade from="cream" to="shell" />
+      <JournalTeaser />
       <div className="bg-shell pt-4">
         <SearchTerms title="People also search for" terms={keywordsFor("/").map((label) => ({ label }))} />
       </div>

@@ -33,7 +33,7 @@ export function SplitReveal({ as: Tag = "div", children, className, by = "lines"
         onSplit(self) {
           const targets = by === "chars" ? self.chars : by === "words" ? self.words : self.lines;
           return gsap.from(targets, {
-            yPercent: 115,
+            yPercent: 135,
             rotate: by === "lines" ? 2.5 : 0,
             duration: 1.25,
             delay,

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { SplitReveal } from "@/components/motion/SplitReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { ArrowUpRight } from "@/components/ui/Icons";
@@ -45,10 +45,12 @@ export function ServicesWheel({ cards }: { cards: ServiceCard[] }) {
       };
 
       const state = { p: 0 };
+      // Cards swing a little in 3D while the wheel turns (stronger when scrolling fast), then settle: visible on touch screens too.
+      const swing = { v: 0 };
+      // Start with the first card rising in from the right; end as the last one settles left of centre and leaves.
+      const range = () => ({ from: -edge * 0.55, to: gap * (n - 1) + edge * 0.55 });
       const render = () => {
-        // Start with the first card rising in from the right; end as the last one settles left of centre and leaves.
-        const from = -edge * 0.55;
-        const to = gap * (n - 1) + edge * 0.55;
+        const { from, to } = range();
         const offset = from + (to - from) * state.p;
         items.forEach((card, i) => {
           const th = gap * i - offset;
@@ -59,6 +61,8 @@ export function ServicesWheel({ cards }: { cards: ServiceCard[] }) {
             x: R * Math.sin(th),
             y: R * (1 - Math.cos(th)),
             rotation: (th * 180) / Math.PI,
+            rotationY: swing.v,
+            transformPerspective: 1100,
             autoAlpha: off ? 0 : 1,
           });
         });
@@ -102,12 +106,35 @@ export function ServicesWheel({ cards }: { cards: ServiceCard[] }) {
 
       measure();
       render();
-      gsap.to(state, {
+      const swingTo = gsap.quickTo(swing, "v", { duration: 0.7, ease: "power3", onUpdate: render });
+      const tw = gsap.to(state, {
         p: 1,
         ease: "none",
-        onUpdate: render,
-        scrollTrigger: { trigger: el, start: "top top", end: "bottom bottom", scrub: 0.7 },
+        onUpdate: () => {
+          render();
+          swingTo(gsap.utils.clamp(-16, 16, -(tw.scrollTrigger?.getVelocity() ?? 0) / 110));
+        },
+        scrollTrigger: {
+          trigger: el,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.7,
+          // Phones: when scrolling stops, the wheel settles with the nearest card upright in the centre.
+          snap: {
+            snapTo: (value: number) => {
+              if (window.innerWidth >= 768) return value;
+              const { from, to } = range();
+              const stops = items.map((_, i) => (gap * i - from) / (to - from));
+              return stops.reduce((best, s) => (Math.abs(s - value) < Math.abs(best - value) ? s : best), stops[0]);
+            },
+            duration: { min: 0.25, max: 0.7 },
+            delay: 0.08,
+            ease: "power2.out",
+          },
+        },
       });
+      const settle = () => swingTo(0);
+      ScrollTrigger.addEventListener("scrollEnd", settle);
       const onResize = () => {
         measure();
         render();
@@ -115,6 +142,7 @@ export function ServicesWheel({ cards }: { cards: ServiceCard[] }) {
       window.addEventListener("resize", onResize);
       return () => {
         window.removeEventListener("resize", onResize);
+        ScrollTrigger.removeEventListener("scrollEnd", settle);
         cleanups.forEach((fn) => fn());
       };
     },
@@ -137,7 +165,7 @@ export function ServicesWheel({ cards }: { cards: ServiceCard[] }) {
         </Reveal>
       </div>
 
-      <div ref={track} className="relative" style={{ height: `calc(${cards.length} * 30svh + 100svh)` }}>
+      <div ref={track} className="relative h-[calc(var(--n)*50svh+100svh)] md:h-[calc(var(--n)*30svh+100svh)]" style={{ ["--n" as string]: cards.length }}>
         <div className="sticky top-0 h-[100svh] overflow-hidden">
           {cards.map((c, i) => (
             <Link
