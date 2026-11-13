@@ -1,0 +1,91 @@
+import Image from "next/image";
+import Link from "next/link";
+import type { ReactNode } from "react";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { SplitReveal } from "@/components/motion/SplitReveal";
+import { Reveal } from "@/components/motion/Reveal";
+import { Strands } from "@/components/brand/Strands";
+import { Magnetic } from "@/components/motion/Magnetic";
+import { ArrowRight, Star, WhatsApp } from "@/components/ui/Icons";
+import { site, whatsappLink } from "@/lib/site";
+
+export function PageHero({
+  crumbs,
+  eyebrow,
+  title,
+  lead,
+  image,
+  imageAlt,
+  waMessage,
+  aside,
+  children,
+  bookHref = "/contact",
+}: {
+  crumbs: { name: string; path: string }[];
+  eyebrow?: string;
+  title: string;
+  lead?: ReactNode;
+  image?: string;
+  imageAlt?: string;
+  waMessage?: string;
+  bookHref?: string;
+  aside?: ReactNode;
+  children?: ReactNode;
+}) {
+  return (
+    <section className="relative overflow-hidden pt-[calc(var(--header-h)+1.5rem)] pb-16 md:pb-24">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(55%_45%_at_80%_20%,#f9dccb_0%,transparent_70%)]" />
+      <Strands className="pointer-events-none absolute -top-24 -right-56 h-[720px] w-[720px] opacity-40" id="ph-grad" />
+      <div className="wrap relative">
+        <Breadcrumbs items={crumbs} />
+        <div className="mt-10 grid items-end gap-12 lg:grid-cols-12">
+          <div className={image || aside ? "lg:col-span-7" : "lg:col-span-10"}>
+            {eyebrow && (
+              <Reveal y={14}>
+                <p className="eyebrow flex items-center gap-3 text-vermilion">
+                  <span className="h-px w-8 bg-current" /> {eyebrow}
+                </p>
+              </Reveal>
+            )}
+            <SplitReveal as="h1" immediate delay={0.15} className="mt-5 font-display text-[clamp(2.6rem,6.4vw,6.2rem)] leading-[0.95] text-balance text-cocoa">
+              {title}
+            </SplitReveal>
+            {lead && (
+              <Reveal delay={0.3}>
+                <div className="mt-7 max-w-2xl text-lead text-cocoa/75">{lead}</div>
+              </Reveal>
+            )}
+            <Reveal delay={0.4} className="mt-9 flex flex-wrap gap-3">
+              <Magnetic>
+                <Link href={bookHref} className="btn btn-primary" data-cursor="Book">
+                  Book appointment <ArrowRight />
+                </Link>
+              </Magnetic>
+              <a href={whatsappLink(waMessage ?? "Hi Madhaav Aesthetic, I'd like to know more.")} target="_blank" rel="noopener" className="btn btn-ghost text-cocoa">
+                <WhatsApp className="text-[#25D366]" /> WhatsApp
+              </a>
+            </Reveal>
+            {children}
+          </div>
+          {image && (
+            <Reveal className="lg:col-span-5" delay={0.2}>
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[999px_999px_1.75rem_1.75rem] bg-blush">
+                <Image src={image} alt={imageAlt ?? ""} fill priority sizes="(max-width:1024px) 90vw, 36vw" className="object-cover" />
+                <div className="glass absolute right-4 bottom-4 left-4 flex items-center justify-between gap-3 rounded-2xl px-4 py-3">
+                  <span className="flex items-center gap-1 text-ember">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="text-xs" />
+                    ))}
+                    <span className="ml-1.5 font-semibold text-cocoa">{site.rating.value}</span>
+                  </span>
+                  <span className="text-xs font-medium text-cocoa/75">{site.rating.count}+ Google reviews · 0% EMI</span>
+                </div>
+              </div>
+            </Reveal>
+          )}
+          {!image && aside && <div className="lg:col-span-5">{aside}</div>}
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,340 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ember: #f26a21;
+  --color-vermilion: #c8321f;
+  --color-crimson: #a61e22;
+  --color-cocoa: #3a1d18;
+  --color-night: #1c0e0b;
+  --color-cream: #f6eee7;
+  --color-shell: #fbf7f3;
+  --color-sand: #e8d6c6;
+  --color-blush: #f4d9ca;
+  --color-clay: #8a5a4a;
+
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-silk: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --radius-arch: 999px 999px 28px 28px;
+
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-marquee-rev: marquee-rev var(--marquee-duration, 40s) linear infinite;
+  --animate-spin-slow: spin 18s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+  @keyframes marquee-rev {
+    from { transform: translate3d(-50%, 0, 0); }
+    to { transform: translate3d(0, 0, 0); }
+  }
+}
+
+:root {
+  --gutter: 1rem;
+  --header-h: 72px;
+  color-scheme: light;
+}
+@media (min-width: 768px) {
+  :root { --gutter: 2rem; }
+}
+@media (min-width: 1280px) {
+  :root { --gutter: 3rem; }
+}
+
+html {
+  background: var(--color-cream);
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-cocoa);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-vermilion);
+  color: var(--color-shell);
+}
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+.lenis [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* Three typographic roles, all set in Playfair Display. */
+@utility font-display {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  font-optical-sizing: auto;
+}
+@utility font-hero {
+  font-family: var(--font-serif);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-optical-sizing: auto;
+}
+@utility font-accent {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+/* Frosted glass, used sparingly over imagery or ember glows. */
+@utility glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.28));
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 24px 60px -28px rgba(58, 29, 24, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+@utility glass-dark {
+  /* Longhand properties so a bg-* colour utility can still set the tint underneath. */
+  background-color: rgba(28, 14, 11, 0.55);
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 30px 70px -34px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+@utility glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 999px;
+  filter: blur(70px);
+  background: radial-gradient(circle at 30% 30%, #f58a2a, #e23b2a 55%, transparent 72%);
+}
+
+@utility wrap {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+@utility text-mega {
+  font-size: clamp(3.25rem, 12.5vw, 13rem);
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+}
+@utility text-giant {
+  font-size: clamp(2.6rem, 7.6vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+}
+@utility text-title {
+  font-size: clamp(2.1rem, 4.8vw, 4.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+}
+@utility text-heading {
+  font-size: clamp(1.6rem, 2.8vw, 2.6rem);
+  line-height: 1.05;
+}
+@utility text-lead {
+  font-size: clamp(1.08rem, 1.45vw, 1.3rem);
+  line-height: 1.55;
+}
+
+@utility arch {
+  border-radius: 999px 999px 1.5rem 1.5rem;
+}
+
+@utility grad-ember {
+  background-image: linear-gradient(135deg, #f58a2a 0%, #f26a21 35%, #e23b2a 75%, #b8231f 100%);
+}
+@utility text-grad {
+  background-image: linear-gradient(100deg, #f58a2a 0%, #f26a21 30%, #e23b2a 70%, #a61e22 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+@layer components {
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    padding: 0 1.6rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    overflow: hidden;
+    isolation: isolate;
+    transition: color 0.5s var(--ease-expo), background-color 0.5s var(--ease-expo), border-color 0.5s var(--ease-expo);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    transform: translateY(101%);
+    transition: transform 0.6s var(--ease-expo);
+    background: var(--btn-fill, var(--color-cocoa));
+  }
+  @media (hover: hover) {
+    .btn:hover::before { transform: translateY(0); }
+  }
+  .btn-ico {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    margin-left: 0.1rem;
+    border-radius: 999px;
+    background: var(--color-shell);
+    color: var(--color-vermilion);
+    transition: transform 0.6s var(--ease-expo);
+  }
+  .btn:has(.btn-ico) { padding-right: 0.4rem; }
+  @media (hover: hover) {
+    .btn:hover .btn-ico { transform: rotate(45deg); }
+  }
+  .btn-primary {
+    background: var(--color-vermilion);
+    color: var(--color-shell);
+    --btn-fill: var(--color-night);
+  }
+  .btn-dark {
+    background: var(--color-cocoa);
+    color: var(--color-shell);
+    --btn-fill: var(--color-vermilion);
+  }
+  .btn-ghost {
+    border: 1px solid color-mix(in oklab, currentColor 30%, transparent);
+    --btn-fill: var(--color-cocoa);
+  }
+  @media (hover: hover) {
+    /* !important: ghost buttons also carry a text-* colour utility, which would otherwise keep dark text on the dark hover fill. */
+    .btn-ghost:hover { color: var(--color-shell) !important; border-color: var(--color-cocoa); }
+  }
+  .btn-light {
+    background: var(--color-shell);
+    color: var(--color-cocoa);
+    --btn-fill: var(--color-vermilion);
+  }
+  @media (hover: hover) {
+    .btn-light:hover { color: var(--color-shell); }
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.6s var(--ease-expo);
+  }
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+    background-position: 0% 100%;
+  }
+
+  .prose-clinic {
+    color: color-mix(in oklab, var(--color-cocoa) 88%, transparent);
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+  .prose-clinic h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    line-height: 1.1;
+    color: var(--color-cocoa);
+    margin: 2.6rem 0 1rem;
+  }
+  .prose-clinic h3 {
+    font-family: var(--font-serif);
+    font-size: 1.45rem;
+    color: var(--color-cocoa);
+    margin: 2rem 0 0.6rem;
+  }
+  .prose-clinic p { margin: 0 0 1.1rem; }
+  .prose-clinic ul { margin: 0 0 1.2rem; padding-left: 0; list-style: none; }
+  .prose-clinic li { position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+  .prose-clinic li::before {
+    content: "";
+    position: absolute;
+    left: 0.15rem;
+    top: 0.72em;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px 999px 2px 2px;
+    background: var(--color-ember);
+  }
+  .prose-clinic a { color: var(--color-vermilion); text-decoration: underline; text-underline-offset: 3px; }
+  .prose-clinic strong { color: var(--color-cocoa); font-weight: 600; }
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.preloader { animation: preloader-failsafe 0.5s ease 6s forwards; }
+@keyframes preloader-failsafe { to { opacity: 0; visibility: hidden; } }
+
+.split-line { overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+
+/* Content stays visible without JS; JS opts elements into reveal states. */
+.js [data-reveal] { opacity: 0; }
+.js [data-reveal].is-in { opacity: 1; }
+
+:focus-visible {
+  outline: 2px solid var(--color-vermilion);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js [data-reveal] { opacity: 1 !important; }
+}
+
+.cursor-none-fine { cursor: auto; }
+@media (hover: hover) and (pointer: fine) {
+  html.has-cursor, html.has-cursor * { cursor: none !important; }
+}
