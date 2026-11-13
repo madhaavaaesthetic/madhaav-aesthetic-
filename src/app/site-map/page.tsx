@@ -88,6 +88,7 @@ export default function SiteMapPage() {
           <Branch title="Legal">
             <Leaf href="/privacy-policy">Privacy policy</Leaf>
             <Leaf href="/medical-disclaimer">Medical disclaimer</Leaf>
+            <Leaf href="/cookie-policy">Cookie policy</Leaf>
           </Branch>
         </Panel>
 

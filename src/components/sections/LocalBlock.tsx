@@ -1,3 +1,4 @@
+import { MapEmbed } from "@/components/ui/MapEmbed";
 import Link from "next/link";
 import type { Area, City } from "@/data/types";
 import { branchForCity } from "@/lib/local-content";
@@ -41,13 +42,7 @@ export function ClinicCard({ city }: { city: City }) {
   return (
     <div className="overflow-hidden rounded-[1.75rem] bg-shell ring-1 ring-cocoa/8">
       <div className="relative aspect-[16/10] w-full">
-        <iframe
-          title={`Map: ${b.name}`}
-          src={b.mapEmbed}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          className="absolute inset-0 h-full w-full border-0 grayscale-[0.3] sepia-[0.15]"
-        />
+        <MapEmbed title={`Map: ${b.name}`} src={b.mapEmbed} directionsUrl={b.directionsUrl} />
       </div>
       <div className="p-7 md:p-8">
         <p className="eyebrow text-vermilion">{city.clinic.verified ? "Your clinic" : "Nearest clinic"}</p>

@@ -89,25 +89,25 @@ export function Journey({ steps }: { steps: Treatment["steps"] }) {
       <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-14">
         {/* Left: introduction and a step index that follows the scroll */}
         <div className="lg:col-span-5">
-          <div className="lg:sticky lg:top-28">
+          <div className="lg:sticky lg:top-24">
             <p className="eyebrow flex items-center gap-3 text-vermilion">
               <span className="h-px w-8 bg-current" /> How a hair transplant works
             </p>
-            <SplitReveal as="h2" id="journey-title" className="mt-5 font-display text-title text-cocoa">
+            <SplitReveal as="h2" id="journey-title" className="mt-4 font-display text-title text-cocoa lg:text-[clamp(2.2rem,min(3.3vw,6.4svh),3.4rem)] lg:leading-[1.04]">
               Your hair transplant in 6 simple steps
             </SplitReveal>
-            <p className="mt-5 max-w-md text-cocoa/70">
+            <p className="mt-4 max-w-md text-cocoa/70">
               From the first scalp check to your final review, you know exactly what happens and when. The FUE procedure is done in one day by our hair transplant surgeons from Mumbai.
             </p>
-            <ol className="mt-10 hidden space-y-1 lg:block" aria-label="Steps">
+            <ol className="mt-6 hidden lg:block" aria-label="Steps">
               {steps.map((s, i) => (
-                <li key={s.title} className="flex items-baseline gap-4 border-b border-cocoa/10 py-3">
+                <li key={s.title} className="flex items-baseline gap-4 border-b border-cocoa/10 py-[min(0.6rem,1.1svh)]">
                   <span className={cn("font-hero text-sm tabular-nums transition-colors duration-500", i === active ? "text-vermilion" : "text-cocoa/70")}>{num(i)}</span>
                   <span className={cn("font-display text-lg transition-colors duration-500", i === active ? "font-semibold text-cocoa" : "text-cocoa/75")}>{s.title}</span>
                 </li>
               ))}
             </ol>
-            <Link href="/treatments/hair-transplant" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-vermilion link-underline">
+            <Link href="/treatments/hair-transplant" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-vermilion link-underline">
               Hair transplant cost, recovery and FAQs <ArrowUpRight />
             </Link>
           </div>

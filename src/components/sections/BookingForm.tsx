@@ -29,7 +29,7 @@ export default function BookingForm({ defaultClinic, defaultTreatment }: { defau
   const [slots, setSlots] = useState<{ open: string[]; full: string[] } | null>(null);
   const [loadingSlots, setLoadingSlots] = useState(false);
   const [refresh, setRefresh] = useState(0);
-  const [form, setForm] = useState({ name: "", phone: "", email: "", notes: "", firstVisit: true, website: "" });
+  const [form, setForm] = useState({ name: "", phone: "", email: "", notes: "", firstVisit: true, consent: false, website: "" });
   const [startedAt] = useState(() => Date.now());
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<{ message: string; fallback?: boolean } | null>(null);
@@ -65,6 +65,7 @@ export default function BookingForm({ defaultClinic, defaultTreatment }: { defau
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!time) return setStep(1);
+    if (!form.consent) return setError({ message: "Please tick the consent box so we can contact you about your appointment." });
     setSubmitting(true);
     setError(null);
     try {
@@ -276,6 +277,22 @@ export default function BookingForm({ defaultClinic, defaultTreatment }: { defau
                 <label className="flex items-center gap-3 text-sm text-cocoa/80 md:col-span-2">
                   <input type="checkbox" checked={form.firstVisit} onChange={(e) => setForm({ ...form, firstVisit: e.target.checked })} className="h-5 w-5 accent-[#E23B2A]" />
                   This is my first visit to Madhaav Aesthetic
+                </label>
+                <label className="flex items-start gap-3 rounded-2xl bg-cream/70 p-4 text-sm text-cocoa/85 md:col-span-2">
+                  <input
+                    type="checkbox"
+                    required
+                    checked={form.consent}
+                    onChange={(e) => setForm({ ...form, consent: e.target.checked })}
+                    className="mt-0.5 h-5 w-5 shrink-0 accent-[#E23B2A]"
+                  />
+                  <span>
+                    I agree that Madhaav Aesthetic may use these details to arrange my appointment and contact me about it by phone, WhatsApp or email, as described in the{" "}
+                    <a href="/privacy-policy" target="_blank" className="font-semibold text-vermilion underline underline-offset-2">
+                      Privacy Policy
+                    </a>
+                    . *
+                  </span>
                 </label>
               </div>
               <AnimatePresence>

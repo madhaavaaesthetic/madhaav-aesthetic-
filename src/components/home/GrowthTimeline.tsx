@@ -44,16 +44,14 @@ export function GrowthTimeline({ className }: { className?: string }) {
       gsap.set(strands, { scaleY: 0, transformOrigin: "50% 100%" });
       gsap.set(panels.slice(1), { autoAlpha: 0, y: 30 });
 
-      const mm = gsap.matchMedia();
-      mm.add({ desktop: "(min-width: 768px)", mobile: "(max-width: 767px)" }, (ctx) => {
-        const desktop = ctx.conditions?.desktop;
+      // The stage is CSS-sticky inside a tall section (no pinning), so the same scrubbed timeline works with touch scrolling.
+      {
         const tl = gsap.timeline({
           defaults: { ease: "none" },
           scrollTrigger: {
             trigger: el,
-            start: desktop ? "top top" : "top 70%",
-            end: desktop ? "+=220%" : "bottom 30%",
-            pin: desktop ? q("[data-pin]")[0] : false,
+            start: "top top",
+            end: "bottom bottom",
             scrub: 0.8,
             onUpdate: (self) => {
               const fill = q("[data-progress]")[0];
@@ -70,31 +68,31 @@ export function GrowthTimeline({ className }: { className?: string }) {
           tl.to(q(`[data-tick="${i}"]`), { color: "#e23b2a", duration: 0.2 }, i);
         });
         tl.to({}, { duration: 0.4 });
-      });
+      }
     },
     { scope: root }
   );
 
   return (
-    <section ref={root} className={cn("relative bg-cream", className)} aria-labelledby="growth-title">
-      <div data-pin className="relative flex min-h-screen flex-col justify-center overflow-hidden py-16">
-        <div className="wrap grid items-center gap-12 lg:grid-cols-12">
+    <section ref={root} className={cn("relative h-[340svh] bg-cream md:h-[300vh]", className)} aria-labelledby="growth-title">
+      <div className="sticky top-0 flex h-[100svh] flex-col justify-center overflow-hidden pt-[calc(var(--header-h)+0.5rem)] pb-6 md:py-16">
+        <div className="wrap grid items-center gap-6 md:gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="eyebrow flex items-center gap-3 text-vermilion">
               <span className="h-px w-8 bg-current" /> Results timeline
             </p>
-            <h2 id="growth-title" className="mt-5 font-display text-title text-cocoa">
+            <h2 id="growth-title" className="mt-3 font-display text-[clamp(1.7rem,6.6vw,2.4rem)] leading-[1.08] text-cocoa md:mt-5 md:text-title">
               When will you see results after a hair transplant?
             </h2>
-            <p className="mt-5 max-w-md text-cocoa/70">
+            <p className="mt-5 hidden max-w-md text-cocoa/70 md:block">
               Hair grows slowly. Here is what usually happens, month by month. Your doctor will tell you what to expect in your case.
             </p>
-            <div className="relative mt-10 min-h-[13rem] md:min-h-[11rem]">
+            <div className="relative mt-5 min-h-[9.5rem] md:mt-10 md:min-h-[11rem]">
               {STAGES.map((s, i) => (
                 <div key={s.when} data-stage className={cn("absolute inset-0", i > 0 && "opacity-0")}>
-                  <p className="font-hero text-4xl text-vermilion md:text-5xl">{s.when}</p>
-                  <h3 className="mt-3 font-display text-heading text-cocoa">{s.title}</h3>
-                  <p className="mt-2 max-w-md text-cocoa/70">{s.text}</p>
+                  <p className="font-hero text-3xl text-vermilion md:text-5xl">{s.when}</p>
+                  <h3 className="mt-2 font-display text-[1.45rem] leading-tight text-cocoa md:mt-3 md:text-heading">{s.title}</h3>
+                  <p className="mt-2 max-w-md text-[0.95rem] text-cocoa/70 md:text-base">{s.text}</p>
                   <span className="sr-only">Stage {i + 1} of {STAGES.length}</span>
                 </div>
               ))}

@@ -9,6 +9,7 @@ import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { Cursor } from "@/components/motion/Cursor";
 import { Preloader } from "@/components/motion/Preloader";
 import { MotionProvider } from "@/components/motion/MotionProvider";
+import { CookieConsent } from "@/components/layout/CookieConsent";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { BASE_OTHER_META, organizationLd, websiteLd } from "@/lib/seo";
 
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main id="main">{children}</main>
           <Footer />
           <ActionBar />
+          <CookieConsent />
         </MotionProvider>
         <JsonLd data={[organizationLd(), websiteLd()]} />
       </body>

@@ -1,3 +1,4 @@
+import { CookieSettingsLink } from "@/components/layout/CookieConsent";
 import Link from "next/link";
 import { SectionFade } from "@/components/ui/SectionFade";
 import { branches, site, telLink, whatsappLink } from "@/lib/site";
@@ -123,6 +124,8 @@ export function Footer() {
           <div className="flex items-center gap-5">
             <Link href="/privacy-policy" className="hover:text-shell">Privacy</Link>
             <Link href="/medical-disclaimer" className="hover:text-shell">Medical disclaimer</Link>
+            <Link href="/cookie-policy" className="hover:text-shell">Cookie policy</Link>
+            <CookieSettingsLink className="hover:text-shell" />
             <Link href="/site-map" className="hover:text-shell">Sitemap</Link>
             <a href={site.instagram} target="_blank" rel="noopener" aria-label="Instagram" className="text-lg hover:text-ember">
               <Instagram />

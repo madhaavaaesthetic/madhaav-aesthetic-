@@ -25,6 +25,7 @@ export function allRoutes(): RouteEntry[] {
     { path: "/tools/hair-loss-test", priority: 0.7, changeFrequency: "monthly" },
     { path: "/privacy-policy", priority: 0.2, changeFrequency: "yearly" },
     { path: "/medical-disclaimer", priority: 0.2, changeFrequency: "yearly" },
+    { path: "/cookie-policy", priority: 0.2, changeFrequency: "yearly" },
     { path: "/site-map", priority: 0.3, changeFrequency: "monthly" },
   ];
   treatments.forEach((t) => r.push({ path: `/treatments/${t.slug}`, priority: t.core ? 0.9 : 0.8, changeFrequency: "monthly" }));

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { LegalPage } from "@/components/sections/LegalPage";
 import { pageMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -14,7 +15,16 @@ export default function Page() {
         <li>Details you choose to share when you message us on WhatsApp, call us or visit a clinic, such as your name, phone number and health concern.</li>
         <li>Anonymous technical data (browser type, pages visited) collected by our hosting provider for security and performance.</li>
       </ul>
-      <p>The booking form on this website does not store your details. It opens WhatsApp with your message pre-filled, and you decide whether to send it.</p>
+      <p>
+        When you book online, your name, mobile number, optional email, chosen clinic, date and time, treatment of interest and any notes are sent securely by email to
+        our clinic team, and a confirmation is emailed to you if you gave an address. You must tick the consent box before booking. We do not keep these details in a
+        separate database on this website.
+      </p>
+      <h2>Cookies</h2>
+      <p>
+        This website uses only essential browser storage, plus Google Maps if you allow it. See our <Link href="/cookie-policy">Cookie Policy</Link> for details and to change
+        your choice.
+      </p>
       <h2>How we use it</h2>
       <ul>
         <li>To respond to your enquiry and schedule appointments.</li>

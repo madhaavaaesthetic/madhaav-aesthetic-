@@ -72,6 +72,8 @@ export interface BookingInput {
   time: string;
   notes?: string;
   firstVisit?: boolean;
+  /** The visitor ticked the consent box (required). */
+  consent?: boolean;
   website?: string;
   startedAt?: number;
 }
@@ -102,6 +104,7 @@ export function validateBooking(b: Partial<BookingInput>): { ok: true; value: Bo
   const date = String(b.date ?? "");
   const time = String(b.time ?? "");
   const treatment = clean(b.treatment, 120) || BOOKING_TREATMENTS[0];
+  if (b.consent !== true) return { ok: false, error: "Please tick the consent box so we can contact you about your appointment." };
   if (!NAME_RE.test(name)) return { ok: false, error: "Please enter your full name (letters only)." };
   if (!/^[6-9]\d{9}$/.test(phoneDigits)) return { ok: false, error: "Please enter a valid 10-digit Indian mobile number." };
   if (email && !/^[^\s@<>()[\],;:"]+@[^\s@<>()[\],;:"]+\.[a-z]{2,}$/i.test(email)) return { ok: false, error: "That email address doesn't look right." };
