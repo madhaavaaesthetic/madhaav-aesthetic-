@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
+import { TreatmentMarquee } from "@/components/home/TreatmentMarquee";
+import { SectionFade } from "@/components/ui/SectionFade";
 import { ServicesWheel, type ServiceCard } from "@/components/home/ServicesWheel";
 import { Statement } from "@/components/home/Statement";
 import { Journey } from "@/components/home/Journey";
@@ -11,20 +13,17 @@ import { SectionHead } from "@/components/ui/SectionHead";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { homeFaqs } from "@/data/faqs";
 import { reviews } from "@/data/reviews";
-import { getTreatment } from "@/data/treatments";
+import { categoryName, getTreatment, treatments } from "@/data/treatments";
 
-/** The services wheel: six doorways into the treatments, each with its own photograph. */
-const serviceCards: ServiceCard[] = [
-  { slug: "hair-transplant", href: "/treatments/hair-transplant", tag: "Hair restoration", title: "Hair transplant", text: "Permanent, natural hairlines with FUE, planned graft by graft." },
-  { slug: "gfc-hair-treatment", href: "/treatments/hair-loss-treatment", tag: "Hair regrowth", title: "Hair fall treatment", text: "PRP, GFC, exosomes and QR678 to stop shedding and thicken thin hair." },
-  { slug: "laser-hair-reduction", href: "/treatments/laser-hair-reduction", tag: "Laser", title: "Laser hair reduction", text: "Smooth, long-lasting results for face and body, on Indian skin." },
-  { slug: "hydrafacial", href: "/treatments/hydrafacial", tag: "Skin & glow", title: "Hydrafacial & peels", text: "Deep-cleansed, hydrated, brighter skin with no downtime." },
-  { slug: "acne-treatment", href: "/treatments/acne-treatment", tag: "Clear skin", title: "Acne & pigmentation", text: "Treat breakouts, scars, melasma and dark spots at the root." },
-  { slug: "psoriasis-treatment", href: "/treatments?c=clinical-dermatology", tag: "Dermatology", title: "Skin conditions", text: "Eczema, psoriasis and fungal infections, treated by doctors." },
-].map(({ slug, ...c }) => {
-  const t = getTreatment(slug)!;
-  return { ...c, image: t.image, imageAlt: t.imageAlt };
-});
+/** The services wheel shows every treatment, each with its own photograph (slim fields only, for the browser bundle). */
+const serviceCards: ServiceCard[] = treatments.map((t) => ({
+  href: `/treatments/${t.slug}`,
+  tag: categoryName(t.category),
+  title: t.shortName,
+  text: t.tagline,
+  image: t.image,
+  imageAlt: t.imageAlt,
+}));
 
 /** 14 reviews, alternating clinics, for the home marquee (every review still appears on its clinic's pages). */
 const homeReviews = (() => {
@@ -56,10 +55,13 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <TreatmentMarquee items={treatments.map((t) => ({ slug: t.slug, shortName: t.shortName }))} />
       <Statement />
       <ServicesWheel cards={serviceCards} />
       <Journey steps={getTreatment("hair-transplant")!.steps} />
+      <SectionFade from="shell" to="night" />
       <ReviewsSection list={homeReviews} title="What our patients say on Google" tone="dark" />
+      <SectionFade from="night" to="cream" />
       <Doctors />
       <Clinics />
       <section className="bg-cream py-16 md:py-24" aria-labelledby="faq-title">
@@ -70,9 +72,11 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <SectionFade from="cream" to="shell" />
       <div className="bg-shell pt-4">
         <SearchTerms title="People also search for" terms={keywordsFor("/").map((label) => ({ label }))} />
       </div>
+      <SectionFade from="shell" to="cream" />
       <FinalCta />
       <JsonLd data={[faqLd(homeFaqs), ...branches.map(clinicLd)]} />
     </>

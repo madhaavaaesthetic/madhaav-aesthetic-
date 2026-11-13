@@ -20,8 +20,8 @@ export function Doctors() {
             lead="A trichologist and dermatologist diagnoses your hair or skin problem. Experienced surgeons from Mumbai perform hair transplants and laser treatments."
           />
           <Reveal className="lg:col-span-4 lg:col-start-9">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem]">
-              <Image src="/images/doctor-nameplates.jpg" alt="Brass nameplates of Dr. Manu Singh, Dr. Kapil Patil and Dr. Vinay Chouksey at the clinic" fill sizes="(max-width:1024px) 90vw, 30vw" className="object-cover object-top" />
+            <div className="relative mx-auto aspect-[25/28] max-w-sm overflow-hidden rounded-[1.5rem] lg:max-w-none">
+              <Image src="/images/doctor-nameplates.jpg" alt="Brass nameplates of Dr. Manu Singh, Dr. Kapil Patil and Dr. Vinay Chouksey at the clinic" fill sizes="(max-width:1024px) 90vw, 30vw" className="object-cover" />
             </div>
             <p className="mt-3 text-xs text-cocoa/70">The nameplates outside our consultation rooms.</p>
           </Reveal>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SectionFade } from "@/components/ui/SectionFade";
 import { branches, site, telLink, whatsappLink } from "@/lib/site";
 import { cities } from "@/data/locations";
 import { coreTreatments, treatments } from "@/data/treatments";
@@ -7,6 +8,9 @@ import { ArrowUpRight, Instagram, Pin, Star, WhatsApp } from "@/components/ui/Ic
 export function Footer() {
   const year = 2026;
   return (
+    <>
+    {/* Every page eases into the dark footer instead of meeting it with a hard edge. */}
+    <SectionFade from="cream" to="night" />
     <footer className="relative overflow-hidden bg-night text-shell">
       <div className="wrap relative pt-16 pb-28 md:pt-20 md:pb-10">
         <div className="grid gap-12 lg:grid-cols-12">
@@ -132,6 +136,7 @@ export function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }
 

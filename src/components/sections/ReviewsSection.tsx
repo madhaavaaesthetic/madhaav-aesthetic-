@@ -15,7 +15,7 @@ export function ReviewsSection({ list, title = "Patients, in their own words.", 
       {dark && (
         <>
           <div aria-hidden className="glow top-1/3 left-[8%] h-[360px] w-[420px] opacity-35" />
-          <div aria-hidden className="glow right-[5%] bottom-0 h-[300px] w-[380px] opacity-30" />
+          <div aria-hidden className="glow right-[5%] bottom-1/4 h-[300px] w-[380px] opacity-30" />
         </>
       )}
       <div className="wrap relative flex flex-wrap items-end justify-between gap-8">

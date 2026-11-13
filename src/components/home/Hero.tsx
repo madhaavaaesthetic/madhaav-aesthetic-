@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { gsap, SplitText, useGSAP, prefersReducedMotion } from "@/lib/gsap";
@@ -21,6 +22,7 @@ export function Hero() {
 
       const tl = gsap.timeline({ paused: true, defaults: { ease: "expo.out" } });
       tl.fromTo(q("[data-hero-bg]"), { autoAlpha: 0, scale: 1.08 }, { autoAlpha: 1, scale: 1, duration: 2.2, ease: "power2.out" }, 0)
+        .fromTo(q("[data-hero-photo]"), { autoAlpha: 0, scale: 1.06, yPercent: 3 }, { autoAlpha: 1, scale: 1, yPercent: 0, duration: 2, ease: "power3.out" }, 0.05)
         .from(split.chars, { yPercent: 110, autoAlpha: 0, duration: 1, stagger: 0.018 }, 0.15)
         .from(q("[data-hero-fade]"), { y: 22, autoAlpha: 0, duration: 1, stagger: 0.08 }, 0.55);
 
@@ -31,6 +33,7 @@ export function Hero() {
       // Gentle depth as the page scrolls away (works with native touch scrolling too).
       gsap.to(q("[data-hero-content]"), { yPercent: -18, autoAlpha: 0.2, ease: "none", scrollTrigger: { trigger: el, start: "top top", end: "bottom top", scrub: true } });
       gsap.to(q("[data-hero-bg]"), { scale: 1.12, ease: "none", scrollTrigger: { trigger: el, start: "top top", end: "bottom top", scrub: true } });
+      gsap.to(q("[data-hero-photo-inner]"), { yPercent: 10, ease: "none", scrollTrigger: { trigger: el, start: "top top", end: "bottom top", scrub: true } });
 
       return () => {
         window.removeEventListener("madhaav:loaded", play);
@@ -44,6 +47,28 @@ export function Hero() {
     <section ref={root} className="relative h-[100svh] min-h-[620px] overflow-hidden">
       <div data-hero-bg className="absolute inset-0">
         <ContourBackdrop />
+      </div>
+
+      {/* The photograph floats behind the headline: radial edges melt into the wash and its whites take on the warm tone. */}
+      <div data-hero-photo className="pointer-events-none absolute top-[max(4.5rem,4svh)] left-0 right-0 mx-auto aspect-square w-[min(108vw,60svh)] md:w-[min(62vw,64svh)]">
+        <div
+          data-hero-photo-inner
+          className="relative h-full w-full mix-blend-multiply"
+          style={{
+            maskImage: "radial-gradient(closest-side at 50% 48%, #000 42%, rgba(0,0,0,0.5) 66%, transparent 88%)",
+            WebkitMaskImage: "radial-gradient(closest-side at 50% 48%, #000 42%, rgba(0,0,0,0.5) 66%, transparent 88%)",
+          }}
+        >
+          <Image
+            src="/images/brand-scalp-massage-therapy.jpg"
+            alt="Patient relaxing during a scalp treatment for hair fall at Madhaav Aesthetic"
+            fill
+            loading="eager"
+            fetchPriority="high"
+            sizes="(max-width: 768px) 100vw, 62vw"
+            className="object-cover object-[48%_42%]"
+          />
+        </div>
       </div>
 
       <div data-hero-content className="wrap relative flex h-full flex-col items-center justify-end pb-[max(11svh,4.5rem)] text-center">
