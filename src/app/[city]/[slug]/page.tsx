@@ -1,3 +1,4 @@
+import { emphasize } from "@/lib/emphasis";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -76,7 +77,7 @@ function CityTreatment({ city, t }: { city: City; t: Treatment }) {
         ]}
         eyebrow={`${categoryName(t.category)} · ${city.displayName}`}
         title={c.h1}
-        lead={<p>{c.intro[0]}</p>}
+        lead={<p>{emphasize(c.intro[0])}</p>}
         image={t.image}
         imageAlt={`${t.imageAlt}, ${city.name}`}
         waMessage={`Hi Madhaav Aesthetic, I'd like to know about ${t.name} in ${city.name}.`}
@@ -134,7 +135,7 @@ function AreaPage({ city, area }: { city: City; area: Area }) {
         ]}
         eyebrow={`${area.name} · ${city.name}, ${city.state}${area.pin ? ` · ${area.pin}` : ""}`}
         title={c.h1}
-        lead={<p>{c.intro[0]}</p>}
+        lead={<p>{emphasize(c.intro[0])}</p>}
         aside={<ClinicCard city={city} />}
         waMessage={`Hi Madhaav Aesthetic, I live near ${area.name} and would like to book a consultation.`}
         bookHref={`/contact?clinic=${city.slug}`}
@@ -143,7 +144,7 @@ function AreaPage({ city, area }: { city: City; area: Area }) {
         <div className="wrap grid gap-12 lg:grid-cols-12">
           <div className="prose-clinic lg:col-span-7">
             <h2 className="!mt-0">Hair and skin care for {area.name}</h2>
-            <p>{c.intro[1]}</p>
+            <p>{emphasize(c.intro[1])}</p>
             <LocalProse city={city} area={area} />
             {area.landmarks.length > 0 && (
               <p>

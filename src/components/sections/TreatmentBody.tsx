@@ -1,3 +1,4 @@
+import { emphasize } from "@/lib/emphasis";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -65,10 +66,10 @@ export function TreatmentBody({
               {placeLabel ? ` in ${placeLabel}` : ""}: an overview
             </h2>
             {(intro ?? []).map((p) => (
-              <p key={p}>{p}</p>
+              <p key={p}>{emphasize(p)}</p>
             ))}
             {t.intro.map((p) => (
-              <p key={p}>{p}</p>
+              <p key={p}>{emphasize(p)}</p>
             ))}
             {localSlot}
           </div>
@@ -79,7 +80,7 @@ export function TreatmentBody({
                 <ul className="mt-6 space-y-4">
                   {t.idealFor.map((x) => (
                     <li key={x} className="flex gap-3 text-shell/85">
-                      <Check className="mt-1 shrink-0 text-ember" /> <span>{x}</span>
+                      <Check className="mt-1 shrink-0 text-ember" /> <span>{emphasize(x)}</span>
                     </li>
                   ))}
                 </ul>
@@ -100,6 +101,42 @@ export function TreatmentBody({
         </div>
       </section>
 
+      {t.spotlight && (
+        <section className="pb-16 md:pb-20" aria-labelledby="spotlight-title">
+          <div className="wrap">
+            <Reveal className="relative overflow-hidden rounded-[2rem] bg-white p-8 shadow-[0_40px_90px_-50px_rgba(58,29,24,0.45)] ring-1 ring-cocoa/8 md:p-12">
+              <div aria-hidden className="glow -top-24 -right-20 h-72 w-80 opacity-25" />
+              <div className="relative grid gap-10 lg:grid-cols-12">
+                <div className="lg:col-span-7">
+                  <p className="eyebrow text-vermilion">{t.spotlight.eyebrow}</p>
+                  <h2 id="spotlight-title" className="mt-4 font-display text-[clamp(1.9rem,3.4vw,3rem)] leading-[1.1] text-cocoa">
+                    {t.spotlight.title}
+                  </h2>
+                  <div className="mt-6 space-y-4 text-[1.02rem] leading-relaxed text-cocoa/80">
+                    {t.spotlight.paragraphs.map((p) => (
+                      <p key={p}>{emphasize(p)}</p>
+                    ))}
+                  </div>
+                </div>
+                <div className="lg:col-span-5">
+                  <ul className="space-y-3 rounded-[1.5rem] bg-cream p-6 md:p-7">
+                    {t.spotlight.points.map((pt) => (
+                      <li key={pt} className="flex gap-3 text-cocoa/85">
+                        <Check className="mt-1 shrink-0 text-vermilion" /> <span>{emphasize(pt)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {t.spotlight.note && <p className="mt-4 text-sm text-cocoa/70">{t.spotlight.note}</p>}
+                  <Link href="/contact" className="btn btn-dark mt-6 w-full">
+                    Ask about {t.spotlight.eyebrow.split("·").pop()?.trim()}
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
+
       <section className="bg-shell py-16 md:py-20">
         <div className="wrap">
           <p className="eyebrow flex items-center gap-3 text-vermilion">
@@ -113,7 +150,7 @@ export function TreatmentBody({
               <div key={s.title} className="group relative overflow-hidden rounded-[1.5rem] bg-cream p-7 ring-1 ring-cocoa/8 transition-colors duration-500 hover:bg-night hover:text-shell">
                 <span aria-hidden data-num={String(i + 1).padStart(2, "0")} className="block font-hero text-5xl text-ember/80 before:content-[attr(data-num)]" />
                 <h3 className="mt-5 font-display text-2xl">{s.title}</h3>
-                <p className="mt-2 text-[0.96rem] opacity-75">{s.text}</p>
+                <p className="mt-2 text-[0.96rem] opacity-75">{emphasize(s.text)}</p>
               </div>
             ))}
           </Reveal>

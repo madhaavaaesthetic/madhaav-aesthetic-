@@ -1,5 +1,6 @@
 "use client";
 
+import { emphasize } from "@/lib/emphasis";
 import { useState } from "react";
 import { AnimatePresence, m } from "motion/react";
 import type { FAQ } from "@/data/types";
@@ -48,7 +49,7 @@ export function Faq({ items, tone = "light" }: { items: FAQ[]; tone?: "light" | 
                 transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
                 className="overflow-hidden"
               >
-                <p className={cn("max-w-3xl pb-7 text-[1.02rem] leading-relaxed", dark ? "text-shell/75" : "text-cocoa/75")}>{f.a}</p>
+                <p className={cn("max-w-3xl pb-7 text-[1.02rem] leading-relaxed", dark ? "text-shell/75" : "text-cocoa/75")}>{emphasize(f.a)}</p>
               </m.div>
             </AnimatePresence>
           </div>

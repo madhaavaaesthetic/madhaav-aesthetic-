@@ -1,6 +1,6 @@
 # Master keyword list: Madhaav Aesthetic
 
-1,975 unique keywords, generated from the website's keyword module (`src/lib/page-keywords.ts`). Every keyword appears as visible text and in the meta keywords on its target page. The full table with target pages is in `keywords-master-list.csv`.
+1,986 unique keywords, generated from the website's keyword module (`src/lib/page-keywords.ts`). Every keyword appears as visible text and in the meta keywords on its target page. The full table with target pages is in `keywords-master-list.csv`.
 
 ## Brand (home page)
 
@@ -438,9 +438,9 @@
 
 ## Duta-Exosome Hair Regrowth Therapy (/treatments/exosome-hair-treatment)
 
-**Short-tail:** exosome hair treatment · exosome therapy for hair · Duta exosomes · exosome hair treatment cost
+**Short-tail:** exosome hair treatment · exosome therapy for hair · Duta exosomes · exosome hair treatment cost · Dutexome · Dutexome treatment
 
-**Long-tail:** exosome vs PRP for hair loss · how many exosome sessions for hair · exosome hair treatment side effects · is exosome therapy good for hair fall
+**Long-tail:** exosome vs PRP for hair loss · how many exosome sessions for hair · exosome hair treatment side effects · is exosome therapy good for hair fall · c.prof 231 Dutexome · exosomes with dutasteride for hair loss · dutasteride mesotherapy for hair
 
 **Hinglish:** exosome treatment kitne ka hai
 
@@ -510,9 +510,9 @@
 
 ## Pigmentation & Melasma Treatment (/treatments/pigmentation-treatment)
 
-**Short-tail:** pigmentation treatment · melasma treatment · dark spots treatment · tan removal · hyperpigmentation treatment
+**Short-tail:** pigmentation treatment · melasma treatment · dark spots treatment · tan removal · hyperpigmentation treatment · Cosmelan peel · Cosmelan treatment
 
-**Long-tail:** how to remove melasma permanently · pigmentation treatment cost · best treatment for dark spots on face · laser for pigmentation cost
+**Long-tail:** how to remove melasma permanently · pigmentation treatment cost · best treatment for dark spots on face · laser for pigmentation cost · Cosmelan peel for melasma · Cosmelan peel cost · is Cosmelan safe for Indian skin · Cosmelan peel near me
 
 **Hinglish:** jhaiyan ka ilaj · chehre ke kale daag · melasma ka ilaj
 

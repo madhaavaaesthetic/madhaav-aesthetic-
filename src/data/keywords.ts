@@ -54,8 +54,8 @@ export const search: Record<string, TreatmentSearch> = {
     cost: { range: "₹5,000 – ₹7,000", unit: "per session", factors: ["Kit used", "Area treated", "Package pricing"] },
   },
   "exosome-hair-treatment": {
-    short: ["exosome hair treatment", "exosome therapy for hair", "Duta exosomes", "exosome hair treatment cost"],
-    long: ["exosome vs PRP for hair loss", "how many exosome sessions for hair", "exosome hair treatment side effects", "is exosome therapy good for hair fall"],
+    short: ["exosome hair treatment", "exosome therapy for hair", "Duta exosomes", "exosome hair treatment cost", "Dutexome", "Dutexome treatment"],
+    long: ["exosome vs PRP for hair loss", "how many exosome sessions for hair", "exosome hair treatment side effects", "is exosome therapy good for hair fall", "c.prof 231 Dutexome", "exosomes with dutasteride for hair loss", "dutasteride mesotherapy for hair"],
     hinglish: ["exosome treatment kitne ka hai"],
     cost: { range: "₹10,000 – ₹25,000", unit: "per session", factors: ["Exosome product", "Area treated", "Combined with micro-needling"] },
   },
@@ -108,8 +108,8 @@ export const search: Record<string, TreatmentSearch> = {
     cost: { range: "₹1,500 – ₹5,000", unit: "per session (peel / procedure)", factors: ["Acne grade", "Medicines", "Scar procedures"] },
   },
   "pigmentation-treatment": {
-    short: ["pigmentation treatment", "melasma treatment", "dark spots treatment", "tan removal", "hyperpigmentation treatment"],
-    long: ["how to remove melasma permanently", "pigmentation treatment cost", "best treatment for dark spots on face", "laser for pigmentation cost"],
+    short: ["pigmentation treatment", "melasma treatment", "dark spots treatment", "tan removal", "hyperpigmentation treatment", "Cosmelan peel", "Cosmelan treatment"],
+    long: ["how to remove melasma permanently", "pigmentation treatment cost", "best treatment for dark spots on face", "laser for pigmentation cost", "Cosmelan peel for melasma", "Cosmelan peel cost", "is Cosmelan safe for Indian skin", "Cosmelan peel near me"],
     hinglish: ["jhaiyan ka ilaj", "chehre ke kale daag", "melasma ka ilaj"],
     cost: { range: "₹2,500 – ₹8,000", unit: "per session", factors: ["Type and depth of pigment", "Peel or laser", "Sessions required"] },
   },

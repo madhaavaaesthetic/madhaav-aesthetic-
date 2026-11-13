@@ -454,6 +454,7 @@ export const hairTreatments: Treatment[] = [
     keywords: [
       "exosome hair treatment", "Duta exosomes for hair regrowth", "exosome therapy for hair loss",
       "exosomes hair regrowth", "regenerative hair treatment", "exosome vs PRP",
+      "Dutexome", "c.prof 231 Dutexome", "exosomes with dutasteride", "dutasteride mesotherapy",
     ],
     image: "/images/scalp-therapy-device.jpg",
     imageAlt: "Scalp therapy device being used for exosome hair regrowth treatment",
@@ -488,6 +489,22 @@ export const hairTreatments: Treatment[] = [
       { q: "How many exosome sessions do I need?", a: "Typically 3–4 sessions, 4–6 weeks apart, with maintenance based on response." },
       { q: "Is exosome therapy painful?", a: "With numbing, most patients feel only mild pressure or tingling." },
     ],
+    spotlight: {
+      eyebrow: "Available at Madhaav · Dutexome",
+      title: "Dutexome: exosomes with dutasteride for hair loss",
+      paragraphs: [
+        "Dutexome (c.prof 231 by Mesoestetic) is a professional scalp solution that combines exosomes with 0.05% dutasteride, copper tripeptide, biotin and other B-group vitamins. It is designed to control hair loss and support regrowth in a single treatment.",
+        "Dutasteride lowers DHT, the hormone behind pattern baldness, right where it is needed in the scalp, while the exosomes, copper peptide and vitamins support stronger, healthier follicles. It is given in the clinic by micro-injection or micro-needling, in a course of sessions planned by your doctor.",
+        "It suits men with early to moderate pattern hair loss who want a stronger option than PRP alone, or who prefer not to take daily tablets. Your doctor confirms whether it is right for you after a scalp analysis.",
+      ],
+      points: [
+        "Exosomes + 0.05% dutasteride + copper tripeptide + biotin",
+        "Targets DHT, a main cause of male pattern hair loss",
+        "In-clinic sessions with little or no downtime",
+        "Can be combined with PRP, GFC or medicines",
+      ],
+      note: "Dutasteride is not used in women who are pregnant or may become pregnant. Your doctor reviews your history before starting.",
+    },
     related: ["gfc-hair-treatment", "prp-hair-treatment", "qr678-hair-treatment", "hair-loss-treatment"],
     doctors: ["dr-mannu-singgh"],
     local: {

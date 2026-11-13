@@ -1,3 +1,4 @@
+import { emphasize } from "@/lib/emphasis";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -67,7 +68,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
         crumbs={[{ name: "Locations", path: "/locations" }, { name: city.displayName, path: `/${city.slug}` }]}
         eyebrow={`${city.displayName} · ${city.state}`}
         title={c.h1}
-        lead={<p>{city.intro[0]}</p>}
+        lead={<p>{emphasize(city.intro[0])}</p>}
         image={city.hero}
         imageAlt={`Madhaav Aesthetic clinic serving ${city.name}`}
         waMessage={`Hi Madhaav Aesthetic, I'm in ${city.name} and would like to book a consultation.`}
@@ -78,9 +79,9 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
         <div className="wrap grid gap-12 lg:grid-cols-12">
           <div className="prose-clinic lg:col-span-7">
             <h2 className="!mt-0">Hair transplant, hair fall and skin care in {city.name}</h2>
-            <p>{city.intro[1]}</p>
+            <p>{emphasize(city.intro[1])}</p>
             <h3>Hair and skin in {city.name}&apos;s climate</h3>
-            <p>{city.climateNote}</p>
+            <p>{emphasize(city.climateNote)}</p>
             <p>{city.waterNote}</p>
             <h3>How to reach us</h3>
             <ul>

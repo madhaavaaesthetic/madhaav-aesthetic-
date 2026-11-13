@@ -1,3 +1,4 @@
+import { emphasize } from "@/lib/emphasis";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -75,7 +76,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               <section key={s.h} id={`s-${i}`}>
                 <h2>{s.h}</h2>
                 {s.p.map((para) => (
-                  <p key={para}>{para}</p>
+                  <p key={para}>{emphasize(para)}</p>
                 ))}
                 {s.list && (
                   <ul>

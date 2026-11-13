@@ -270,23 +270,24 @@ export const skinTreatments: Treatment[] = [
     category: "skin-aesthetics",
     tagline: "Fade melasma, dark spots and uneven skin tone.",
     summary:
-      "Hyperpigmentation and melasma treatment: dark spots, tan, uneven skin tone and post-acne marks treated with customised peels, laser toning and medical skincare.",
+      "Hyperpigmentation and melasma treatment: dark spots, tan, uneven skin tone and post-acne marks treated with the Cosmelan peel, customised peels, laser toning and medical skincare.",
     keywords: [
       "pigmentation treatment", "hyperpigmentation treatment", "melasma treatment", "dark spots treatment",
       "uneven skin tone treatment", "tan removal", "pigmentation removal", "how to remove melasma",
+      "Cosmelan treatment", "Cosmelan peel", "Cosmelan peel for melasma", "Mesoestetic Cosmelan",
     ],
     image: "/images/facial-cleanup.jpg",
     imageAlt: "Gentle facial treatment for uneven skin tone",
     procedureType: "Noninvasive",
     stats: [
-      { label: "Approach", value: "Peels + laser + Rx" },
+      { label: "Approach", value: "Cosmelan, peels, laser" },
       { label: "First change", value: "4–8 weeks" },
       { label: "Downtime", value: "Minimal" },
       { label: "Maintenance", value: "Ongoing SPF" },
     ],
     intro: [
       "Pigmentation means extra melanin in the skin. It can be tan, sun spots, post-acne marks, hormonal melasma or pigmentation from friction and waxing. Each type behaves differently. Melasma in particular is easily worsened by aggressive treatments, so it needs a patient, layered approach.",
-      "We combine prescription brightening creams, carefully chosen peels and low-energy laser toning, with strict sun protection. This is how we approach sensitive pigmentation cases, including melasma.",
+      "We combine prescription brightening creams, carefully chosen peels and low-energy laser toning, with strict sun protection. For stubborn melasma and dark spots we also offer the Cosmelan peel, a professional depigmentation treatment explained below. This is how we approach sensitive pigmentation cases, including melasma.",
     ],
     idealFor: ["Melasma on cheeks, forehead and upper lip", "Sun spots and tan", "Post-acne dark marks", "Dark underarms, neck or elbows", "Uneven skin tone"],
     steps: [
@@ -305,8 +306,25 @@ export const skinTreatments: Treatment[] = [
     faqs: [
       { q: "Can melasma be removed permanently?", a: "Melasma can be lightened considerably and controlled, but it can recur with sun exposure and hormonal changes. Maintenance and sun protection are key." },
       { q: "Which is better for pigmentation, peel or laser?", a: "It depends on the type and depth of the pigment. Many patients get the best results from a combination." },
+      { q: "What is the Cosmelan peel and is it available here?", a: "Yes. Cosmelan is a professional depigmentation treatment by Mesoestetic for melasma and dark spots. The mask is applied in the clinic and followed by a home maintenance cream. Expect a week or two of redness and peeling, with visible lightening in about four weeks." },
       { q: "Why does pigmentation come back?", a: "UV and visible light, heat and hormones restart melanin production. Daily broad-spectrum SPF is the most important prevention." },
     ],
+    spotlight: {
+      eyebrow: "Now available · Cosmelan",
+      title: "Cosmelan peel for melasma and stubborn pigmentation",
+      paragraphs: [
+        "Cosmelan is a professional depigmentation treatment by Mesoestetic, used worldwide for melasma, sun spots, post-acne marks and uneven skin tone. Instead of only peeling the surface, it slows down the enzyme that produces excess melanin, so it works on the pigment at its source.",
+        "It is a two-part method. In the clinic, our doctor applies the Cosmelan mask, which you keep on for a set number of hours before washing it off at home. You then continue with a maintenance cream at home, exactly as advised, to keep the pigment from returning.",
+        "For the first week or two the skin is usually red, dry and peeling, a little like mild sunburn. This is expected and settles with the moisturiser and sunscreen we give you. Most patients see clear lightening within about four weeks, with further improvement over the following months. Results vary from person to person.",
+      ],
+      points: [
+        "Treats melasma, sun spots, freckles and post-acne marks",
+        "Suitable for all skin types, including Indian skin",
+        "One in-clinic application, then a home maintenance plan",
+        "Doctor-supervised, with follow-up visits to track progress",
+      ],
+      note: "Cosmelan is not used during pregnancy or breastfeeding. Strict daily sun protection is essential, as with every pigmentation treatment.",
+    },
     related: ["chemical-peel", "carbon-peel", "hydrafacial", "acne-treatment"],
     doctors: ["dr-mannu-singgh", "dr-vinay-chouksey"],
     local: {
