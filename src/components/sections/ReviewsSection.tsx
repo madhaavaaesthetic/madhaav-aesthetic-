@@ -3,10 +3,23 @@ import { branchBySlug, site } from "@/lib/site";
 import { Marquee } from "@/components/motion/Marquee";
 import { SplitReveal } from "@/components/motion/SplitReveal";
 import { ArrowUpRight, Stars } from "@/components/ui/Icons";
+import { ReviewStack, type StackReview } from "@/components/ui/ReviewStack";
+import { Reveal } from "@/components/motion/Reveal";
 
 const CITY_LABEL: Record<Review["city"], string> = { berhampur: "Berhampur", thane: "Thane West", bhiwadi: "Bhiwadi" };
 
-export function ReviewsSection({ list, title = "Patients, in their own words.", tone = "light" }: { list: Review[]; title?: string; tone?: "light" | "dark" }) {
+export function ReviewsSection({
+  list,
+  title = "Patients, in their own words.",
+  tone = "light",
+  featured,
+}: {
+  list: Review[];
+  title?: string;
+  tone?: "light" | "dark";
+  /** Home page: three reviews shown as a stack of cards that fan out on hover, with the rest in one marquee row. */
+  featured?: StackReview[];
+}) {
   if (list.length === 0) return null;
   const half = Math.ceil(list.length / 2);
   const dark = tone === "dark";
@@ -18,6 +31,33 @@ export function ReviewsSection({ list, title = "Patients, in their own words.", 
           <div aria-hidden className="glow right-[5%] bottom-1/4 h-[300px] w-[380px] opacity-30" />
         </>
       )}
+      {featured ? (
+        <div className="wrap relative grid items-center gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <p className="eyebrow flex items-center gap-3 text-ember">
+              <span className="h-px w-8 bg-current" /> Google reviews
+            </p>
+            <SplitReveal as="h2" id="reviews-title" className="mt-5 font-display text-title text-shell">
+              {title}
+            </SplitReveal>
+            <p className="mt-5 max-w-md text-shell/75">Real reviews from patients at our Berhampur, Thane West and Bhiwadi clinics. Hover or tap a card to bring it forward, or open it on Google.</p>
+            <a href={site.googleReviewsUrl} target="_blank" rel="noopener" className="glass-dark mt-8 inline-flex items-center gap-4 rounded-full py-2 pr-5 pl-2">
+              <span className="grid h-12 w-12 place-items-center rounded-full bg-white font-bold text-[#4285F4] shadow-sm">G</span>
+              <span>
+                <span className="flex items-center gap-1 text-ember">
+                  <Stars />
+                  <span className="ml-1 font-semibold text-shell">{site.rating.value}</span>
+                </span>
+                <span className="text-sm text-shell/65">{site.rating.count}+ reviews on Google</span>
+              </span>
+              <ArrowUpRight className="opacity-60" />
+            </a>
+          </div>
+          <Reveal className="flex justify-center lg:col-span-7 lg:justify-start lg:pl-6">
+            <ReviewStack reviews={featured} />
+          </Reveal>
+        </div>
+      ) : (
       <div className="wrap relative flex flex-wrap items-end justify-between gap-8">
         <div className="max-w-3xl">
           <p className={`eyebrow flex items-center gap-3 ${dark ? "text-ember" : "text-vermilion"}`}>
@@ -39,13 +79,14 @@ export function ReviewsSection({ list, title = "Patients, in their own words.", 
           <ArrowUpRight className="opacity-60" />
         </a>
       </div>
-      <div className="relative mt-14 space-y-5">
-        <Marquee duration={70}>
-          {list.slice(0, half).map((r) => (
+      )}
+      <div className={`relative space-y-5 ${featured ? "mt-10" : "mt-14"}`}>
+        <Marquee duration={featured ? 90 : 70}>
+          {(featured ? list : list.slice(0, half)).map((r) => (
             <ReviewCard key={r.name + r.date} r={r} dark={dark} />
           ))}
         </Marquee>
-        {list.length > 3 && (
+        {!featured && list.length > 3 && (
           <Marquee duration={80} reverse>
             {list.slice(half).map((r) => (
               <ReviewCard key={r.name + r.date} r={r} dark={dark} />

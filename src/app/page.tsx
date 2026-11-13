@@ -29,6 +29,17 @@ const serviceCards: ServiceCard[] = treatments.map((t) => ({
   imageAlt: t.imageAlt,
 }));
 
+/** One review per clinic for the home stack: English, a comfortable length, linked to that clinic's Google listing. */
+const CLINIC_NAME = { berhampur: "Madhaav Berhampur", thane: "Madhaav Thane West", bhiwadi: "Madhaav Bhiwadi" } as const;
+const featuredReviews: StackReview[] = (["bhiwadi", "berhampur", "thane"] as const)
+  .map((city) => {
+    const r =
+      reviews.find((x) => x.city === city && x.stars === 5 && x.text.length >= 140 && x.text.length <= 340 && !/\b(hai|hain|ka|ki|mujhe|bahut|bohot)\b/i.test(x.text)) ??
+      reviews.find((x) => x.city === city)!;
+    const branch = branches.find((b) => b.slug === city);
+    return { name: r.name, clinic: CLINIC_NAME[city], stars: r.stars, date: r.date, text: r.text, href: branch?.mapsUrl ?? site.googleReviewsUrl };
+  });
+
 /** 14 reviews, alternating clinics, for the home marquee (every review still appears on its clinic's pages). */
 const homeReviews = (() => {
   const byCity = ["berhampur", "thane", "bhiwadi"].map((c) => reviews.filter((r) => r.city === c));
@@ -37,8 +48,9 @@ const homeReviews = (() => {
   return out;
 })();
 import { ReviewsSection } from "@/components/sections/ReviewsSection";
+import type { StackReview } from "@/components/ui/ReviewStack";
 import { clinicLd, faqLd, pageMeta } from "@/lib/seo";
-import { branches } from "@/lib/site";
+import { branches, site } from "@/lib/site";
 import { keywordsFor } from "@/lib/page-keywords";
 import { SearchTerms } from "@/components/sections/SearchTerms";
 
@@ -66,7 +78,7 @@ export default function HomePage() {
       <SectionFade from="shell" to="cream" />
       <GrowthTimeline />
       <SectionFade from="cream" to="night" />
-      <ReviewsSection list={homeReviews} title="What our patients say on Google" tone="dark" />
+      <ReviewsSection list={homeReviews.filter((r) => !featuredReviews.some((f) => f.name === r.name && f.date === r.date))} featured={featuredReviews} title="What our patients say on Google" tone="dark" />
       <SectionFade from="night" to="cream" />
       <Doctors />
       <Clinics />
