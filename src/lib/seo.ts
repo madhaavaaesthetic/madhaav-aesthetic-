@@ -90,7 +90,7 @@ export function organizationLd() {
     slogan: site.tagline,
     description: site.description,
     telephone: site.phone,
-    sameAs: [site.instagram, site.threads, ...branches.map((b) => b.mapsUrl)],
+    sameAs: [site.instagram, site.threads, site.justdial, ...branches.map((b) => b.mapsUrl)],
     medicalSpecialty: ["Dermatologic", "PlasticSurgery"],
     founder: { "@id": `${SITE_URL}/doctors/dr-mannu-singgh#physician` },
     subOrganization: branches.map((b) => ({ "@id": branchId(b) })),

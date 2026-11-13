@@ -126,6 +126,8 @@ export const site = {
   rating: { value: Math.round(weighted * 10) / 10, count: totalReviews },
   googleReviewsUrl: "https://maps.google.com/?cid=7195382621818988740",
   instagram: "https://www.instagram.com/madhaav_aesthetics/",
+  /** Verified Justdial listing (Berhampur), shown as a trust badge in the footer. */
+  justdial: "https://www.justdial.com/Berhampur-Odisha/Madhaav-Aesthetic-Cure-Vibe-Clinics-Near-New-Bus-Stand-Aurobinda-Nagar/9999PX680-X680-210501140505-D6T4_BZDET",
   threads: "https://www.threads.net/@madhaav_aesthetics",
   hours: [{ days: "Monday – Sunday", slots: ["10:00 am – 1:00 pm", "4:00 pm – 8:00 pm"] }],
   openingHoursSpec: [

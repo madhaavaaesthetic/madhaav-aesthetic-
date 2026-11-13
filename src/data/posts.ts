@@ -30,7 +30,7 @@ export const posts: Post[] = [
     imageAlt: "Hair transplant cost consultation in Berhampur, Odisha",
     keywords: ["hair transplant cost in Berhampur", "hair transplant cost in Odisha", "hair transplant in Brahmapur", "best hair transplant in Odisha", "hair transplant price per graft", "hair transplant on EMI", "hair transplant kitne ka hota hai"],
     sections: [
-      { h: "Quick answer", p: ["In 2026, an FUE hair transplant in Berhampur typically costs ₹35–₹70 per graft. For most men that works out between ₹45,000 (a hairline touch-up) and ₹1,80,000 (front plus crown). At Madhaav Aesthetic you get a written graft count and a fixed quote after a scalp analysis, with 0% EMI available."] },
+      { h: "Quick answer", p: ["In 2026, a hair transplant in Berhampur typically costs ₹45,000 – ₹1,00,000, depending on how many grafts you need and whether the crown is included. Across India, FUE is usually priced at ₹35–₹70 per graft. At Madhaav Aesthetic you get a written graft count and a fixed quote after a scalp analysis, with 0% EMI available."] },
       { h: "Price by stage of baldness", p: ["Your Norwood stage decides most of the cost, because it decides the number of grafts."], list: ["Norwood 2 (temples): 800–1,500 grafts", "Norwood 3 (receding hairline): 1,500–2,200 grafts", "Norwood 4 (front + early crown): 2,200–3,000 grafts", "Norwood 5 and above: 3,000–4,000+ grafts"] },
       { h: "Why the cheapest quote can cost more", p: ["A very low price often means technicians doing the work instead of a surgeon, a poorly designed hairline or over-harvesting of the donor area. A failed transplant is expensive to repair. Ask who designs the hairline, who extracts the grafts, and what aftercare is included."] },
       { h: "Do you need to travel to Bhubaneswar, Vizag or Kolkata?", p: ["No. Our Berhampur clinic at the BDA Complex, New Bus Stand has its own operation theatre, and FUE procedures are performed by a hair transplant surgeon from Mumbai. Patients come from Gopalpur, Chhatrapur, Aska, Bhanjanagar, Paralakhemundi and Ichchapuram."] },
@@ -51,7 +51,7 @@ export const posts: Post[] = [
     sections: [
       { h: "1. A doctor examines you first", p: ["Acne, pigmentation and hair fall all have several possible causes. A good skin clinic diagnoses before it sells a package."] },
       { h: "2. Settings that suit Indian skin", p: ["Lasers and peels need to be adjusted for medium and darker skin to avoid burns and post-inflammatory darkening. Ask how they choose settings and whether they patch test."] },
-      { h: "3. Transparent pricing", p: ["You should get a written quote that covers sessions, products and follow-ups. Typical Thane prices: Hydrafacial ₹3,000–₹8,000, laser hair reduction ₹2,000–₹6,000 per area per session, carbon peel ₹2,500–₹6,000."] },
+      { h: "3. Transparent pricing", p: ["You should get a written quote that covers sessions, products and follow-ups. Typical Thane prices: Hydrafacial ₹3,000–₹8,000, laser hair reduction ₹4,000–₹6,000 per session, carbon peel ₹2,500–₹6,000."] },
       { h: "4. Real, recent reviews", p: ["Read Google reviews from the last six months, not just the star rating. Our Thane West clinic is rated 5.0★ on Google."] },
       { h: "5. Registration and hygiene", p: ["Check that the clinic is properly registered. Madhaav Aesthetic Thane is listed on India's Health Facility Registry (HFR ID IN2710050569)."] },
       { h: "6. Easy to reach", p: ["Our clinic is at Nakhwa Enclave, opposite Naupada Police Station, about 1 km from Thane station. It's easy to reach from Ghodbunder Road, Majiwada, Wagle Estate, Kalwa and Mulund."] },
@@ -71,7 +71,7 @@ export const posts: Post[] = [
     keywords: ["hair fall treatment in Bhiwadi", "PRP treatment in Bhiwadi", "GFC treatment cost", "hair clinic near Gurugram", "hair fall treatment Delhi NCR", "baal jhadne ka ilaj"],
     sections: [
       { h: "Why hair fall is so common in NCR", p: ["Very hard groundwater, fine-dust pollution, long commutes and stress all add up. Hard water also causes breakage that looks like hair fall. A scalp examination tells the two apart."] },
-      { h: "PRP vs GFC: cost and sessions", p: [], list: ["PRP: ₹3,000–₹8,000 per session, usually 4–6 sessions a month apart", "GFC: ₹6,000–₹15,000 per session, usually 3–6 sessions 4–6 weeks apart", "Exosomes: ₹10,000–₹30,000 per session for patients who plateau", "QR678 Neo: ₹6,000–₹15,000 per session, with no blood draw"] },
+      { h: "PRP vs GFC: cost and sessions", p: [], list: ["PRP: ₹3,000–₹8,000 per session, usually 4–6 sessions a month apart", "GFC: ₹5,000–₹7,000 per session, usually 3–6 sessions 4–6 weeks apart", "Exosomes: ₹10,000–₹25,000 per session for patients who plateau", "QR678 Neo: ₹6,000–₹15,000 per session, with no blood draw"] },
       { h: "What patients report", p: ["Bhiwadi patients on Google describe reduced hair fall after two GFC sessions and new baby hairs after two PRP sessions. Individual results vary, which is why progress is measured at every visit."] },
       { h: "Getting here from Delhi and Gurugram", p: ["Our Bhiwadi clinic is on Madhav Marg, Bhagat Singh Colony, U.I.T., about an hour from Gurugram and South-West Delhi via NH-48. Wednesdays include a free consultation."] },
     ],

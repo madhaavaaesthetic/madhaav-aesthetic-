@@ -15,7 +15,7 @@ export const search: Record<string, TreatmentSearch> = {
     short: ["hair transplant", "hair transplant clinic", "hair transplant near me", "best hair transplant", "hair transplant cost", "hair transplant price", "hair transplant doctor", "baldness treatment"],
     long: ["best hair transplant clinic near me", "hair transplant cost per graft", "hair transplant cost for 2000 grafts", "hair transplant cost for 3000 grafts", "is hair transplant permanent", "is hair transplant painful", "hair transplant side effects", "hair transplant results after 6 months", "hair transplant on EMI", "front hairline transplant cost", "crown hair transplant"],
     hinglish: ["hair transplant kitne ka hota hai", "hair transplant ka kharcha", "ganjapan ka ilaj", "baal lagwane ka kharcha", "hair transplant ke baad kya kare"],
-    cost: { range: "₹35 – ₹70 per graft (about ₹45,000 – ₹1,80,000 in total)", unit: "per procedure", factors: ["Number of grafts needed", "Donor hair quality", "Front-only or front + crown", "Medicines and PRP support included"] },
+    cost: { range: "₹45,000 – ₹1,00,000", unit: "per procedure", factors: ["Number of grafts needed", "Donor hair quality", "Front-only or front + crown", "Medicines and PRP support included"] },
   },
   "fue-hair-transplant": {
     short: ["FUE hair transplant", "FUE transplant", "FUE hair transplant cost", "FUE clinic near me", "stitchless hair transplant"],
@@ -51,13 +51,13 @@ export const search: Record<string, TreatmentSearch> = {
     short: ["GFC hair treatment", "GFC treatment", "GFC hair treatment cost", "GFC near me", "growth factor concentrate"],
     long: ["GFC vs PRP which is better", "how many GFC sessions for hair", "GFC hair treatment side effects", "GFC treatment results after 3 sessions", "GFC treatment price per session"],
     hinglish: ["GFC treatment kitne ka hota hai", "GFC se baal ugte hain kya"],
-    cost: { range: "₹6,000 – ₹15,000", unit: "per session", factors: ["Kit used", "Area treated", "Package pricing"] },
+    cost: { range: "₹5,000 – ₹7,000", unit: "per session", factors: ["Kit used", "Area treated", "Package pricing"] },
   },
   "exosome-hair-treatment": {
     short: ["exosome hair treatment", "exosome therapy for hair", "Duta exosomes", "exosome hair treatment cost"],
     long: ["exosome vs PRP for hair loss", "how many exosome sessions for hair", "exosome hair treatment side effects", "is exosome therapy good for hair fall"],
     hinglish: ["exosome treatment kitne ka hai"],
-    cost: { range: "₹10,000 – ₹30,000", unit: "per session", factors: ["Exosome product", "Area treated", "Combined with micro-needling"] },
+    cost: { range: "₹10,000 – ₹25,000", unit: "per session", factors: ["Exosome product", "Area treated", "Combined with micro-needling"] },
   },
   "qr678-hair-treatment": {
     short: ["QR678 treatment", "QR678 Neo", "QR678 cost", "QR678 near me"],
@@ -81,7 +81,7 @@ export const search: Record<string, TreatmentSearch> = {
     short: ["laser hair removal", "laser hair reduction", "laser hair removal near me", "laser hair removal cost", "full body laser hair removal"],
     long: ["laser hair removal cost for full body", "laser hair removal for face cost", "underarm laser hair removal cost", "is laser hair removal permanent", "laser hair removal side effects", "how many sessions for laser hair removal"],
     hinglish: ["laser se baal hatane ka kharcha", "chehre ke baal hatane ka tarika", "permanent hair removal kitne ka hai"],
-    cost: { range: "₹2,000 – ₹6,000 per area (full body ₹12,000 – ₹30,000)", unit: "per session", factors: ["Area size", "Number of sessions", "Hair thickness and skin type"] },
+    cost: { range: "₹4,000 – ₹6,000", unit: "per session", factors: ["Area size", "Number of sessions", "Hair thickness and skin type"] },
   },
   hydrafacial: {
     short: ["hydrafacial", "hydrafacial near me", "hydrafacial cost", "hydrafacial price", "medifacial"],

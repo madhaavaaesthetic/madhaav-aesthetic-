@@ -30,6 +30,23 @@ export function Footer() {
             <p className="mt-8 flex items-center gap-2 text-sm text-shell/70">
               <Star className="text-ember" /> {site.rating.value} average across {site.rating.count} Google reviews
             </p>
+            <a
+              href={site.justdial}
+              target="_blank"
+              rel="noopener"
+              aria-label="Verified on Justdial: view our Justdial listing"
+              className="mt-4 inline-flex items-center gap-2.5 rounded-full bg-white py-1.5 pr-4 pl-3 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.6)] transition-transform duration-300 hover:-translate-y-0.5"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element -- small static SVG mark */}
+              <img src="/images/justdial-logo.svg" alt="" width={84} height={22} loading="lazy" className="h-[1.15rem] w-auto" />
+              <span className="flex items-center gap-1 text-xs font-semibold text-[#14803c]">
+                <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true">
+                  <circle cx="10" cy="10" r="10" fill="#16a34a" />
+                  <path d="M5.6 10.4l2.9 2.9 5.9-6.1" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                Verified
+              </span>
+            </a>
           </div>
 
           <div className="grid gap-10 sm:grid-cols-3 lg:col-span-7">
