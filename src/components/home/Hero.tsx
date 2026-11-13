@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import { gsap, SplitText, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { ContourBackdrop } from "@/components/brand/ContourBackdrop";
-import { ArrowUpRight, Scalpel, Scope, Stars, WhatsApp } from "@/components/ui/Icons";
+import { ArrowUpRight, Check, Scalpel, Scope, Stars, WhatsApp } from "@/components/ui/Icons";
 import type { ReactNode } from "react";
 import { site, whatsappLink } from "@/lib/site";
 
@@ -76,13 +76,13 @@ export function Hero() {
       {/* Small glass cards around the photo: rating and expertise at a glance. Desktop: three, beside the photo; phones: two, inside the screen. */}
       {/* Desktop: cards sit outside the photo's edges (photo half-width = min(36vw,38svh)) and in the upper half, clear of the headline. */}
       <div aria-hidden className="pointer-events-none absolute inset-0 z-10 hidden md:block">
-        <HeroCard className="top-[24%] left-[max(1.5rem,calc(50%-min(36vw,38svh)-16rem))]" delay="0s" icon={<span className="grid h-8 w-8 place-items-center rounded-full bg-white text-sm font-bold text-[#4285F4] shadow-sm">G</span>} title={<><span className="font-semibold">{site.rating.value}</span> <Stars className="ml-1 text-[0.62rem] text-ember" /></>} sub={`${site.rating.count}+ Google reviews`} />
-        <HeroCard className="top-[34%] right-[max(1.5rem,calc(50%-min(36vw,38svh)-17rem))]" delay="-2s" icon={<span className="grid h-8 w-8 place-items-center rounded-full grad-ember text-shell"><Scope /></span>} title="Doctor-led care" sub="Trichologist & dermatologist" />
-        <HeroCard className="top-[44%] left-[max(1.5rem,calc(50%-min(36vw,38svh)-15rem))]" delay="-4s" icon={<span className="grid h-8 w-8 place-items-center rounded-full bg-night text-shell"><Scalpel /></span>} title="FUE hair transplant" sub="Surgeons from Mumbai" />
+        <HeroCard className="top-[24%] left-[max(1.5rem,calc(50%-min(36vw,38svh)-16rem))]" delay="0s" icon={<span className="grid h-8 w-8 place-items-center rounded-full bg-white text-sm font-bold text-[#4285F4] shadow-sm">G</span>} title={<><span className="font-semibold">{site.rating.value}</span> <Stars className="ml-1 text-[0.62rem] text-ember" /></>} variant="frost" sub={<><Check className="mr-1 inline text-[0.7rem] text-[#16a34a]" />{site.rating.count}+ Google reviews</>} />
+        <HeroCard className="top-[34%] right-[max(1.5rem,calc(50%-min(36vw,38svh)-17rem))]" delay="-2s" icon={<span className="grid h-8 w-8 place-items-center rounded-full bg-[linear-gradient(135deg,#34d399,#15803d)] text-white"><Scope /></span>} title="Doctor-led care" sub="Trichologist & dermatologist" />
+        <HeroCard className="top-[44%] left-[max(1.5rem,calc(50%-min(36vw,38svh)-15rem))]" delay="-4s" icon={<span className="grid h-8 w-8 place-items-center rounded-full bg-night text-shell"><Scalpel /></span>} title={<>FUE hair transplant <span className="ml-1.5 inline-block h-1.5 w-1.5 rounded-full bg-[#22c55e] shadow-[0_0_0_3px_rgba(34,197,94,0.18)]" /></>} sub="Surgeons from Mumbai" />
       </div>
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[max(5.5rem,10svh)] z-10 px-4 md:hidden">
-        <HeroCard className="left-4 top-0" small delay="0s" icon={<span className="grid h-6 w-6 place-items-center rounded-full bg-white text-[0.7rem] font-bold text-[#4285F4] shadow-sm">G</span>} title={<><span className="font-semibold">{site.rating.value}</span> <Stars className="ml-0.5 text-[0.5rem] text-ember" /></>} sub={`${site.rating.count}+ reviews`} />
-        <HeroCard className="right-4 top-[33svh]" small delay="-2.5s" icon={<span className="grid h-6 w-6 place-items-center rounded-full grad-ember text-[0.7rem] text-shell"><Scope /></span>} title="Doctor-led care" sub="Trichologist & dermatologist" />
+        <HeroCard className="left-4 top-0" small delay="0s" icon={<span className="grid h-6 w-6 place-items-center rounded-full bg-white text-[0.7rem] font-bold text-[#4285F4] shadow-sm">G</span>} title={<><span className="font-semibold">{site.rating.value}</span> <Stars className="ml-0.5 text-[0.5rem] text-ember" /></>} variant="frost" sub={<><Check className="mr-0.5 inline text-[0.55rem] text-[#16a34a]" />{site.rating.count}+ reviews</>} />
+        <HeroCard className="right-4 top-[33svh]" small delay="-2.5s" icon={<span className="grid h-6 w-6 place-items-center rounded-full bg-[linear-gradient(135deg,#34d399,#15803d)] text-[0.7rem] text-white"><Scope /></span>} title="Doctor-led care" sub="Trichologist & dermatologist" />
       </div>
 
       <div data-hero-content className="wrap relative flex h-full flex-col items-center justify-end pb-[max(6svh,2.5rem)] text-center">
@@ -115,17 +115,17 @@ export function Hero() {
 }
 
 /** A small glass card floating beside the hero photo (gentle drift; offset delays keep the cards out of step). */
-function HeroCard({ icon, title, sub, className, delay, small }: { icon: ReactNode; title: ReactNode; sub: string; className?: string; delay: string; small?: boolean }) {
+function HeroCard({ icon, title, sub, className, delay, small, variant = "glass" }: { icon: ReactNode; title: ReactNode; sub: ReactNode; className?: string; delay: string; small?: boolean; variant?: "glass" | "frost" }) {
   return (
     <div data-hero-card className={`absolute ${className ?? ""}`}>
       <div
-        className={`hero-bob glass flex items-center gap-2.5 rounded-2xl text-left shadow-[0_18px_40px_-22px_rgba(58,29,24,0.45)] ${small ? "px-2.5 py-1.5" : "px-3.5 py-2.5"}`}
+        className={`hero-bob flex items-center gap-2.5 rounded-2xl text-left ${variant === "frost" ? "hero-frost" : "glass shadow-[0_18px_40px_-22px_rgba(58,29,24,0.45)]"} ${small ? "px-2.5 py-1.5" : "px-3.5 py-2.5"}`}
         style={{ animationDelay: delay }}
       >
         {icon}
         <span className="leading-tight">
           <span className={`flex items-center text-cocoa ${small ? "text-[0.72rem]" : "text-[0.86rem] font-medium"}`}>{title}</span>
-          <span className={`block text-cocoa/70 ${small ? "text-[0.6rem]" : "text-[0.72rem]"}`}>{sub}</span>
+          <span className={`flex items-center text-cocoa/75 ${small ? "text-[0.6rem]" : "text-[0.72rem]"}`}>{sub}</span>
         </span>
       </div>
     </div>
