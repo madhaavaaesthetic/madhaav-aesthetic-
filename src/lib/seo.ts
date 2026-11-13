@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import type { Metadata } from "next";
 import { SITE_URL, absoluteUrl, branches, site, type Branch } from "./site";
 import type { FAQ, Treatment } from "@/data/types";
@@ -37,10 +39,21 @@ export const regionCode = (state: string) => REGION_CODES[state] ?? "IN";
 /** Square brand logo used as the share image for the home page and pages without their own photo. */
 const DEFAULT_OG = { url: "/images/og-logo.jpg", width: 1080, height: 1080, type: "image/jpeg" };
 
+/**
+ * Link previews (WhatsApp, Facebook, LinkedIn, X) use a 1200×630 JPEG made from the page's photo (public/og/, all < 160 KB),
+ * which loads reliably in every app. Falls back to the original photo if a share version is missing.
+ */
+function shareImage(image: string) {
+  const name = image.split("/").pop()!.replace(/\.[a-z]+$/i, "");
+  const og = `/og/${name}.jpg`;
+  return existsSync(join(process.cwd(), "public", og)) ? { url: og, width: 1200, height: 630, type: "image/jpeg" } : { url: image };
+}
+
 export function pageMeta({ title, description, path, image, keywords, type = "website", noindex, geo, publishedTime }: MetaInput): Metadata {
   const url = absoluteUrl(path);
   // Pages with their own photo (treatments, clinics, posts) share it; everything else shows the clinic logo.
-  const ogImage = image ?? DEFAULT_OG.url;
+  const share = image ? shareImage(image) : DEFAULT_OG;
+  const ogImage = share.url;
   return {
     title,
     description,
@@ -65,7 +78,7 @@ export function pageMeta({ title, description, path, image, keywords, type = "we
       siteName: site.name,
       locale: "en_IN",
       type,
-      images: [image ? { url: ogImage, alt: title } : { ...DEFAULT_OG, alt: title }],
+      images: [{ ...share, alt: title }],
     },
     twitter: { card: image ? "summary_large_image" : "summary", title, description, images: [ogImage] },
     robots: noindex ? { index: false, follow: true } : { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },

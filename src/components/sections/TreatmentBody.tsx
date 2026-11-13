@@ -101,42 +101,6 @@ export function TreatmentBody({
         </div>
       </section>
 
-      {t.spotlight && (
-        <section className="pb-16 md:pb-20" aria-labelledby="spotlight-title">
-          <div className="wrap">
-            <Reveal className="relative overflow-hidden rounded-[2rem] bg-white p-8 shadow-[0_40px_90px_-50px_rgba(58,29,24,0.45)] ring-1 ring-cocoa/8 md:p-12">
-              <div aria-hidden className="glow -top-24 -right-20 h-72 w-80 opacity-25" />
-              <div className="relative grid gap-10 lg:grid-cols-12">
-                <div className="lg:col-span-7">
-                  <p className="eyebrow text-vermilion">{t.spotlight.eyebrow}</p>
-                  <h2 id="spotlight-title" className="mt-4 font-display text-[clamp(1.9rem,3.4vw,3rem)] leading-[1.1] text-cocoa">
-                    {t.spotlight.title}
-                  </h2>
-                  <div className="mt-6 space-y-4 text-[1.02rem] leading-relaxed text-cocoa/80">
-                    {t.spotlight.paragraphs.map((p) => (
-                      <p key={p}>{emphasize(p)}</p>
-                    ))}
-                  </div>
-                </div>
-                <div className="lg:col-span-5">
-                  <ul className="space-y-3 rounded-[1.5rem] bg-cream p-6 md:p-7">
-                    {t.spotlight.points.map((pt) => (
-                      <li key={pt} className="flex gap-3 text-cocoa/85">
-                        <Check className="mt-1 shrink-0 text-vermilion" /> <span>{emphasize(pt)}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {t.spotlight.note && <p className="mt-4 text-sm text-cocoa/70">{t.spotlight.note}</p>}
-                  <Link href="/contact" className="btn btn-dark mt-6 w-full">
-                    Ask about {t.spotlight.eyebrow.split("·").pop()?.trim()}
-                  </Link>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      )}
-
       <section className="bg-shell py-16 md:py-20">
         <div className="wrap">
           <p className="eyebrow flex items-center gap-3 text-vermilion">

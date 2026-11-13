@@ -1,5 +1,13 @@
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://madhaavaaesthetic.com").replace(/\/$/, "");
 
+/**
+ * The address this build is actually served from, used to resolve share-preview images. On Vercel/Netlify previews this is
+ * the deployment's own URL (so previews work before the domain points at the site); otherwise it is SITE_URL.
+ * Canonical URLs, sitemaps and structured data always use SITE_URL.
+ */
+const vercelHost = process.env.VERCEL_ENV === "production" ? process.env.VERCEL_PROJECT_PRODUCTION_URL : process.env.VERCEL_URL;
+export const ASSET_ORIGIN = (vercelHost ? `https://${vercelHost}` : process.env.DEPLOY_PRIME_URL || process.env.URL || SITE_URL).replace(/\/$/, "");
+
 export interface Branch {
   slug: string;
   citySlug: string;

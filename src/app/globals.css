@@ -354,7 +354,7 @@ html.lenis, html.lenis body { height: auto; }
 .stars {
   display: inline-block;
   height: 1em;
-  width: calc(var(--n, 5) * 1.25em - 0.25em);
+  width: calc(var(--n, 5) * 1.2em - 0.2em); /* < n+1 tiles wide, so "space" repeat draws exactly n stars */
   background-color: currentColor;
   -webkit-mask-image: url(/images/star.svg);
   mask-image: url(/images/star.svg);

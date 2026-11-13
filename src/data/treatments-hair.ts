@@ -468,6 +468,7 @@ export const hairTreatments: Treatment[] = [
     intro: [
       "Exosomes are nano-sized vesicles that cells use to send signals to each other. Lab-prepared exosome solutions carry proteins, growth factors and microRNA that support the regeneration of hair follicle cells. Duta-exosome protocols deliver these signals to the scalp, usually through micro-needling or micro-injection.",
       "Unlike PRP and GFC, exosome therapy does not need a blood draw, which suits patients who are uncomfortable with needles in the arm or whose platelet quality is low. It is a newer therapy, so we use it selectively and explain the expected benefits and limits honestly at consultation.",
+      "We also offer Dutexome (c.prof 231 by Mesoestetic), a professional scalp solution that combines exosomes with 0.05% dutasteride, copper tripeptide, biotin and other B-group vitamins. Dutasteride lowers DHT, the hormone behind pattern baldness, right in the scalp, while the exosomes, copper peptide and vitamins support stronger follicles. It is given in the clinic by micro-injection or micro-needling, in a course of sessions planned by your doctor, and suits men with early to moderate pattern hair loss who want a stronger option than PRP alone or prefer not to take daily tablets."
     ],
     idealFor: ["Patients who have plateaued on PRP or GFC", "Those who prefer no blood draw", "Diffuse thinning in men and women", "Post-transplant support"],
     steps: [
@@ -483,28 +484,12 @@ export const hairTreatments: Treatment[] = [
     ],
     aftercare: ["Avoid washing for 12 hours", "No sun exposure on the scalp for 48 hours", "No styling products for 24 hours"],
     safety:
-      "Exosome therapy is an emerging treatment and the evidence base is still developing. Temporary redness and tenderness are possible. Results vary, and the doctor will discuss whether it is suitable for you.",
+      "Exosome therapy is an emerging treatment and the evidence base is still developing. Temporary redness and tenderness are possible. Results vary, and the doctor will discuss whether it is suitable for you. Dutexome contains dutasteride, so it is not used in women who are pregnant or may become pregnant.",
     faqs: [
       { q: "Are exosomes better than PRP?", a: "They work differently. Exosomes deliver cell-signalling molecules without a blood draw, while PRP uses your own platelets. Some patients respond better to one than the other, and combinations are common." },
       { q: "How many exosome sessions do I need?", a: "Typically 3–4 sessions, 4–6 weeks apart, with maintenance based on response." },
       { q: "Is exosome therapy painful?", a: "With numbing, most patients feel only mild pressure or tingling." },
     ],
-    spotlight: {
-      eyebrow: "Available at Madhaav · Dutexome",
-      title: "Dutexome: exosomes with dutasteride for hair loss",
-      paragraphs: [
-        "Dutexome (c.prof 231 by Mesoestetic) is a professional scalp solution that combines exosomes with 0.05% dutasteride, copper tripeptide, biotin and other B-group vitamins. It is designed to control hair loss and support regrowth in a single treatment.",
-        "Dutasteride lowers DHT, the hormone behind pattern baldness, right where it is needed in the scalp, while the exosomes, copper peptide and vitamins support stronger, healthier follicles. It is given in the clinic by micro-injection or micro-needling, in a course of sessions planned by your doctor.",
-        "It suits men with early to moderate pattern hair loss who want a stronger option than PRP alone, or who prefer not to take daily tablets. Your doctor confirms whether it is right for you after a scalp analysis.",
-      ],
-      points: [
-        "Exosomes + 0.05% dutasteride + copper tripeptide + biotin",
-        "Targets DHT, a main cause of male pattern hair loss",
-        "In-clinic sessions with little or no downtime",
-        "Can be combined with PRP, GFC or medicines",
-      ],
-      note: "Dutasteride is not used in women who are pregnant or may become pregnant. Your doctor reviews your history before starting.",
-    },
     related: ["gfc-hair-treatment", "prp-hair-treatment", "qr678-hair-treatment", "hair-loss-treatment"],
     doctors: ["dr-mannu-singgh"],
     local: {

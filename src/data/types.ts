@@ -31,8 +31,6 @@ export interface Treatment {
   related: string[];
   doctors: DoctorSlug[];
   local: { humid: string; dry: string };
-  /** A named treatment we offer within this service (e.g. Cosmelan), explained in its own section. */
-  spotlight?: { eyebrow: string; title: string; paragraphs: string[]; points: string[]; note?: string };
 }
 
 export type Climate = "humid" | "dry";

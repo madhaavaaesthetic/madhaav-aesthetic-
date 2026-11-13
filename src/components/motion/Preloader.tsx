@@ -5,6 +5,10 @@ import { usePathname } from "next/navigation";
 import { preload } from "react-dom";
 import { gsap } from "@/lib/gsap";
 
+/** Session key: the intro plays once per browser tab. */
+const KEY = "madhaav-intro-seen";
+/** Playback speed of the intro (it always runs to the very end). */
+const PLAYBACK_RATE = 1.5;
 /** Source time (s) where the intro starts: the first colourful frame, saved as preloader-start.webp. */
 const START_AT = 0.9;
 /** The intro video's full length (s): the site opens only after the whole animation has played. */
@@ -19,7 +23,8 @@ const markLoaded = () => {
 };
 
 /**
- * Intro animation, shown whenever a visitor lands on the home page; it always plays to the end before the site appears.
+ * Intro animation, shown the first time a visitor lands on the home page in a browser tab; it always plays to the end
+ * (at 1.5x) before the site appears.
  * A still of the opening frame paints immediately (so it is the page's LCP), then the video continues from that exact frame.
  */
 export function Preloader() {
@@ -42,6 +47,10 @@ export function Preloader() {
     // JavaScript is in control now: switch off the CSS no-JS backstop so it can never cut the intro short.
     el.style.animation = "none";
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let seen = false;
+    try {
+      seen = sessionStorage.getItem(KEY) === "1";
+    } catch {}
     window.__lenis?.stop();
 
     let exited = false;
@@ -63,12 +72,12 @@ export function Preloader() {
         .to(el, { clipPath: "inset(0% 0% 100% 0%)", duration: 0.9, ease: "expo.inOut" }, 0.3);
     };
 
-    if (reduce) {
+    if (reduce || seen) {
       exit(true);
       return;
     }
 
-    v.playbackRate = 1;
+    v.playbackRate = PLAYBACK_RATE;
     const counter = el.querySelector<HTMLElement>("[data-counter]");
     const span = VIDEO_END - START_AT;
     const onTime = () => {
@@ -79,11 +88,15 @@ export function Preloader() {
     const startTimer = window.setTimeout(() => exit(), START_TIMEOUT);
     let endTimer = 0;
     const onPlaying = () => {
+      v.playbackRate = PLAYBACK_RATE; // some browsers reset the rate once media loads
+      try {
+        sessionStorage.setItem(KEY, "1"); // the intro is actually playing: don't repeat it in this tab
+      } catch {}
       gsap.to(v, { autoAlpha: 1, duration: 0.2 });
       window.clearTimeout(startTimer);
       // Backstop in case "ended" never fires: the remaining running time plus a little slack.
       window.clearTimeout(endTimer);
-      endTimer = window.setTimeout(() => exit(), (VIDEO_END - v.currentTime) * 1000 + 2500);
+      endTimer = window.setTimeout(() => exit(), ((VIDEO_END - v.currentTime) / PLAYBACK_RATE) * 1000 + 2500);
     };
     const onEnded = () => {
       if (counter) counter.textContent = "100";

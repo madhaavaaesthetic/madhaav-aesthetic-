@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { dmSans, playfair } from "@/lib/fonts";
-import { SITE_URL, site } from "@/lib/site";
+import { ASSET_ORIGIN, SITE_URL, site } from "@/lib/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ActionBar } from "@/components/layout/ActionBar";
@@ -13,7 +13,7 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { BASE_OTHER_META, organizationLd, websiteLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(ASSET_ORIGIN),
   title: {
     default: "Best Hair Transplant & Skin Clinic in Berhampur, Thane & Bhiwadi | Madhaav Aesthetic",
     template: "%s",
