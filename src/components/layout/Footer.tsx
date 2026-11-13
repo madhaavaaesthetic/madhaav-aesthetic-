@@ -2,14 +2,12 @@ import Link from "next/link";
 import { branches, site, telLink, whatsappLink } from "@/lib/site";
 import { cities } from "@/data/locations";
 import { coreTreatments, treatments } from "@/data/treatments";
-import { Strands } from "@/components/brand/Strands";
 import { ArrowUpRight, Instagram, Pin, Star, WhatsApp } from "@/components/ui/Icons";
 
 export function Footer() {
   const year = 2026;
   return (
     <footer className="relative overflow-hidden bg-night text-shell">
-      <Strands className="absolute -top-40 -right-40 h-[780px] w-[780px] opacity-25" id="foot-grad" />
       <div className="wrap relative pt-16 pb-28 md:pt-20 md:pb-10">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">

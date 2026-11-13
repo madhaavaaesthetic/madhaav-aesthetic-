@@ -43,7 +43,7 @@ export function Journey({ steps }: { steps: Treatment["steps"] }) {
 
       q("[data-step]").forEach((step, i) => {
         ScrollTrigger.create({ trigger: step, start: "top 55%", end: "bottom 55%", onToggle: (self) => self.isActive && show(i) });
-        if (!reduce) gsap.fromTo(step, { x: 36, y: 18 }, { x: 0, y: 0, ease: "none", scrollTrigger: { trigger: step, start: "top 92%", end: "top 55%", scrub: true } }); // transform only: text stays full-contrast
+        if (!reduce) gsap.fromTo(step, { y: 40 }, { y: 0, ease: "none", scrollTrigger: { trigger: step, start: "top 92%", end: "top 55%", scrub: true } }); // transform only: text stays full-contrast
       });
       if (!reduce) {
         gsap.fromTo(q("[data-line]"), { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: q("[data-steps]")[0], start: "top 60%", end: "bottom 60%", scrub: true } });

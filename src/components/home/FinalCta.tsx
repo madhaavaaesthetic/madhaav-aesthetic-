@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Marquee } from "@/components/motion/Marquee";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { SplitReveal } from "@/components/motion/SplitReveal";
-import { Sprig } from "@/components/brand/Strands";
 import { site, telLink, whatsappLink } from "@/lib/site";
 import { ArrowUpRight, Phone, WhatsApp } from "@/components/ui/Icons";
 
@@ -12,9 +11,7 @@ export function FinalCta({ title = "Book your consultation today", message = "Hi
       <div aria-hidden>
       <Marquee duration={30} className="pointer-events-none opacity-[0.07]" pauseOnHover={false}>
         {Array.from({ length: 4 }).map((_, i) => (
-          <span key={i} data-text="Book a consultation" className="flex items-center gap-10 pr-10 font-hero text-[16vw] leading-none whitespace-nowrap text-cocoa before:content-[attr(data-text)]">
-            <Sprig className="h-[6vw] w-[18vw] text-cocoa" />
-          </span>
+          <span key={i} data-text="Book a consultation" className="pr-[6vw] font-hero text-[16vw] leading-none whitespace-nowrap text-cocoa before:content-[attr(data-text)]" />
         ))}
       </Marquee>
       </div>

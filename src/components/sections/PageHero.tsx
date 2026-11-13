@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SplitReveal } from "@/components/motion/SplitReveal";
 import { Reveal } from "@/components/motion/Reveal";
-import { Strands } from "@/components/brand/Strands";
+import { ContourBackdrop } from "@/components/brand/ContourBackdrop";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { ArrowRight, Stars, WhatsApp } from "@/components/ui/Icons";
 import { site, whatsappLink } from "@/lib/site";
@@ -34,8 +34,7 @@ export function PageHero({
 }) {
   return (
     <section className="relative overflow-hidden pt-[calc(var(--header-h)+1.5rem)] pb-10 md:pb-14">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(55%_45%_at_80%_20%,#f9dccb_0%,transparent_70%)]" />
-      <Strands className="pointer-events-none absolute -top-24 -right-56 h-[720px] w-[720px] opacity-40" id="ph-grad" />
+      <ContourBackdrop intensity="soft" />
       <div className="wrap relative">
         <Breadcrumbs items={crumbs} />
         <div className="mt-10 grid items-end gap-12 lg:grid-cols-12">

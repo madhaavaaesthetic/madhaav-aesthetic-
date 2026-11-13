@@ -1,38 +1,29 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
+import { ServicesWheel, type ServiceCard } from "@/components/home/ServicesWheel";
 import { Statement } from "@/components/home/Statement";
-import { TreatmentsRail } from "@/components/home/TreatmentsRail";
 import { Journey } from "@/components/home/Journey";
-import { GrowthTimeline } from "@/components/home/GrowthTimeline";
 import { Doctors } from "@/components/home/Doctors";
-import { WhyBento } from "@/components/home/WhyBento";
 import { Clinics } from "@/components/home/Clinics";
-import { InsideClinic } from "@/components/home/InsideClinic";
-import { ToolsTeaser } from "@/components/home/ToolsTeaser";
-import { JournalTeaser } from "@/components/home/JournalTeaser";
 import { FinalCta } from "@/components/home/FinalCta";
 import { Faq } from "@/components/ui/Faq";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { homeFaqs } from "@/data/faqs";
 import { reviews } from "@/data/reviews";
-import { getTreatment, treatments } from "@/data/treatments";
+import { getTreatment } from "@/data/treatments";
 
-/** The home rail's featured treatments, reduced to the fields the cards show (keeps full treatment data out of the browser bundle). */
-const railTreatments = [
-  "hair-transplant",
-  "hair-loss-treatment",
-  "gfc-hair-treatment",
-  "prp-hair-treatment",
-  "exosome-hair-treatment",
-  "qr678-hair-treatment",
-  "laser-hair-reduction",
-  "hydrafacial",
-  "pigmentation-treatment",
-  "acne-treatment",
-].map((slug) => {
+/** The services wheel: six doorways into the treatments, each with its own photograph. */
+const serviceCards: ServiceCard[] = [
+  { slug: "hair-transplant", href: "/treatments/hair-transplant", tag: "Hair restoration", title: "Hair transplant", text: "Permanent, natural hairlines with FUE, planned graft by graft." },
+  { slug: "gfc-hair-treatment", href: "/treatments/hair-loss-treatment", tag: "Hair regrowth", title: "Hair fall treatment", text: "PRP, GFC, exosomes and QR678 to stop shedding and thicken thin hair." },
+  { slug: "laser-hair-reduction", href: "/treatments/laser-hair-reduction", tag: "Laser", title: "Laser hair reduction", text: "Smooth, long-lasting results for face and body, on Indian skin." },
+  { slug: "hydrafacial", href: "/treatments/hydrafacial", tag: "Skin & glow", title: "Hydrafacial & peels", text: "Deep-cleansed, hydrated, brighter skin with no downtime." },
+  { slug: "acne-treatment", href: "/treatments/acne-treatment", tag: "Clear skin", title: "Acne & pigmentation", text: "Treat breakouts, scars, melasma and dark spots at the root." },
+  { slug: "psoriasis-treatment", href: "/treatments?c=clinical-dermatology", tag: "Dermatology", title: "Skin conditions", text: "Eczema, psoriasis and fungal infections, treated by doctors." },
+].map(({ slug, ...c }) => {
   const t = getTreatment(slug)!;
-  return { slug: t.slug, name: t.name, image: t.image, imageAlt: t.imageAlt, tagline: t.tagline, category: t.category };
+  return { ...c, image: t.image, imageAlt: t.imageAlt };
 });
 
 /** 14 reviews, alternating clinics, for the home marquee (every review still appears on its clinic's pages). */
@@ -64,17 +55,13 @@ export const metadata: Metadata = pageMeta({
 export default function HomePage() {
   return (
     <>
-      <Hero marquee={treatments.map((t) => ({ slug: t.slug, shortName: t.shortName }))} />
+      <Hero />
       <Statement />
-      <TreatmentsRail featured={railTreatments} total={treatments.length} />
-      <WhyBento />
+      <ServicesWheel cards={serviceCards} />
       <Journey steps={getTreatment("hair-transplant")!.steps} />
-      <GrowthTimeline />
       <ReviewsSection list={homeReviews} title="What our patients say on Google" tone="dark" />
       <Doctors />
       <Clinics />
-      <InsideClinic />
-      <ToolsTeaser />
       <section className="bg-cream py-16 md:py-24" aria-labelledby="faq-title">
         <div className="wrap grid gap-14 lg:grid-cols-12">
           <SectionHead className="lg:col-span-4" eyebrow="FAQ" title={<span id="faq-title">Frequently asked questions</span>} lead="Quick answers about cost, pain, results and clinic timings." />
@@ -83,7 +70,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <JournalTeaser />
       <div className="bg-shell pt-4">
         <SearchTerms title="People also search for" terms={keywordsFor("/").map((label) => ({ label }))} />
       </div>

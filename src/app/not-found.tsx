@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { Strands } from "@/components/brand/Strands";
+import { ContourBackdrop } from "@/components/brand/ContourBackdrop";
 import { coreTreatments } from "@/data/treatments";
 
 export default function NotFound() {
   return (
     <section className="relative grid min-h-[90vh] place-items-center overflow-hidden pt-[var(--header-h)]">
-      <Strands className="absolute inset-0 m-auto h-[110%] w-[110%] opacity-30" id="nf-grad" />
+      <ContourBackdrop />
       <div className="wrap relative text-center">
         <p className="font-hero text-[clamp(6rem,22vw,18rem)] leading-[1.15] text-grad">404</p>
         <h1 className="mt-4 font-display text-title text-cocoa">Sorry, we can’t find that page</h1>
