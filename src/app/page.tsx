@@ -65,22 +65,23 @@ export default function HomePage() {
       <TreatmentMarquee items={treatments.map((t) => ({ slug: t.slug, shortName: t.shortName }))} />
       <Statement />
       <ServicesWheel cards={serviceCards} />
+      <SectionFade from="shell" to="night" />
+      <ReviewsSection list={homeReviews} title="What our patients say on Google" tone="dark" />
+      <SectionFade from="night" to="shell" />
       <WhyBento />
       <Journey steps={getTreatment("hair-transplant")!.steps} />
       <SectionFade from="shell" to="cream" />
       <GrowthTimeline />
-      <SectionFade from="cream" to="night" />
-      <ReviewsSection list={homeReviews} title="What our patients say on Google" tone="dark" />
-      <SectionFade from="night" to="cream" />
       <Doctors />
-      <Clinics />
-      <FirstVisit />
-      <SectionFade from="cream" to="night" />
-      <InsideClinic />
-      <SectionFade from="night" to="ember" />
+      <CostGlance />
+      <SectionFade from="cream" to="ember" />
       <ToolsTeaser />
       <SectionFade from="ember" to="cream" />
-      <CostGlance />
+      <FirstVisit />
+      <Clinics />
+      <SectionFade from="cream" to="night" />
+      <InsideClinic />
+      <SectionFade from="night" to="cream" />
       <section className="bg-cream py-16 md:py-24" aria-labelledby="faq-title">
         <div className="wrap grid gap-14 lg:grid-cols-12">
           <SectionHead className="lg:col-span-4" eyebrow="FAQ" title={<span id="faq-title">Frequently asked questions</span>} lead="Quick answers about cost, pain, results and clinic timings." />
