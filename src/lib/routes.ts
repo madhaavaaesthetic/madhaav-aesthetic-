@@ -21,6 +21,7 @@ export function allRoutes(): RouteEntry[] {
     { path: "/about", priority: 0.6, changeFrequency: "yearly" },
     { path: "/results", priority: 0.6, changeFrequency: "monthly" },
     { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
+    { path: "/products", priority: 0.5, changeFrequency: "monthly" },
     { path: "/tools/hair-graft-calculator", priority: 0.8, changeFrequency: "monthly" },
     { path: "/tools/hair-loss-test", priority: 0.7, changeFrequency: "monthly" },
     { path: "/privacy-policy", priority: 0.2, changeFrequency: "yearly" },
