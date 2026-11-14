@@ -39,6 +39,9 @@ export const WhatsApp = (p: P) => (
 export const Check = (p: P) => (
   <svg viewBox="0 0 24 24" width="1em" height="1em" {...base} {...p}><path d="m5 12.5 4.2 4.2L19 7" /></svg>
 );
+export const Award = (p: P) => (
+  <svg viewBox="0 0 24 24" width="1em" height="1em" {...base} {...p}><circle cx="12" cy="9" r="6" /><path d="m8.5 13.8-1.5 7.2 5-2.8 5 2.8-1.5-7.2" /><path d="m12 6.3.9 1.8 2 .3-1.45 1.4.35 2-1.8-.95-1.8.95.35-2L9.1 8.4l2-.3z" fill="currentColor" stroke="none" /></svg>
+);
 export const Shield = (p: P) => (
   <svg viewBox="0 0 24 24" width="1em" height="1em" {...base} {...p}><path d="M12 3 5 6v6c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6z" /><path d="m9 12 2 2 4-4" /></svg>
 );

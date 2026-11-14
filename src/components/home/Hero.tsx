@@ -5,11 +5,13 @@ import Link from "next/link";
 import { useRef } from "react";
 import { gsap, SplitText, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { ContourBackdrop } from "@/components/brand/ContourBackdrop";
-import { ArrowUpRight, Check, Scalpel, Scope, Stars, WhatsApp } from "@/components/ui/Icons";
+import { ArrowUpRight, Award, Check, Scalpel, Scope, Star, Stars, WhatsApp } from "@/components/ui/Icons";
 import type { ReactNode } from "react";
-import { site, whatsappLink } from "@/lib/site";
+import { branchBySlug, site, whatsappLink } from "@/lib/site";
 
 /** Calm, typographic hero: a full-screen contour wash with one statement, one line of copy and one clear action. */
+const berhampur = branchBySlug("berhampur")!;
+
 export function Hero() {
   const root = useRef<HTMLElement>(null);
 
@@ -78,10 +80,12 @@ export function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-0 z-10 hidden md:block">
         <HeroCard className="top-[24%] left-[max(1.5rem,calc(50%-min(36vw,38svh)-16rem))]" delay="0s" icon={<span className="grid h-8 w-8 place-items-center rounded-full bg-white text-sm font-bold text-[#4285F4] shadow-sm">G</span>} title={<><span className="font-semibold">{site.rating.value}</span> <Stars className="ml-1 text-[0.62rem] text-ember" /></>} variant="frost" sub={<><Check className="mr-1 inline text-[0.7rem] text-[#16a34a]" />{site.rating.count}+ Google reviews</>} />
         <HeroCard className="top-[34%] right-[max(1.5rem,calc(50%-min(36vw,38svh)-17rem))]" delay="-2s" icon={<span className="grid h-8 w-8 place-items-center rounded-full bg-[linear-gradient(135deg,#34d399,#15803d)] text-white"><Scope /></span>} title="Doctor-led care" sub="Trichologist & dermatologist" />
+        <HeroCard className="top-[17%] right-[max(1.5rem,calc(50%-min(36vw,38svh)-15rem))]" delay="-3s" variant="frost" icon={<span className="grid h-8 w-8 place-items-center rounded-full bg-[linear-gradient(135deg,#f5b544,#e07b12)] text-white"><Award /></span>} title={<><BestTag /> Hair transplant clinic</>} sub={<>Berhampur · <span className="ml-1 font-semibold text-cocoa">{berhampur.rating.value}</span><Star className="mx-0.5 text-[0.6rem] text-ember" />{berhampur.rating.count}+ reviews</>} />
         <HeroCard className="top-[44%] left-[max(1.5rem,calc(50%-min(36vw,38svh)-15rem))]" delay="-4s" icon={<span className="grid h-8 w-8 place-items-center rounded-full bg-night text-shell"><Scalpel /></span>} title={<>FUE hair transplant <span className="ml-1.5 inline-block h-1.5 w-1.5 rounded-full bg-[#22c55e] shadow-[0_0_0_3px_rgba(34,197,94,0.18)]" /></>} sub="Surgeons from Mumbai" />
       </div>
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[max(5.5rem,10svh)] z-10 px-4 md:hidden">
         <HeroCard className="left-4 top-0" small delay="0s" icon={<span className="grid h-6 w-6 place-items-center rounded-full bg-white text-[0.7rem] font-bold text-[#4285F4] shadow-sm">G</span>} title={<><span className="font-semibold">{site.rating.value}</span> <Stars className="ml-0.5 text-[0.5rem] text-ember" /></>} variant="frost" sub={<><Check className="mr-0.5 inline text-[0.55rem] text-[#16a34a]" />{site.rating.count}+ reviews</>} />
+        <HeroCard className="right-4 top-0" small delay="-1.2s" variant="frost" icon={<span className="grid h-6 w-6 place-items-center rounded-full bg-[linear-gradient(135deg,#f5b544,#e07b12)] text-[0.7rem] text-white"><Award /></span>} title={<><BestTag small /> Berhampur</>} sub={<>{berhampur.rating.value}★ · {berhampur.rating.count}+ reviews</>} />
         <HeroCard className="right-4 top-[33svh]" small delay="-2.5s" icon={<span className="grid h-6 w-6 place-items-center rounded-full bg-[linear-gradient(135deg,#34d399,#15803d)] text-[0.7rem] text-white"><Scope /></span>} title="Doctor-led care" sub="Trichologist & dermatologist" />
       </div>
 
@@ -96,7 +100,10 @@ export function Hero() {
             Thicker hair. <span className="font-accent italic text-grad">Clearer skin.</span>
           </span>
         </h1>
-        <div data-hero-fade className="mt-8 flex items-center justify-center gap-2 sm:gap-3">
+        <p data-hero-fade className="mt-4 text-[0.95rem] tracking-wide text-cocoa/75 md:mt-5 md:text-[1.12rem]">
+          Diagnosis first. Natural results. An honest, written price.
+        </p>
+        <div data-hero-fade className="mt-6 flex md:mt-7 items-center justify-center gap-2 sm:gap-3">
           <Link href="/contact" className="btn btn-dark !min-h-12 !gap-1.5 !px-4 text-[0.86rem] whitespace-nowrap sm:!min-h-14 sm:!gap-2 sm:!px-8 sm:text-[0.98rem]" data-cursor="Book">
             Book a consultation <ArrowUpRight />
           </Link>
@@ -129,5 +136,14 @@ function HeroCard({ icon, title, sub, className, delay, small, variant = "glass"
         </span>
       </div>
     </div>
+  );
+}
+
+/** Small gold "Best rated" pill used on the hero card. */
+function BestTag({ small }: { small?: boolean }) {
+  return (
+    <span className={`mr-1.5 inline-flex items-center rounded-full bg-[linear-gradient(135deg,#f7c35c,#e58b17)] font-bold tracking-[0.12em] text-white uppercase shadow-[0_4px_10px_-4px_rgba(224,123,18,0.7)] ${small ? "px-1.5 py-px text-[0.48rem]" : "px-2 py-0.5 text-[0.56rem]"}`}>
+      ★ Best rated
+    </span>
   );
 }
