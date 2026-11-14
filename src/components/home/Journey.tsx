@@ -148,7 +148,7 @@ export function Journey({ steps }: { steps: Treatment["steps"] }) {
             <li key={s.title} data-card className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-night sm:aspect-[4/3]">
               <Media i={i} sizes="92vw" />
               <div className={SHADE} />
-              <div data-cap>
+              <div data-cap className="absolute inset-0 z-20">
                 <Caption i={i} title={s.title} text={s.text} />
               </div>
             </li>
