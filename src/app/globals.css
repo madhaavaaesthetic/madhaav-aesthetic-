@@ -415,3 +415,12 @@ html, body { overflow-x: clip; }
     inset 0 -1px 0 rgba(255, 255, 255, 0.3),
     0 22px 48px -24px rgba(21, 128, 61, 0.4);
 }
+
+/* Card stack (first visit, costs): each card sits a step behind the next; cards in front of the focused one slide aside. */
+.card-stack { --sx: 0.6rem; --sy: 1.15rem; --px: 1.5rem; --py: 6.5rem; padding-bottom: calc((var(--n) - 1) * var(--sy) + var(--py)); }
+@media (min-width: 640px) { .card-stack { --sx: 2.4rem; --sy: 1.9rem; --px: 8rem; --py: 8.5rem; } }
+.card-stack-item {
+  transform: translate(calc(var(--i) * var(--sx) + var(--push) * var(--px)), calc(var(--i) * var(--sy) + var(--push) * var(--py))) skewY(-5deg);
+}
+.card-stack-dim { filter: saturate(0.5) brightness(0.93); }
+@media (prefers-reduced-motion: reduce) { .card-stack-item { transition: none; } }
