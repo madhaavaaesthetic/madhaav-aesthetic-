@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Reveal } from "@/components/motion/Reveal";
-import { CardStack, type StackItem } from "@/components/ui/CardStack";
+import { ScrollStack, type ScrollStackItem } from "@/components/ui/ScrollStack";
 import { ArrowUpRight, Calendar, Check, Clock, Scope, Shield, Wallet, WhatsApp } from "@/components/ui/Icons";
 import { whatsappLink } from "@/lib/site";
 import type { ReactNode } from "react";
@@ -14,9 +14,9 @@ const STEPS: { title: string; text: string; icon: ReactNode }[] = [
   { title: "Treatment & follow-ups", text: "Sessions are booked at your convenience, and progress is reviewed at follow-up visits so the plan can be adjusted.", icon: <Clock /> },
 ];
 
-/** What a first visit looks like, step by step, as a fanning card stack. */
+/** What a first visit looks like, step by step, as cards that stack on top of each other as you scroll. */
 export function FirstVisit() {
-  const items: StackItem[] = STEPS.map((s, i) => ({
+  const items: ScrollStackItem[] = STEPS.map((s, i) => ({
     key: s.title,
     label: `Step ${i + 1}: ${s.title}`,
     content: (
@@ -33,8 +33,8 @@ export function FirstVisit() {
 
   return (
     <section className="relative bg-cream py-16 md:py-24" aria-labelledby="visit-title">
-      <div className="wrap grid items-center gap-12 lg:grid-cols-12">
-        <div className="lg:col-span-5">
+      <div className="wrap grid items-start gap-12 lg:grid-cols-12">
+        <div className="lg:sticky lg:top-[calc(var(--header-h)+2rem)] lg:col-span-5">
           <SectionHead
             eyebrow="Your first visit"
             title={<span id="visit-title">What happens at your first visit</span>}
@@ -58,9 +58,7 @@ export function FirstVisit() {
             </div>
           </Reveal>
         </div>
-        <Reveal className="flex justify-center lg:col-span-7 lg:pl-8">
-          <CardStack items={items} />
-        </Reveal>
+        <ScrollStack items={items} className="lg:col-span-7 lg:pl-6" />
       </div>
     </section>
   );

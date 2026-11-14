@@ -1,15 +1,15 @@
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Reveal } from "@/components/motion/Reveal";
-import { CardStack, type StackItem } from "@/components/ui/CardStack";
+import { ScrollStack, type ScrollStackItem } from "@/components/ui/ScrollStack";
 import { Check } from "@/components/ui/Icons";
 import { searchFor } from "@/data/keywords";
 import { categoryName, getTreatment } from "@/data/treatments";
 
 const SLUGS = ["hair-transplant", "gfc-hair-treatment", "prp-hair-treatment", "laser-hair-reduction", "hydrafacial"];
 
-/** Typical cost ranges for the most-asked treatments (the same estimates shown on each treatment page), as a card stack. */
+/** Typical cost ranges for the most-asked treatments (the same estimates shown on each treatment page), as cards that stack on scroll. */
 export function CostGlance() {
-  const items: StackItem[] = SLUGS.flatMap((slug) => {
+  const items: ScrollStackItem[] = SLUGS.flatMap((slug) => {
     const t = getTreatment(slug);
     const s = searchFor(slug);
     if (!t || !s) return [];
@@ -40,8 +40,8 @@ export function CostGlance() {
 
   return (
     <section className="relative bg-cream py-16 md:py-24" aria-labelledby="costs-title">
-      <div className="wrap grid items-center gap-12 lg:grid-cols-12">
-        <div className="lg:col-span-5">
+      <div className="wrap grid items-start gap-12 lg:grid-cols-12">
+        <div className="lg:sticky lg:top-[calc(var(--header-h)+2rem)] lg:col-span-5">
           <SectionHead
             eyebrow="Costs at a glance"
             title={<span id="costs-title">What do treatments cost?</span>}
@@ -58,9 +58,7 @@ export function CostGlance() {
             <p className="mt-6 text-xs text-cocoa/70">Ranges are typical Indian clinic pricing in 2026 and are for guidance only.</p>
           </Reveal>
         </div>
-        <Reveal className="flex justify-center lg:col-span-7 lg:pl-8">
-          <CardStack items={items} />
-        </Reveal>
+        <ScrollStack items={items} className="lg:col-span-7 lg:pl-6" />
       </div>
     </section>
   );
