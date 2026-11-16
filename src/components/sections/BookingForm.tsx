@@ -179,7 +179,7 @@ export default function BookingForm({ defaultClinic, defaultTreatment }: { defau
           {step === 1 && (
             <m.div key="s1" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.35 }}>
               <p className="eyebrow text-vermilion">Step 2 · Pick a date</p>
-              <div className="no-scrollbar -mx-5 mt-2 flex gap-2 overflow-x-auto px-5 pt-3 pb-2 md:-mx-9 md:px-9" data-lenis-prevent>
+              <div className="mt-2 grid grid-cols-7 gap-x-1 gap-y-3 pt-3 sm:gap-x-2">
                 {dates.map((d) => {
                   const active = d.iso === date;
                   return (
@@ -191,12 +191,12 @@ export default function BookingForm({ defaultClinic, defaultTreatment }: { defau
                         setTime(null);
                       }}
                       aria-pressed={active}
-                      className={cn("relative flex w-[4.6rem] shrink-0 flex-col items-center rounded-2xl py-3 ring-1 transition", active ? "bg-vermilion text-shell ring-vermilion" : "bg-cream text-cocoa ring-cocoa/10 hover:ring-cocoa/30")}
+                      className={cn("relative flex w-full min-w-0 flex-col items-center rounded-xl py-2 ring-1 transition sm:rounded-2xl sm:py-3", active ? "bg-vermilion text-shell ring-vermilion" : "bg-cream text-cocoa ring-cocoa/10 hover:ring-cocoa/30")}
                     >
-                      <span className="text-[0.7rem] font-semibold uppercase opacity-75">{d.isToday ? "Today" : d.weekday}</span>
-                      <span className="font-display text-2xl leading-tight">{d.day}</span>
-                      <span className="text-[0.7rem] opacity-70">{d.month}</span>
-                      {d.isWednesday && <span className={cn("absolute -top-2 rounded-full px-2 py-0.5 text-[0.6rem] font-bold uppercase", active ? "bg-shell text-vermilion" : "bg-vermilion text-shell")}>Free</span>}
+                      <span className="text-[0.52rem] font-semibold tracking-tight uppercase opacity-75 sm:text-[0.7rem] sm:tracking-normal">{d.isToday ? "Today" : d.weekday}</span>
+                      <span className="font-display text-[1.05rem] leading-tight sm:text-2xl">{d.day}</span>
+                      <span className="text-[0.55rem] opacity-70 sm:text-[0.7rem]">{d.month}</span>
+                      {d.isWednesday && <span className={cn("absolute -top-2 rounded-full px-1.5 py-px text-[0.5rem] font-bold uppercase sm:px-2 sm:py-0.5 sm:text-[0.6rem]", active ? "bg-shell text-vermilion" : "bg-vermilion text-shell")}>Free</span>}
                     </button>
                   );
                 })}
