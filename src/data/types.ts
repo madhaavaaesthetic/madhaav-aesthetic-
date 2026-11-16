@@ -1,6 +1,6 @@
 export type TreatmentCategory = "hair-restoration" | "hair-regrowth" | "skin-aesthetics" | "clinical-dermatology" | "wellness";
 
-export type DoctorSlug = "dr-mannu-singgh" | "dr-kapil-patil" | "dr-vinay-chouksey";
+export type DoctorSlug = "dr-mannu-singgh" | "dr-kapil-patil" | "dr-vinay-chouksey" | "dr-rajesh-kumar-behera";
 
 export interface FAQ {
   q: string;

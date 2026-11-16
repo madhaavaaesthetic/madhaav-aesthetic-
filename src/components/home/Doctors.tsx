@@ -27,7 +27,7 @@ export function Doctors() {
           </Reveal>
         </div>
 
-        <Reveal group className="mt-12 grid gap-6 md:grid-cols-3" stagger={0.12}>
+        <Reveal group className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4" stagger={0.12}>
           {doctors.map((d) => (
             <DoctorPlate key={d.slug} d={d} />
           ))}

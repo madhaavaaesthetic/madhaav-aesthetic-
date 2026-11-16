@@ -57,6 +57,20 @@ export const doctors: Doctor[] = [
     focus: ["FUE hair transplant", "Hairline design", "Laser hair reduction", "Carbon peel & laser toning", "Laser tattoo removal", "Scalp micro-pigmentation"],
     treatments: ["hair-transplant", "fue-hair-transplant", "laser-hair-reduction", "carbon-peel", "tattoo-removal", "scalp-micropigmentation", "hydrafacial"],
   },
+  {
+    slug: "dr-rajesh-kumar-behera",
+    name: "Dr. Rajesh Kumar Behera",
+    role: "Aesthetic Treatment Consultant",
+    credentials: "MBBS",
+    base: "Madhaav Aesthetic",
+    initials: "RB",
+    bio: [
+      "Dr. Rajesh Kumar Behera (MBBS) is an aesthetic treatment consultant at Madhaav Aesthetic. He guides patients through skin and aesthetic treatments, from the first consultation to follow-up.",
+      "He helps patients choose the right treatment for their skin, such as Hydrafacial, chemical and carbon peels, laser hair reduction and care for pigmentation and acne, and explains what to expect, how many sessions are needed and how to look after the skin afterwards.",
+    ],
+    focus: ["Aesthetic consultations", "Hydrafacial & medi-facials", "Chemical & carbon peels", "Pigmentation & acne care", "Laser hair reduction"],
+    treatments: ["hydrafacial", "chemical-peel", "carbon-peel", "pigmentation-treatment", "acne-treatment", "laser-hair-reduction"],
+  },
 ];
 
 export const getDoctor = (slug: string) => doctors.find((d) => d.slug === slug);
