@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMeta({ title: "Privacy Policy | Madhaav Ae
 
 export default function Page() {
   return (
-    <LegalPage title="Privacy Policy" path="/privacy-policy" updated="12 November 2026">
+    <LegalPage title="Privacy Policy" path="/privacy-policy" updated="18 November 2026">
       <p>This policy explains how {site.legalName} (&quot;we&quot;, &quot;us&quot;) handles information when you use this website or contact our clinics.</p>
       <h2>What we collect</h2>
       <ul>
@@ -16,9 +16,12 @@ export default function Page() {
         <li>Anonymous technical data (browser type, pages visited) collected by our hosting provider for security and performance.</li>
       </ul>
       <p>
-        When you book online, your name, mobile number, optional email, chosen clinic, date and time, treatment of interest and any notes are sent securely by email to
-        our clinic team, and a confirmation is emailed to you if you gave an address. You must tick the consent box before booking. We do not keep these details in a
-        separate database on this website.
+        When you book online, your name, mobile number, optional email, chosen clinic, date and time, treatment of interest and any notes are sent securely to our
+        clinic&apos;s patient-management system and to our clinic team, and a confirmation is emailed to you if you gave an address. You must tick the consent box before
+        booking. The website itself does not keep these details.
+      </p>
+      <p>
+        Online payments are processed by our payment partner Razorpay, which receives the details needed to complete the payment. We never see or store your card details.
       </p>
       <h2>Cookies</h2>
       <p>

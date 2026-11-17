@@ -123,6 +123,9 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-5">
             <Link href="/privacy-policy" className="hover:text-shell">Privacy</Link>
+            <Link href="/terms-and-conditions" className="hover:text-shell">Terms</Link>
+            <Link href="/refund-policy" className="hover:text-shell">Refunds</Link>
+            <Link href="/shipping-policy" className="hover:text-shell">Delivery</Link>
             <Link href="/medical-disclaimer" className="hover:text-shell">Medical disclaimer</Link>
             <Link href="/cookie-policy" className="hover:text-shell">Cookie policy</Link>
             <CookieSettingsLink className="hover:text-shell" />
