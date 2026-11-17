@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { BOOKING_CLINICS, SLOT_TIMES, openSlots, slotNeedle, upcomingDates } from "@/lib/booking";
 import { mailConfigured, searchSubjects } from "@/lib/mailer";
+import { mayurConfigured, mayurOpenSlots } from "@/lib/mayur";
 import { clientIp, rateLimited } from "@/lib/request-guard";
 
 export const dynamic = "force-dynamic";
@@ -23,6 +24,16 @@ export async function GET(req: Request) {
   }
 
   const open = openSlots(date);
+
+  // MAYUR knows the real calendar (hours, breaks, holidays, existing bookings). Fall through on failure.
+  if (mayurConfigured()) {
+    const available = await mayurOpenSlots(clinic, date);
+    if (available) {
+      const mayurOpen = open.filter((t) => available.includes(t));
+      return NextResponse.json({ open: mayurOpen, full: SLOT_TIMES.filter((t) => !mayurOpen.includes(t)) }, { headers: { "Cache-Control": "no-store" } });
+    }
+  }
+
   const key = `${clinic}|${date}`;
   let full = cache.get(key)?.at && Date.now() - cache.get(key)!.at < CACHE_MS ? cache.get(key)!.full : null;
 

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { slotNeedle, validateBooking, type BookingInput } from "@/lib/booking";
 import { adminEmail, icsInvite, patientEmail } from "@/lib/booking-emails";
 import { mailConfigured, searchSubjects, sendEmail } from "@/lib/mailer";
+import { mayurBook, mayurConfigured } from "@/lib/mayur";
 import { clientIp, rateLimited, sameOrigin } from "@/lib/request-guard";
 
 export const dynamic = "force-dynamic";
@@ -45,19 +46,30 @@ export async function POST(req: Request) {
   const v = validateBooking(payload);
   if (!v.ok) return NextResponse.json({ ok: false, error: v.error }, { status: 422 });
   const b = v.value;
+  const ref = makeRef(b);
+
+  // 1. MAYUR (clinic system) is the source of truth when configured; it re-checks the slot itself.
+  const mayur = mayurConfigured() ? await mayurBook(b, ref) : null;
+  if (mayur?.status === "slot_taken") {
+    return NextResponse.json({ ok: false, error: "Sorry, that slot was just taken. Please choose another time.", slotTaken: true }, { status: 409 });
+  }
+  const savedInMayur = mayur?.status === "booked";
 
   if (!mailConfigured()) {
+    if (savedInMayur) return NextResponse.json({ ok: true, ref, confirmationSent: false });
     return NextResponse.json({ ok: false, error: "Online booking is temporarily unavailable. Please book on WhatsApp.", fallback: true }, { status: 503 });
   }
 
-  try {
-    const taken = (await searchSubjects(slotNeedle(b.clinic, b.date, b.time))).length;
-    if (taken >= CAPACITY) return NextResponse.json({ ok: false, error: "Sorry, that slot was just taken. Please choose another time.", slotTaken: true }, { status: 409 });
-  } catch (e) {
-    console.error("[booking] availability check failed", e);
+  // 2. Without MAYUR, fall back to counting slot tags in the booking mailbox.
+  if (!savedInMayur) {
+    try {
+      const taken = (await searchSubjects(slotNeedle(b.clinic, b.date, b.time))).length;
+      if (taken >= CAPACITY) return NextResponse.json({ ok: false, error: "Sorry, that slot was just taken. Please choose another time.", slotTaken: true }, { status: 409 });
+    } catch (e) {
+      console.error("[booking] availability check failed", e);
+    }
   }
 
-  const ref = makeRef(b);
   const admin = process.env.BOOKING_ADMIN_EMAIL || "support@madhaavaaesthetic.com";
   const extra = (process.env.BOOKING_NOTIFY_EMAILS || "")
     .split(",")
@@ -70,7 +82,10 @@ export async function POST(req: Request) {
     await sendEmail({ to: [admin, ...extra], subject: a.subject, html: a.html, text: a.text, attachments: [ics] });
   } catch (e) {
     console.error("[booking] admin email failed", e);
-    return NextResponse.json({ ok: false, error: "We couldn't save your booking just now. Please book on WhatsApp.", fallback: true }, { status: 502 });
+    // Already saved in MAYUR → the booking stands even if the notification email fails.
+    if (!savedInMayur) {
+      return NextResponse.json({ ok: false, error: "We couldn't save your booking just now. Please book on WhatsApp.", fallback: true }, { status: 502 });
+    }
   }
 
   // Confirmation emails are capped per address so the form can't be used to spam a third party.
