@@ -46,14 +46,16 @@ export async function POST(req: Request) {
   const v = validateBooking(payload);
   if (!v.ok) return NextResponse.json({ ok: false, error: v.error }, { status: 422 });
   const b = v.value;
-  const ref = makeRef(b);
+  const websiteRef = makeRef(b);
 
   // 1. MAYUR (clinic system) is the source of truth when configured; it re-checks the slot itself.
-  const mayur = mayurConfigured() ? await mayurBook(b, ref) : null;
+  const mayur = mayurConfigured() ? await mayurBook(b, websiteRef) : null;
   if (mayur?.status === "slot_taken") {
     return NextResponse.json({ ok: false, error: "Sorry, that slot was just taken. Please choose another time.", slotTaken: true }, { status: 409 });
   }
   const savedInMayur = mayur?.status === "booked";
+  // The patient sees MAYUR's booking reference (MA-BAM-201126-003) so the clinic can look it up directly.
+  const ref = mayur?.status === "booked" ? mayur.ref : websiteRef;
 
   if (!mailConfigured()) {
     if (savedInMayur) return NextResponse.json({ ok: true, ref, confirmationSent: false });

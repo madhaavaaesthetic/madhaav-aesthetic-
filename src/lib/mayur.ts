@@ -36,7 +36,7 @@ export async function mayurOpenSlots(clinic: string, date: string): Promise<stri
 }
 
 export type MayurBooking =
-  | { status: "booked"; patientCode: string; appointmentId: string }
+  | { status: "booked"; ref: string; patientCode: string; appointmentId: string }
   | { status: "slot_taken" }
   | { status: "unavailable" };
 
@@ -63,8 +63,9 @@ export async function mayurBook(b: BookingInput, ref: string): Promise<MayurBook
       console.error("[mayur] booking rejected", res.status, await res.text().catch(() => ""));
       return { status: "unavailable" };
     }
-    const body = (await res.json()) as { patientCode?: string; appointmentId?: string };
-    return { status: "booked", patientCode: body.patientCode ?? "", appointmentId: body.appointmentId ?? "" };
+    const body = (await res.json()) as { ref?: string; patientCode?: string; appointmentId?: string };
+    // MAYUR's booking reference (MA-<BRANCH>-<DDMMYY>-<serial>) is what the patient sees; ours is only a fallback.
+    return { status: "booked", ref: body.ref || ref, patientCode: body.patientCode ?? "", appointmentId: body.appointmentId ?? "" };
   } catch (e) {
     console.error("[mayur] booking failed", e);
     return { status: "unavailable" };
